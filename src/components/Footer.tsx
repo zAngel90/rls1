@@ -40,10 +40,10 @@ const GalaxyBackground = () => {
         <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block" aria-hidden="true">
             <div className="absolute inset-0" style={{
                 background: `
-          radial-gradient(ellipse 80% 60% at 10% 80%, rgba(37,99,235,0.15) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 50% at 90% 20%, rgba(59,130,246,0.12) 0%, transparent 55%),
-          radial-gradient(ellipse 50% 40% at 50% 50%, rgba(20,0,172,0.1) 0%, transparent 60%),
-          radial-gradient(ellipse 70% 30% at 70% 90%, rgba(30,58,138,0.08) 0%, transparent 50%)
+          radial-gradient(ellipse 80% 60% at 10% 80%, rgba(245,165,0,0.15) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 50% at 90% 20%, rgba(255,208,0,0.12) 0%, transparent 55%),
+          radial-gradient(ellipse 50% 40% at 50% 50%, rgba(180,100,0,0.1) 0%, transparent 60%),
+          radial-gradient(ellipse 70% 30% at 70% 90%, rgba(100,60,0,0.08) 0%, transparent 50%)
         `
             }} />
             <div className="absolute top-8 right-1/3 w-40 h-[1px] rotate-[-35deg] opacity-30"
@@ -130,7 +130,7 @@ export default function Footer() {
 
             {isHome && (
                 <div
-                    className="relative overflow-hidden border-t border-b border-blue-400/30"
+                    className="relative overflow-hidden border-t border-b border-yellow-500/30"
                 >
                     {/* Background Image */}
                     <div 
@@ -145,14 +145,14 @@ export default function Footer() {
                     
                     {/* Corner Overlays */}
                     <div className="absolute inset-0 z-[1] pointer-events-none">
-                        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#090971]/90 via-[#000041]/75 via-30% to-transparent" />
-                        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971]/95 via-[#000041]/80 via-30% to-transparent" />
+                        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#3a1f00]/90 via-[#1a0d00]/75 via-30% to-transparent" />
+                        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#3a1f00]/95 via-[#1a0d00]/80 via-30% to-transparent" />
                     </div>
 
                     <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
                         <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black mb-4 leading-tight">
                             <span className="text-white">¿Qué estás</span>{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-600 to-blue-400">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400">
                                 esperando?
                             </span>
                         </h2>
@@ -161,7 +161,7 @@ export default function Footer() {
                         </p>
                         <a
                             href="/catalog"
-                            className="group relative inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 text-white font-black text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-[0_10px_40px_rgba(59,130,246,0.4),0_0_0_1px_rgba(96,165,250,0.3),inset_0_1px_0_rgba(255,255,255,0.3)] hover:shadow-[0_20px_60px_rgba(59,130,246,0.6),0_0_0_2px_rgba(96,165,250,0.5),inset_0_1px_0_rgba(255,255,255,0.4)]"
+                            className="group relative inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 text-black font-black text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-[0_10px_40px_rgba(245,165,0,0.4),0_0_0_1px_rgba(255,208,0,0.3),inset_0_1px_0_rgba(255,255,255,0.3)] hover:shadow-[0_20px_60px_rgba(245,165,0,0.6),0_0_0_2px_rgba(255,208,0,0.5),inset_0_1px_0_rgba(255,255,255,0.4)]"
                             style={{
                                 textShadow: '0 2px 10px rgba(0,0,0,0.3)'
                             }}
@@ -186,8 +186,8 @@ export default function Footer() {
             <div className="relative overflow-hidden">
                 {/* Corner Overlays */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                    <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/85 via-[#000041]/70 via-30% to-transparent" />
-                    <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/90 via-[#000041]/75 via-30% to-transparent" />
+                    <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#3a1f00]/85 via-[#1a0d00]/70 via-30% to-transparent" />
+                    <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#3a1f00]/90 via-[#1a0d00]/75 via-30% to-transparent" />
                 </div>
 
                 <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
@@ -198,7 +198,7 @@ export default function Footer() {
                         {/* Brand col — ocupa 2 columnas */}
                         <div className="lg:col-span-2">
                             <img
-                                src="https://i.postimg.cc/5tSsMDgK/logo-4x.png"
+                                src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png"
                                 alt="Pixel Store"
                                 className="h-9 w-auto object-contain mb-4 opacity-95"
                             />
@@ -207,17 +207,17 @@ export default function Footer() {
                             </p>
                             {/* Social */}
                             <div className="flex gap-3 flex-wrap">
-                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-blue-400/10 hover:border-blue-400/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]">
+                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
                                     <DiscordIcon />
                                     <span className="group-hover:translate-x-0.5 transition-transform">Discord</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                                 </a>
-                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-blue-400/10 hover:border-blue-400/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]">
+                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
                                     <InstagramIcon />
                                     <span className="group-hover:translate-x-0.5 transition-transform">Instagram</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                                 </a>
-                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-blue-400/10 hover:border-blue-400/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(96,165,250,0.2)]">
+                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
                                     <TikTokIcon />
                                     <span className="group-hover:translate-x-0.5 transition-transform">TikTok</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
@@ -282,7 +282,7 @@ export default function Footer() {
                                 Compra productos de Roblox de forma segura, rápida y económica.
                             </p>
                             <p className="text-xs text-gray-600">
-                                © <span className="text-gray-500 font-bold">{new Date().getFullYear()}</span> PIXEL STORE. Todos los derechos reservados.
+                                © <span className="text-gray-500 font-bold">{new Date().getFullYear()}</span> RLS STORE. Todos los derechos reservados.
                                 Servicio independiente, no somos afiliados, asociados ni respaldados por Roblox Corporation.
                             </p>
                         </div>

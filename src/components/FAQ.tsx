@@ -79,9 +79,9 @@ export default function FAQ() {
       {/* Background layer for overlays */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Corner Overlays - Top Left (extended downwards) */}
-        <div className="absolute -top-80 h-[70%] left-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-br from-[#090971] via-[#000041]/90 via-30% to-transparent" />
+        <div className="absolute -top-80 h-[70%] left-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-br from-[#3a1f00] via-[#1a0d00]/90 via-30% to-transparent" />
         {/* Corner Overlays - Top Right (extended downwards) */}
-        <div className="absolute -top-80 h-[70%] right-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971] via-[#000041]/95 via-30% to-transparent" />
+        <div className="absolute -top-80 h-[70%] right-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-bl from-[#3a1f00] via-[#1a0d00]/95 via-30% to-transparent" />
       </div>
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -163,7 +163,7 @@ export default function FAQ() {
                   key={index}
                   className={`rounded-[2rem] transition-all duration-500 border ${
                     openIndex === index 
-                      ? 'bg-pixel-primaryStart/10 border-pixel-primaryEnd/40 shadow-[0_20px_50px_rgba(20,0,172,0.15)]' 
+                      ? 'bg-yellow-500/5 border-yellow-500/30 shadow-[0_20px_50px_rgba(245,165,0,0.15)]' 
                       : 'bg-pixel-panel/30 border-white/5 hover:bg-pixel-panel/50 hover:border-white/10'
                   }`}
                 >
@@ -172,7 +172,7 @@ export default function FAQ() {
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   >
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-500 ${
-                      openIndex === index ? 'bg-pixel-primaryEnd text-white' : 'bg-white/5 text-gray-500'
+                      openIndex === index ? 'bg-yellow-500 text-black' : 'bg-white/5 text-gray-500'
                     }`}>
                       <faq.icon size={20} />
                     </div>
@@ -180,7 +180,7 @@ export default function FAQ() {
                       {faq.question}
                     </span>
                     <ChevronDown 
-                      className={`transition-all duration-500 shrink-0 ${openIndex === index ? 'rotate-180 text-pixel-accent' : 'text-gray-600'}`} 
+                      className={`transition-all duration-500 shrink-0 ${openIndex === index ? 'rotate-180 text-yellow-500' : 'text-gray-600'}`} 
                       size={20} 
                     />
                   </button>

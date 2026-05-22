@@ -39,7 +39,7 @@ const BannerTilt = ({ navigate }: { navigate: any }) => {
 
       {/* Side Wall (Grosor lateral) */}
       <div 
-        className="absolute inset-0 rounded-[32px] bg-blue-800 shadow-[0_4px_0_rgba(0,0,0,0.2)]"
+        className="absolute inset-0 rounded-[32px] bg-amber-600 shadow-[0_4px_0_rgba(0,0,0,0.2)]"
         style={{ height: '100%' }}
       />
       
@@ -49,7 +49,7 @@ const BannerTilt = ({ navigate }: { navigate: any }) => {
           ${active ? 'translate-y-[-4px]' : 'translate-y-[-14px] hover:translate-y-[-16px]'}
         `}
         style={{ 
-          background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)',
+          background: 'linear-gradient(135deg, #eab308 0%, #ca8a04 100%)',
           boxShadow: 'inset 0 0 0 2px rgba(255,255,255,0.1), 0 10px 20px rgba(0,0,0,0.3)',
         }}
       >
@@ -85,7 +85,7 @@ const BannerTilt = ({ navigate }: { navigate: any }) => {
               <p className="text-white font-black text-2xl">S/28.00 <span className="text-xs">PEN</span></p>
             </div>
             <button
-              className="h-11 md:h-12 px-8 bg-white text-blue-700 font-black rounded-xl flex items-center justify-center gap-2 hover:bg-emerald-50 transition-all uppercase tracking-wide text-[13px] w-full md:w-auto shadow-lg"
+              className="h-11 md:h-12 px-8 bg-white text-amber-950 font-black rounded-xl flex items-center justify-center gap-2 hover:bg-yellow-50 transition-all uppercase tracking-wide text-[13px] w-full md:w-auto shadow-lg"
             >
               COMPRAR ROBUX <ChevronRight size={16} />
             </button>
@@ -248,14 +248,14 @@ export default function Catalog() {
       initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="min-h-screen pt-28 px-4 selection:bg-blue-500/30 relative"
+      className="min-h-screen pt-28 px-4 selection:bg-yellow-500/30 relative"
     >
       {/* Corner Overlays */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
-        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971]/55 via-[#000041]/40 via-30% to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/45 via-[#000041]/30 via-30% to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
+        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#3a1f00]/50 via-[#1a0d00]/35 via-30% to-transparent" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#3a1f00]/55 via-[#1a0d00]/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#3a1f00]/45 via-[#1a0d00]/30 via-30% to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#3a1f00]/50 via-[#1a0d00]/35 via-30% to-transparent" />
       </div>
 
       <div className="max-w-[1140px] mx-auto relative z-10">
@@ -283,7 +283,7 @@ export default function Catalog() {
         {/* Search Bar + Nav Arrows in same row */}
         <div className="flex items-center gap-3 mb-8">
           <div className="relative flex-1 group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-blue-400 transition-colors" size={18} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-yellow-500 transition-colors" size={18} />
             <input
               type="text"
               placeholder="Search a game..."
@@ -402,7 +402,7 @@ export default function Catalog() {
                         autoFocus
                         type="text"
                         placeholder="Buscar juego..."
-                        className="w-full h-9 pl-9 pr-8 bg-white/5 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500/50 transition-all"
+                        className="w-full h-9 pl-9 pr-8 bg-white/5 border border-white/10 rounded-xl text-xs text-white focus:outline-none focus:border-yellow-500/50 transition-all"
                         value={otherGameSearch}
                         onChange={(e) => setOtherGameSearch(e.target.value)}
                       />
@@ -460,7 +460,7 @@ export default function Catalog() {
                                   <p className="text-[11px] font-bold text-white truncate">{g.name}</p>
                                   <p className="text-[9px] text-white/30 uppercase">Roblox</p>
                                 </div>
-                                <Plus size={14} className="text-white/20 group-hover/item:text-blue-500 transition-colors" />
+                                <Plus size={14} className="text-white/20 group-hover/item:text-yellow-500 transition-colors" />
                               </motion.div>
                             ))
                         )}
@@ -497,12 +497,12 @@ export default function Catalog() {
                       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0F1419] to-transparent pointer-events-none" />
                     </div>
                     <div className="p-3 md:p-4 mt-auto">
-                      <h3 className="text-white font-bold text-xs md:text-[15px] leading-snug truncate group-hover:text-blue-400 transition-colors uppercase tracking-tight">{game.name}</h3>
+                      <h3 className="text-white font-bold text-xs md:text-[15px] leading-snug truncate group-hover:text-yellow-400 transition-colors uppercase tracking-tight">{game.name}</h3>
                       <div className="flex items-center justify-between mt-1">
                         <span className="text-white/35 text-[10px] md:text-xs font-medium uppercase tracking-tighter">
                           {products.filter(p => p.game === game.id).length} items
                         </span>
-                        <div className="flex items-center gap-1 text-white/25 group-hover:text-blue-400/80 transition-colors">
+                        <div className="flex items-center gap-1 text-white/25 group-hover:text-yellow-400/80 transition-colors">
                           <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
@@ -666,7 +666,7 @@ export default function Catalog() {
                 >
                   <div className="relative rounded-2xl bg-white/[0.02] border border-white/[0.05] p-3 sm:p-4 md:p-5 transition-all duration-500 hover:bg-white/[0.04] hover:border-white/[0.1] hover:translate-y-[-4px] overflow-hidden flex flex-col">
                     {/* Glow effect */}
-                    <div className="absolute -inset-20 bg-gradient-radial from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    <div className="absolute -inset-20 bg-gradient-radial from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                     {/* Header Badges */}
                     <div className="flex justify-between items-start mb-4 relative z-10">
@@ -692,27 +692,27 @@ export default function Catalog() {
                           {activeCurrency === 'USD' ? '$' : (activeCurrency === 'PEN' ? 'S/' : '$')}
                           {convertPrice(item.price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {activeCurrency}
                         </p>
-                        <button className="relative px-3 h-7 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn overflow-hidden"
+                        <button className="relative px-3 h-7 bg-yellow-500 text-black text-[10px] font-black uppercase tracking-widest rounded-lg transition-all flex items-center justify-center gap-1.5 group/btn overflow-hidden"
                           style={{
-                            boxShadow: '0 4px 0 0 rgb(29, 78, 216), 0 8px 16px rgba(37, 99, 235, 0.3)',
+                            boxShadow: '0 4px 0 0 rgb(202, 138, 4), 0 8px 16px rgba(245, 158, 11, 0.3)',
                             transform: 'translateY(0)',
                           }}
                           onMouseDown={(e) => {
                             e.currentTarget.style.transform = 'translateY(3px)';
-                            e.currentTarget.style.boxShadow = '0 1px 0 0 rgb(29, 78, 216), 0 4px 8px rgba(37, 99, 235, 0.2)';
+                            e.currentTarget.style.boxShadow = '0 1px 0 0 rgb(202, 138, 4), 0 4px 8px rgba(245, 158, 11, 0.2)';
                           }}
                           onMouseUp={(e) => {
                             e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 4px 0 0 rgb(29, 78, 216), 0 8px 16px rgba(37, 99, 235, 0.3)';
+                            e.currentTarget.style.boxShadow = '0 4px 0 0 rgb(202, 138, 4), 0 8px 16px rgba(245, 158, 11, 0.3)';
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 4px 0 0 rgb(29, 78, 216), 0 8px 16px rgba(37, 99, 235, 0.3)';
+                            e.currentTarget.style.boxShadow = '0 4px 0 0 rgb(202, 138, 4), 0 8px 16px rgba(245, 158, 11, 0.3)';
                           }}
                         >
                           <span className="relative z-10">Comprar</span>
                           <ChevronRight size={12} className="relative z-10" />
-                          <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                          <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                         </button>
                       </div>
                     </div>

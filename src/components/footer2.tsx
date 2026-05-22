@@ -143,7 +143,7 @@ export default function Footer() {
                         {/* Brand col — ocupa 2 columnas */}
                         <div className="lg:col-span-2">
                             <img
-                                src="https://i.postimg.cc/5tSsMDgK/logo-4x.png"
+                                src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png"
                                 alt="Pixel Store"
                                 className="h-9 w-auto object-contain mb-4 opacity-95"
                             />

@@ -14,18 +14,18 @@ module.exports = {
         pixel: {
           bg: '#000000',
           panel: '#0a0a0a',
-          panelHover: '#1a1a1a',
-          border: '#1E1A4A',
-          primary: '#1400AC',
-          primaryStart: '#1400AC',
-          primaryEnd: '#2563EB',
-          accent: '#60A5FA',
-          textBlue: '#60A5FA',   /* Azul vibrante, alejándonos del tono morado */
+          panelHover: '#1a1500',
+          border: '#3a2800',
+          primary: '#F5A500',
+          primaryStart: '#F5A500',
+          primaryEnd: '#FFD000',
+          accent: '#FFD000',
+          textBlue: '#FFD000',   /* Amarillo dorado RLS */
         }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #1400AC 0deg, #4D00FF 180deg, #7B2FFF 360deg)',
+        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #F5A500 0deg, #FFD000 180deg, #FF8C00 360deg)',
       }
     }
   },

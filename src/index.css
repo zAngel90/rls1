@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-[#0d0c22] selection:bg-blue-500/30 selection:text-blue-200;
+    @apply bg-[#080700] selection:bg-yellow-500/30 selection:text-yellow-200;
     font-family: 'Inter', system-ui, sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -54,15 +54,15 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d0c22;
+  background: #080700;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(245, 165, 0, 0.15);
   border-radius: 10px;
-  border: 3px solid #0d0c22;
+  border: 3px solid #080700;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(245, 165, 0, 0.3);
 }
 
 /* Glassmorphism helpers */

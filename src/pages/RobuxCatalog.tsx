@@ -444,20 +444,20 @@ export default function RobuxCatalog() {
       initial={{ opacity: 0, filter: 'blur(10px)' }}
       animate={{ opacity: 1, filter: 'blur(0px)' }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="min-h-screen relative selection:bg-blue-500/30 selection:text-blue-200 font-sans text-white"
+      className="min-h-screen relative selection:bg-yellow-500/30 selection:text-yellow-200 font-sans text-white"
     >
       {/* Corner Overlays */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
-        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971]/55 via-[#000041]/40 via-30% to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/45 via-[#000041]/30 via-30% to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
+        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#3a1f00]/50 via-[#1a0d00]/35 via-30% to-transparent" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#3a1f00]/55 via-[#1a0d00]/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#3a1f00]/45 via-[#1a0d00]/30 via-30% to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#3a1f00]/50 via-[#1a0d00]/35 via-30% to-transparent" />
       </div>
       
       {/* Background Gradients - Simplified to avoid scroll bugs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none select-none z-0" aria-hidden="true" style={{
-        background: `radial-gradient(ellipse 70% 50% at 50% 0%, rgba(59, 130, 246, 0.05), transparent 50%),
-                     radial-gradient(ellipse 50% 40% at 80% 100%, rgba(99, 102, 241, 0.03), transparent 50%)`
+        background: `radial-gradient(ellipse 70% 50% at 50% 0%, rgba(245, 165, 0, 0.05), transparent 50%),
+                     radial-gradient(ellipse 50% 40% at 80% 100%, rgba(217, 119, 6, 0.03), transparent 50%)`
       }}></div>
 
       {/* Floating Robux Icons with exact positions/animations */}
@@ -523,8 +523,8 @@ export default function RobuxCatalog() {
             {/* Header */}
             <motion.div variants={itemVariants} className="flex flex-row items-center gap-3.5 md:gap-6">
               <div className="relative shrink-0">
-                <div className="absolute inset-0 scale-[2] opacity-20 blur-2xl" style={{ background: 'radial-gradient(circle, #3B82F6, transparent 70%)' }}></div>
-                <div className="relative w-11 h-11 md:w-[72px] md:h-[72px] rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/10 border border-blue-500/20 flex items-center justify-center backdrop-blur-sm">
+                <div className="absolute inset-0 scale-[2] opacity-20 blur-2xl" style={{ background: 'radial-gradient(circle, #F5A500, transparent 70%)' }}></div>
+                <div className="relative w-11 h-11 md:w-[72px] md:h-[72px] rounded-xl md:rounded-2xl bg-gradient-to-br from-yellow-500/20 to-amber-600/10 border border-yellow-500/20 flex items-center justify-center backdrop-blur-sm">
                   <div className="relative w-6 h-6 md:w-10 md:h-10 drop-shadow-2xl">
                     <img src="/images/robux-logo.svg" className="w-full h-full object-contain filter brightness-0 invert" alt="Robux" />
                   </div>
@@ -542,7 +542,7 @@ export default function RobuxCatalog() {
                     <Zap size={12} />
                     Entrega rápida
                   </span>
-                  <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400 border border-blue-500/40 bg-blue-500/5 shadow-[0_0_8px_rgba(59,130,246,0.2)]">
+                  <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold text-yellow-400 border border-yellow-500/40 bg-yellow-500/5 shadow-[0_0_8px_rgba(245,165,0,0.2)]">
                     <CheckCircle2 size={12} />
                     +50 000 ventas
                   </span>
@@ -576,14 +576,14 @@ export default function RobuxCatalog() {
                       <button
                         onClick={() => { setSelectedAmount(Number(pkg.amount)); setCustomAmount(''); }}
                         className={`relative w-full rounded-xl border transition-all duration-200 flex flex-col items-center justify-center gap-0.5 group cursor-pointer overflow-hidden ${selectedAmount === Number(pkg.amount) && !customAmount
-                          ? 'pt-4 pb-3 px-3 bg-blue-500/[0.08] border-blue-500/50'
+                          ? 'pt-4 pb-3 px-3 bg-yellow-500/[0.08] border-yellow-500/50'
                           : 'py-3.5 px-3 bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12]'
                           }`}
-                        style={selectedAmount === Number(pkg.amount) && !customAmount ? { boxShadow: '0 0 0 1px rgba(59,130,246,0.15), 0 0 20px rgba(59,130,246,0.08)' } : {}}
+                        style={selectedAmount === Number(pkg.amount) && !customAmount ? { boxShadow: '0 0 0 1px rgba(245,165,0,0.15), 0 0 20px rgba(245,165,0,0.08)' } : {}}
                       >
                         {selectedAmount === Number(pkg.amount) && !customAmount && (
                           <div className="absolute top-2 right-2">
-                            <div className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+                            <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(245,165,0,0.5)]"></div>
                           </div>
                         )}
                         <div className="flex items-center gap-1.5">
@@ -591,18 +591,18 @@ export default function RobuxCatalog() {
                             <img
                               src="/images/robux-logo.svg"
                               style={selectedAmount === Number(pkg.amount) && !customAmount
-                                ? { filter: 'brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(199deg) brightness(109%) contrast(95%)' }
+                                ? { filter: 'brightness(0) saturate(100%) invert(75%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(100%) contrast(100%)' }
                                 : { filter: 'brightness(0) invert(1)' }
                               }
                               className="w-full h-full object-contain"
                               alt="Robux"
                             />
                           </div>
-                          <span className={`text-lg font-bold tracking-tight ${selectedAmount === Number(pkg.amount) && !customAmount ? 'text-blue-400' : 'text-white'}`}>
+                          <span className={`text-lg font-bold tracking-tight ${selectedAmount === Number(pkg.amount) && !customAmount ? 'text-yellow-400' : 'text-white'}`}>
                             {Number(pkg.amount).toLocaleString()}
                           </span>
                         </div>
-                        <span className={`text-[11px] font-medium ${selectedAmount === Number(pkg.amount) && !customAmount ? 'text-blue-400/60' : 'text-white/30'}`}>
+                        <span className={`text-[11px] font-medium ${selectedAmount === Number(pkg.amount) && !customAmount ? 'text-yellow-400/60' : 'text-white/30'}`}>
                           {(Number(pkg.price) * selectedCurrencyData.rate).toFixed(2)} {currency}
                         </span>
                       </button>
@@ -616,12 +616,12 @@ export default function RobuxCatalog() {
                 variants={itemVariants} 
                 className={`relative rounded-xl border transition-all duration-300 flex items-center gap-3 overflow-hidden p-3 sm:p-4 ${
                   customAmount 
-                    ? 'bg-blue-500/[0.05] border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.1)]' 
+                    ? 'bg-yellow-500/[0.05] border-yellow-500/50 shadow-[0_0_20px_rgba(245,165,0,0.1)]' 
                     : 'bg-white/[0.02] border-white/[0.06] hover:border-white/[0.12]'
                 }`}
               >
                 <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-300 ${
-                  customAmount ? 'bg-blue-500/20' : 'bg-white/[0.04]'
+                  customAmount ? 'bg-yellow-500/20' : 'bg-white/[0.04]'
                 }`}>
                   <div className="relative w-4.5 h-4.5 sm:w-5 sm:h-5">
                     <img 
@@ -629,14 +629,14 @@ export default function RobuxCatalog() {
                       className={`w-full h-full object-contain transition-all duration-300 ${
                         customAmount ? 'brightness-110' : 'filter brightness-0 invert opacity-40'
                       }`} 
-                      style={customAmount ? { filter: 'brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(199deg) brightness(109%) contrast(95%)' } : {}}
+                      style={customAmount ? { filter: 'brightness(0) saturate(100%) invert(75%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(100%) contrast(100%)' } : {}}
                       alt="Robux" 
                     />
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
                   <label className={`text-[10px] uppercase tracking-wider font-semibold mb-0.5 block transition-colors duration-300 ${
-                    customAmount ? 'text-blue-400/60' : 'text-white/30'
+                    customAmount ? 'text-yellow-400/60' : 'text-white/30'
                   }`}>
                     Cantidad personalizada
                   </label>
@@ -659,7 +659,7 @@ export default function RobuxCatalog() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="absolute right-4 top-1/2 -translate-y-1/2"
                   >
-                    <div className="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(245,165,0,0.5)]" />
                   </motion.div>
                 )}
               </motion.div>
@@ -716,14 +716,14 @@ export default function RobuxCatalog() {
 
             {/* FAQ Box inside Main Column */}
             <motion.div variants={itemVariants} className="hidden lg:block border-t border-white/[0.04] pt-8">
-              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#090971]/20 via-black to-black">
+              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#3a1f00]/20 via-black to-black">
                 <div className="absolute inset-0 z-0">
                   <img src="/images/epic1.jpg" className="w-full h-full object-cover opacity-5" alt="FAQ Background" />
                 </div>
                 <div className="relative z-10 p-6">
                   <div className="flex items-center gap-2.5 mb-5">
-                    <div className="p-2 bg-blue-500/10 rounded-xl border border-blue-500/15">
-                      <HelpCircle size={16} className="text-blue-400" />
+                    <div className="p-2 bg-yellow-500/10 rounded-xl border border-yellow-500/15">
+                      <HelpCircle size={16} className="text-yellow-400" />
                     </div>
                     <div>
                       <h3 className="text-white font-bold text-sm">Preguntas frecuentes</h3>
@@ -766,18 +766,18 @@ export default function RobuxCatalog() {
 
           {/* Sidebar - Hidden on mobile */}
           <motion.div variants={itemVariants} className="hidden lg:block w-full lg:w-[320px] shrink-0 lg:sticky lg:top-24 space-y-6">
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#090971]/20 via-black to-black" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }}>
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#3a1f00]/20 via-black to-black" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }}>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-5">
                   <div className="flex items-center gap-2 text-white/40">
                     <ShoppingCart size={14} />
                     <span className="text-xs font-semibold uppercase tracking-wider">Resumen</span>
                   </div>
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center">
                     <div className="relative w-4 h-4">
                       <img
                         src="/images/robux-logo.svg"
-                        style={{ filter: 'brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(199deg) brightness(109%) contrast(95%)' }}
+                        style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(100%) contrast(100%)' }}
                         className="w-full h-full object-contain"
                         alt="Robux"
                       />
@@ -834,8 +834,8 @@ export default function RobuxCatalog() {
 
                 <button
                   onClick={handlePurchase}
-                  className="relative w-full h-[52px] px-8 font-extrabold rounded-xl bg-[#3B82F6] text-white flex items-center justify-center gap-2.5 transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] active:scale-[0.98] uppercase tracking-wider text-sm cursor-pointer"
-                  style={{ boxShadow: '0 4px 0 #1D4ED8, 0 8px 20px rgba(59, 130, 246, 0.25)' }}
+                  className="relative w-full h-[52px] px-8 font-extrabold rounded-xl bg-yellow-500 text-black flex items-center justify-center gap-2.5 transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)] active:scale-[0.98] uppercase tracking-wider text-sm cursor-pointer"
+                  style={{ boxShadow: '0 4px 0 rgb(202, 138, 4), 0 8px 20px rgba(245, 158, 11, 0.25)' }}
                 >
                   <ShoppingCart size={16} />
                   Comprar ahora
@@ -854,13 +854,13 @@ export default function RobuxCatalog() {
             </div>
 
             {/* Recent Purchases Section in Sidebar */}
-            <div className="rounded-2xl bg-gradient-to-r from-[#090971]/20 via-black to-black px-3 pt-4 pb-3" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }}>
+            <div className="rounded-2xl bg-gradient-to-r from-[#3a1f00]/20 via-black to-black px-3 pt-4 pb-3" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }}>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
                   <h3 className="text-[11px] font-bold text-white tracking-widest uppercase opacity-40">Últimas compras</h3>
                 </div>
-                <span className="text-[9px] font-bold text-blue-400/50 uppercase tracking-widest">En vivo</span>
+                <span className="text-[9px] font-bold text-yellow-400/50 uppercase tracking-widest">En vivo</span>
               </div>
 
               <div className="space-y-1.5 max-h-[320px] overflow-y-auto pr-1 custom-scrollbar">
@@ -876,9 +876,9 @@ export default function RobuxCatalog() {
                   const avatarUrl = item.userId ? `${SERVER_URL}/api/users/avatar/${item.userId}` : null;
                   
                   return (
-                    <div key={item.id} className="flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-blue-500/15 transition-all group/item">
+                    <div key={item.id} className="flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-yellow-500/15 transition-all group/item">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center shrink-0 overflow-hidden group-hover/item:border-blue-500/30 transition-colors">
+                        <div className="w-10 h-10 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center shrink-0 overflow-hidden group-hover/item:border-yellow-500/30 transition-colors">
                           {avatarUrl ? (
                             <img src={avatarUrl} alt="" className="w-full h-full object-cover" onError={(e) => { (e.target as any).src = '/images/robux-logo.svg'; }} />
                           ) : (
@@ -890,12 +890,12 @@ export default function RobuxCatalog() {
                           <span className="text-[9px] text-white/20 uppercase font-medium tracking-wider">{timeAgo(item.createdAt)}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5 bg-blue-500/5 px-2.5 py-1.5 rounded-lg border border-blue-500/10">
-                        <span className="text-xs font-black text-blue-400">+{item.amount?.toLocaleString() || '0'}</span>
+                      <div className="flex items-center gap-1.5 bg-yellow-500/5 px-2.5 py-1.5 rounded-lg border border-yellow-500/10">
+                        <span className="text-xs font-black text-yellow-400">+{item.amount?.toLocaleString() || '0'}</span>
                         <div className="relative w-3.5 h-3.5">
                           <img
                             src="/images/robux-logo.svg"
-                            style={{ filter: 'brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(199deg) brightness(109%) contrast(95%)' }}
+                            style={{ filter: 'brightness(0) saturate(100%) invert(75%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(100%) contrast(100%)' }}
                             className="w-full h-full object-contain opacity-80"
                             alt=""
                           />
@@ -914,8 +914,8 @@ export default function RobuxCatalog() {
             {/* Mobile/Side badges */}
             <div className="rounded-xl border border-white/[0.06] p-3.5 relative overflow-hidden bg-white/[0.02]">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/15 shrink-0">
-                  <Shield size={14} className="text-blue-400" />
+                <div className="p-2 bg-yellow-500/10 rounded-lg border border-yellow-500/15 shrink-0">
+                  <Shield size={14} className="text-yellow-400" />
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-white font-bold text-xs">Pago Seguro</h3>
@@ -951,7 +951,7 @@ export default function RobuxCatalog() {
                     {activeStatIndex === i && (
                       <motion.div 
                         layoutId="active-stat-bg"
-                        className="absolute inset-0 z-0 bg-blue-600/10"
+                        className="absolute inset-0 z-0 bg-yellow-600/10"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -964,23 +964,23 @@ export default function RobuxCatalog() {
                       >
                         {/* Fake Motion Blur Effect */}
                         <motion.div 
-                          className="absolute inset-0 bg-blue-500/20 blur-xl"
+                          className="absolute inset-0 bg-yellow-500/20 blur-xl"
                           animate={{ 
                             scaleX: [1, 1.3, 1],
                             opacity: [0.5, 0.8, 0.5]
                           }}
                           transition={{ duration: 0.8 }}
                         />
-                        <div className="absolute inset-0 border-2 border-blue-500/30 rounded-2xl" />
+                        <div className="absolute inset-0 border-2 border-yellow-500/30 rounded-2xl" />
                       </motion.div>
                     )}
                   </AnimatePresence>
-
+ 
                   <div className="relative z-10">
                     <motion.div 
                       animate={{ 
                         scale: activeStatIndex === i ? 1.1 : 1,
-                        color: activeStatIndex === i ? "#60a5fa" : "#ffffff"
+                        color: activeStatIndex === i ? "#fbbf24" : "#ffffff"
                       }}
                       className="text-2xl sm:text-3xl font-extrabold tracking-tight transition-colors duration-500"
                     >
@@ -989,7 +989,7 @@ export default function RobuxCatalog() {
                     <motion.div 
                       animate={{ 
                         opacity: activeStatIndex === i ? 1 : 0.4,
-                        color: activeStatIndex === i ? "#60a5fa" : "#94a3b8"
+                        color: activeStatIndex === i ? "#fbbf24" : "#94a3b8"
                       }}
                       className="text-xs sm:text-sm mt-1 uppercase font-bold tracking-tighter transition-colors duration-500"
                     >
@@ -1089,9 +1089,9 @@ export default function RobuxCatalog() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative w-full max-w-[560px] bg-[#0d0c22] border border-blue-500/20 rounded-[24px] overflow-visible shadow-[0_32px_64px_rgba(0,0,0,0.6)]"
+            className="relative w-full max-w-[560px] bg-black border border-yellow-500/20 rounded-[24px] overflow-visible shadow-[0_32px_64px_rgba(0,0,0,0.6)]"
             style={{ 
-              backgroundImage: 'radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 60%)'
+              backgroundImage: 'radial-gradient(circle at 50% -20%, rgba(245, 158, 11, 0.15), transparent 60%)'
             }}
           >
             {gamepassStep === 1 && (
@@ -1113,7 +1113,7 @@ export default function RobuxCatalog() {
                 {/* Progress Bar */}
                 <div className="flex items-center justify-center gap-0 my-8 px-4">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                    <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(202,138,4,0.4)]">
                       <Search size={14} className="text-white" />
                     </div>
                     <span className="text-[8px] font-black text-white uppercase tracking-widest">BUSCAR</span>
@@ -1151,12 +1151,12 @@ export default function RobuxCatalog() {
                         setGamepassError(null);
                         setIsDropdownOpen(true);
                       }}
-                      className="w-full bg-white/[0.02] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-blue-500/40 focus:bg-blue-500/5 transition-all shadow-inner relative z-0"
+                      className="w-full bg-white/[0.02] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-yellow-500/40 focus:bg-yellow-500/5 transition-all shadow-inner relative z-0"
                     />
                     
                     {/* Dropdown animado */}
                     <div
-                      className={`absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-gradient-to-b from-[#0d0c22] to-[#0a0919] border border-blue-500/20 rounded-2xl overflow-hidden origin-top transition-all duration-[400ms] shadow-[0_20px_40px_rgba(0,0,0,0.5)] ${
+                      className={`absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-gradient-to-b from-black to-[#050505] border border-yellow-500/20 rounded-2xl overflow-hidden origin-top transition-all duration-[400ms] shadow-[0_20px_40px_rgba(0,0,0,0.5)] ${
                         isDropdownOpen && recentUsers.length > 0 && !selectedUser
                           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
                           : 'opacity-0 -translate-y-2 scale-[0.98] pointer-events-none'
@@ -1169,9 +1169,9 @@ export default function RobuxCatalog() {
                       }}
                       onMouseDown={(e) => e.preventDefault()}
                     >
-                      <div className="flex items-center gap-2 px-4 py-3 border-b border-blue-500/10 bg-blue-500/5">
-                        <Clock size={13} className="text-blue-400/60" />
-                        <span className="text-[10px] font-bold text-blue-400/80 uppercase tracking-wider">Recientes</span>
+                      <div className="flex items-center gap-2 px-4 py-3 border-b border-yellow-500/10 bg-yellow-500/5">
+                        <Clock size={13} className="text-yellow-400/60" />
+                        <span className="text-[10px] font-bold text-yellow-400/80 uppercase tracking-wider">Recientes</span>
                       </div>
                       
                       <div className="max-h-[280px] overflow-y-auto scrollbar-hide">
@@ -1185,25 +1185,25 @@ export default function RobuxCatalog() {
                                 setGamepassStep(2);
                                 setIsDropdownOpen(false);
                               }}
-                              className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 transition-all text-left group rounded-xl ${
+                              className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow-500/10 transition-all text-left group rounded-xl ${
                                 isDropdownOpen ? 'animate-[itemSlideIn_1.1s_cubic-bezier(0.22,1,0.36,1)_both]' : ''
                               }`}
                               style={{
                                 animationDelay: '0.08s'
                               }}
                             >
-                              <div className={`w-10 h-10 rounded-2xl overflow-hidden bg-blue-500/10 border border-blue-500/20 shrink-0 group-hover:border-blue-500/40 transition-all ${
+                              <div className={`w-10 h-10 rounded-2xl overflow-hidden bg-yellow-500/10 border border-yellow-500/20 shrink-0 group-hover:border-yellow-500/40 transition-all ${
                                 isDropdownOpen ? 'animate-[avatarAppear_1.1s_cubic-bezier(0.22,1,0.36,1)_forwards]' : ''
                               }`}
                               style={{
                                 animationDelay: '0.08s'
                               }}>
                                 <img
-                                  src={(u.id || u.userId) ? `${BASE_URL}/users/avatar/${u.id || u.userId}` : `https://ui-avatars.com/api/?name=${u.name || 'User'}&background=0D8ABC&color=fff`}
+                                  src={(u.id || u.userId) ? `${BASE_URL}/users/avatar/${u.id || u.userId}` : `https://ui-avatars.com/api/?name=${u.name || 'User'}&background=F5A500&color=fff`}
                                   alt={u.name}
                                   className="w-full h-full object-cover"
                                   onError={(e) => { 
-                                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${u.name || 'User'}&background=0D8ABC&color=fff`; 
+                                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${u.name || 'User'}&background=F5A500&color=fff`; 
                                   }}
                                 />
                               </div>
@@ -1213,10 +1213,10 @@ export default function RobuxCatalog() {
                               style={{
                                 animationDelay: '0.08s'
                               }}>
-                                <p className="text-sm font-semibold text-white truncate group-hover:text-blue-400 transition-colors">{u.displayName || u.name}</p>
+                                <p className="text-sm font-semibold text-white truncate group-hover:text-yellow-400 transition-colors">{u.displayName || u.name}</p>
                                 <p className="text-xs text-white/40 truncate group-hover:text-white/60 transition-colors">@{u.name}</p>
                               </div>
-                              <ArrowRight size={14} className="text-white/10 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                              <ArrowRight size={14} className="text-white/10 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                             </button>
                             {idx < recentUsers.length - 1 && (
                               <div className="border-t border-white/[0.04]" />
@@ -1229,8 +1229,8 @@ export default function RobuxCatalog() {
                   
                   {!selectedUser && !searchQuery.trim() && recentUsers.length === 0 && !isDropdownOpen && (
                     <div className="py-6 flex flex-col items-center justify-center gap-3 opacity-40">
-                      <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20">
-                         <Search size={24} className="text-blue-500/40" />
+                      <div className="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20">
+                         <Search size={24} className="text-yellow-500/40" />
                       </div>
                       <p className="text-[10px] font-black text-white/40 uppercase tracking-widest text-center">
                         Ingresa tu nombre de usuario para continuar
@@ -1253,24 +1253,24 @@ export default function RobuxCatalog() {
                   </AnimatePresence>
                   
                   {selectedUser && (
-                    <div className="p-4 bg-white/[0.03] border border-blue-500/30 rounded-xl flex items-center justify-between shadow-[0_0_15px_rgba(37,99,235,0.1)]">
+                    <div className="p-4 bg-white/[0.03] border border-yellow-500/30 rounded-xl flex items-center justify-between shadow-[0_0_15px_rgba(245,158,11,0.1)]">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 bg-gray-800 rounded-full overflow-hidden border-2 border-blue-500/50">
+                        <div className="w-12 h-12 bg-gray-800 rounded-full overflow-hidden border-2 border-yellow-500/50">
                           <img 
-                            src={(selectedUser.id || selectedUser.userId) ? `${BASE_URL}/users/avatar/${selectedUser.id || selectedUser.userId}` : `https://ui-avatars.com/api/?name=${selectedUser.name || 'User'}&background=0D8ABC&color=fff`} 
+                            src={(selectedUser.id || selectedUser.userId) ? `${BASE_URL}/users/avatar/${selectedUser.id || selectedUser.userId}` : `https://ui-avatars.com/api/?name=${selectedUser.name || 'User'}&background=F5A500&color=fff`} 
                             alt={selectedUser.name} 
                             className="w-full h-full object-cover" 
                             onError={(e) => { 
-                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedUser.name || 'User'}&background=0D8ABC&color=fff`; 
+                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedUser.name || 'User'}&background=F5A500&color=fff`; 
                             }}
                           />
                         </div>
                         <div className="min-w-0">
                           <h4 className="text-sm font-bold text-white leading-tight">{selectedUser.displayName || selectedUser.name}</h4>
-                          <p className="text-blue-400/80 text-[11px] font-medium">@{selectedUser.name}</p>
+                          <p className="text-yellow-400/80 text-[11px] font-medium">@{selectedUser.name}</p>
                         </div>
                       </div>
-                      <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+                      <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400">
                          <CheckCircle2 size={16} />
                       </div>
                     </div>
@@ -1304,7 +1304,7 @@ export default function RobuxCatalog() {
                         }
                       }}
                       disabled={isLoading}
-                      className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(37,99,235,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                      className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
                     >
                       {isLoading ? (
                         <>
@@ -1373,11 +1373,11 @@ export default function RobuxCatalog() {
                     {/* Simple Instructions Replacement */}
                     <div className="p-4 bg-white/[0.01] border border-white/5 rounded-xl mb-4">
                       <div className="flex items-center gap-1.5 mb-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
                         <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">¿Cómo solucionarlo?</span>
                       </div>
                       <p className="text-[11px] text-white/60 leading-relaxed font-medium">
-                        Inicia sesión en tu cuenta de Roblox, haz clic en los pasos de abajo para responder el cuestionario de madurez de tu juego y asegúrate de marcarlo como <span className="text-blue-400 font-black">Público</span>.
+                        Inicia sesión en tu cuenta de Roblox, haz clic en los pasos de abajo para responder el cuestionario de madurez de tu juego y asegúrate de marcarlo como <span className="text-yellow-400 font-black">Público</span>.
                       </p>
                     </div>
 
@@ -1388,10 +1388,10 @@ export default function RobuxCatalog() {
                           : "https://create.roblox.com/dashboard/creations"}
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-3.5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-blue-500/30 transition-all text-left"
+                        className="p-3.5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-yellow-500/30 transition-all text-left"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <div className="w-6 h-6 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400">
+                          <div className="w-6 h-6 bg-yellow-500/10 rounded-full flex items-center justify-center text-yellow-400">
                             <CheckCircle2 size={12} />
                           </div>
                           <ExternalLink size={12} className="text-white/20" />
@@ -1406,10 +1406,10 @@ export default function RobuxCatalog() {
                           : "https://create.roblox.com/dashboard/creations"}
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-3.5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-blue-500/30 transition-all text-left"
+                        className="p-3.5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-yellow-500/30 transition-all text-left"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <div className="w-6 h-6 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400">
+                          <div className="w-6 h-6 bg-yellow-500/10 rounded-full flex items-center justify-center text-yellow-400">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                           </div>
                           <ExternalLink size={12} className="text-white/20" />
@@ -1464,7 +1464,7 @@ export default function RobuxCatalog() {
                         }
                       }}
                       disabled={isLoading}
-                      className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-3 uppercase tracking-wider"
+                      className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.3)] flex items-center justify-center gap-3 uppercase tracking-wider"
                     >
                       {isLoading ? (
                         <>
@@ -1493,14 +1493,14 @@ export default function RobuxCatalog() {
                     {/* Progress Bar */}
                     <div className="flex items-center justify-center gap-0 my-8 px-4">
                       <div className="flex flex-col items-center gap-2">
-                        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center opacity-50">
+                        <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center opacity-50">
                           <Search size={14} className="text-white" />
                         </div>
                         <span className="text-[8px] font-black text-white/50 uppercase tracking-widest">BUSCAR</span>
                       </div>
-                      <div className="flex-1 h-[1px] bg-blue-600/30 mx-2 mt-[-18px]"></div>
+                      <div className="flex-1 h-[1px] bg-yellow-600/30 mx-2 mt-[-18px]"></div>
                       <div className="flex flex-col items-center gap-2">
-                        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                        <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(202,138,4,0.4)]">
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-white"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/></svg>
                         </div>
                         <span className="text-[8px] font-black text-white uppercase tracking-widest">CREAR GAMEPASS</span>
@@ -1573,7 +1573,7 @@ export default function RobuxCatalog() {
                                { num: 4, text: `Pon el precio exacto: ${gamepassRequiredPrice.toLocaleString()} R$` }
                              ].map(step => (
                                <div key={step.num} className="flex items-center gap-3 p-3 bg-white/[0.02] border border-white/5 rounded-xl">
-                                  <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-[11px] font-black text-blue-400">
+                                  <div className="w-6 h-6 rounded-full bg-yellow-500/20 flex items-center justify-center text-[11px] font-black text-yellow-400">
                                     {step.num}
                                   </div>
                                   <span className="text-xs font-bold text-white/80">{step.text}</span>
@@ -1686,7 +1686,7 @@ export default function RobuxCatalog() {
                           }
                         }}
                         disabled={isLoading}
-                        className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(37,99,235,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                        className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
                       >
                         {isLoading ? (
                           <>
@@ -1770,8 +1770,8 @@ export default function RobuxCatalog() {
                 </div>
                 
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-blue-600/10 rounded-3xl flex items-center justify-center mx-auto mb-4 border border-blue-600/20 shadow-inner">
-                    <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 bg-yellow-600/10 rounded-3xl flex items-center justify-center mx-auto mb-4 border border-yellow-600/20 shadow-inner">
+                    <div className="w-10 h-10 bg-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
                        <div className="w-6 h-6 border-2 border-white rounded-full flex items-center justify-center">
                          <div className="w-3 h-3 bg-white rounded-full"></div>
                        </div>
@@ -1809,7 +1809,7 @@ export default function RobuxCatalog() {
                       </div>
                       <button 
                         onClick={() => setGamepassStep(1)}
-                        className="text-[11px] font-black text-[#3B82F6] hover:text-[#5fa1ff] transition-colors uppercase tracking-wider"
+                        className="text-[11px] font-black text-[#fbbf24] hover:text-[#fcd34d] transition-colors uppercase tracking-wider"
                       >
                         Cambiar
                       </button>
@@ -1826,12 +1826,12 @@ export default function RobuxCatalog() {
                           placeholder="Código de cupón..."
                           value={couponCode}
                           onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                          className="flex-1 bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-blue-500/40 focus:bg-blue-500/5 transition-all"
+                          className="flex-1 bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-yellow-500/40 focus:bg-yellow-500/5 transition-all"
                         />
                         <button
                           onClick={handleApplyCoupon}
                           disabled={isValidatingCoupon || !couponCode.trim()}
-                          className="px-6 py-3 bg-blue-600 hover:bg-blue-500 disabled:bg-blue-600/50 disabled:cursor-not-allowed text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-2"
+                          className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 disabled:bg-yellow-500/50 disabled:cursor-not-allowed text-black rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-2"
                         >
                           {isValidatingCoupon ? <LoadingSpinner /> : <LucideTag size={14} />}
                           {isValidatingCoupon ? 'Validando...' : 'Aplicar'}
@@ -1911,7 +1911,7 @@ export default function RobuxCatalog() {
                       }, 1000);
                     }}
                     disabled={isLoading}
-                    className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_12px_24px_rgba(37,99,235,0.4)] flex items-center justify-center gap-3 tracking-wider mt-4"
+                    className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_12px_24px_rgba(245,158,11,0.4)] flex items-center justify-center gap-3 tracking-wider mt-4"
                   >
                     {isLoading ? (
                       <>
@@ -1947,9 +1947,9 @@ export default function RobuxCatalog() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative w-full max-w-[560px] bg-[#0d0c22] border border-blue-500/20 rounded-[24px] overflow-visible shadow-[0_32px_64px_rgba(0,0,0,0.6)]"
+            className="relative w-full max-w-[560px] bg-black border border-yellow-500/20 rounded-[24px] overflow-visible shadow-[0_32px_64px_rgba(0,0,0,0.6)]"
             style={{ 
-              backgroundImage: 'radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 60%)'
+              backgroundImage: 'radial-gradient(circle at 50% -20%, rgba(245, 158, 11, 0.15), transparent 60%)'
             }}
           >
             {/* Step 1: Initial Summary */}
@@ -1999,7 +1999,7 @@ export default function RobuxCatalog() {
                       </div>
                       <button 
                         onClick={() => setGroupStep(2)}
-                        className="text-[10px] font-black text-[#3B82F6] hover:text-[#5fa1ff] transition-colors uppercase tracking-widest"
+                        className="text-[10px] font-black text-[#fbbf24] hover:text-[#fcd34d] transition-colors uppercase tracking-widest"
                       >
                         Cambiar
                       </button>
@@ -2007,10 +2007,10 @@ export default function RobuxCatalog() {
                   ) : (
                     <button 
                       onClick={() => setGroupStep(2)}
-                      className="w-full group flex items-center justify-between p-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-blue-500/5 hover:border-blue-500/30 transition-all text-left"
+                      className="w-full group flex items-center justify-between p-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-yellow-500/5 hover:border-yellow-500/30 transition-all text-left"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400">
+                        <div className="w-9 h-9 bg-yellow-500/10 rounded-full flex items-center justify-center text-yellow-400">
                           <Users size={16} />
                         </div>
                         <div>
@@ -2018,7 +2018,7 @@ export default function RobuxCatalog() {
                           <p className="text-white/30 text-[10px]">Busca tu cuenta de Roblox</p>
                         </div>
                       </div>
-                      <ArrowRight size={16} className="text-blue-500 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight size={16} className="text-yellow-500 group-hover:translate-x-1 transition-transform" />
                     </button>
                   )}
 
@@ -2038,7 +2038,7 @@ export default function RobuxCatalog() {
                     disabled={isLoading}
                     className={`w-full p-4 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 uppercase tracking-[0.1em] shadow-lg ${
                       !isLoading
-                      ? 'bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white hover:brightness-110 active:scale-[0.98]' 
+                      ? 'bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-black hover:brightness-110 active:scale-[0.98]' 
                       : 'bg-white/[0.05] text-white/20 cursor-not-allowed border border-white/5'
                     }`}
                   >
@@ -2077,7 +2077,7 @@ export default function RobuxCatalog() {
                 {/* Progress Bar from Image */}
                 <div className="flex items-center justify-center gap-0 my-6 px-4">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                    <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(202,138,4,0.4)]">
                       <Search size={14} className="text-white" />
                     </div>
                     <span className="text-[8px] font-black text-white uppercase tracking-widest">BUSCAR</span>
@@ -2116,12 +2116,12 @@ export default function RobuxCatalog() {
                         setGroupError(null);
                         setIsGroupDropdownOpen(true);
                       }}
-                      className="w-full bg-white/[0.02] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-blue-500/40 focus:bg-blue-500/5 transition-all shadow-inner relative z-0"
+                      className="w-full bg-white/[0.02] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-yellow-500/40 focus:bg-yellow-500/5 transition-all shadow-inner relative z-0"
                     />
                     
                     {/* Dropdown animado */}
                     <div 
-                      className={`absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-gradient-to-b from-[#0d0c22] to-[#0a0919] border border-blue-500/20 rounded-2xl overflow-hidden origin-top transition-all duration-[400ms] shadow-[0_20px_40px_rgba(0,0,0,0.5)] ${
+                      className={`absolute top-[calc(100%+8px)] left-0 right-0 z-50 bg-gradient-to-b from-black to-[#050505] border border-yellow-500/20 rounded-2xl overflow-hidden origin-top transition-all duration-[400ms] shadow-[0_20px_40px_rgba(0,0,0,0.5)] ${
                         isGroupDropdownOpen && recentUsers.length > 0 && !selectedUser
                           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
                           : 'opacity-0 -translate-y-2 scale-[0.98] pointer-events-none'
@@ -2134,9 +2134,9 @@ export default function RobuxCatalog() {
                       }}
                       onMouseDown={(e) => e.preventDefault()}
                     >
-                      <div className="flex items-center gap-2 px-4 py-3 border-b border-blue-500/10 bg-blue-500/5">
-                        <Clock size={13} className="text-blue-400/60" />
-                        <span className="text-[10px] font-bold text-blue-400/80 uppercase tracking-wider">Recientes</span>
+                      <div className="flex items-center gap-2 px-4 py-3 border-b border-yellow-500/10 bg-yellow-500/5">
+                        <Clock size={13} className="text-yellow-400/60" />
+                        <span className="text-[10px] font-bold text-yellow-400/80 uppercase tracking-wider">Recientes</span>
                       </div>
                       
                       <div className="max-h-[280px] overflow-y-auto scrollbar-hide">
@@ -2150,14 +2150,14 @@ export default function RobuxCatalog() {
                                 handleVerifyGroups();
                                 setIsGroupDropdownOpen(false);
                               }}
-                              className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 transition-all text-left group rounded-xl ${
+                              className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow-500/10 transition-all text-left group rounded-xl ${
                                 isGroupDropdownOpen ? 'animate-[itemSlideIn_1.1s_cubic-bezier(0.22,1,0.36,1)_both]' : ''
                               }`}
                               style={{
                                 animationDelay: '0.08s'
                               }}
                             >
-                              <div className={`w-10 h-10 rounded-2xl overflow-hidden bg-blue-500/10 border border-blue-500/20 shrink-0 group-hover:border-blue-500/40 transition-all ${
+                              <div className={`w-10 h-10 rounded-2xl overflow-hidden bg-yellow-500/10 border border-yellow-500/20 shrink-0 group-hover:border-yellow-500/40 transition-all ${
                                 isGroupDropdownOpen ? 'animate-[avatarAppear_1.1s_cubic-bezier(0.22,1,0.36,1)_forwards]' : ''
                               }`}
                               style={{
@@ -2178,10 +2178,10 @@ export default function RobuxCatalog() {
                               style={{
                                 animationDelay: '0.08s'
                               }}>
-                                <p className="text-sm font-semibold text-white truncate group-hover:text-blue-400 transition-colors">{u.displayName || u.name}</p>
+                                <p className="text-sm font-semibold text-white truncate group-hover:text-yellow-400 transition-colors">{u.displayName || u.name}</p>
                                 <p className="text-xs text-white/40 truncate group-hover:text-white/60 transition-colors">@{u.name}</p>
                               </div>
-                              <ArrowRight size={14} className="text-white/10 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                              <ArrowRight size={14} className="text-white/10 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                             </button>
                             {idx < recentUsers.length - 1 && (
                               <div className="border-t border-white/[0.04]" />
@@ -2194,8 +2194,8 @@ export default function RobuxCatalog() {
                   
                   {!selectedUser && !searchQuery.trim() && recentUsers.length === 0 && !isGroupDropdownOpen && (
                     <div className="py-6 flex flex-col items-center justify-center gap-3 opacity-40">
-                      <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center border border-blue-500/20">
-                         <Search size={24} className="text-blue-500/40" />
+                      <div className="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20">
+                         <Search size={24} className="text-yellow-500/40" />
                       </div>
                       <p className="text-[10px] font-black text-white/40 uppercase tracking-widest text-center">
                         Ingresa tu nombre de usuario para continuar
@@ -2244,7 +2244,7 @@ export default function RobuxCatalog() {
                             setIsLoading(false);
                           }
                         }}
-                        className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(37,99,235,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                        className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
                       >
                         {isLoading ? (
                           <>
@@ -2282,14 +2282,14 @@ export default function RobuxCatalog() {
                 {/* Progress Bar - Updated for Step 3 */}
                 <div className="flex items-center justify-center gap-0 my-5 px-4">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center opacity-50">
+                    <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center opacity-50">
                       <Search size={14} className="text-white" />
                     </div>
                     <span className="text-[8px] font-black text-white/50 uppercase tracking-widest">BUSCAR</span>
                   </div>
-                  <div className="flex-1 h-[1px] bg-blue-600/30 mx-2 mt-[-18px]"></div>
+                  <div className="flex-1 h-[1px] bg-yellow-600/30 mx-2 mt-[-18px]"></div>
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                    <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(202,138,4,0.4)]">
                       <Users size={14} className="text-white" />
                     </div>
                     <span className="text-[8px] font-black text-white uppercase tracking-widest">VERIFICAR GRUPO</span>
@@ -2335,7 +2335,7 @@ export default function RobuxCatalog() {
                             <div className="flex items-center gap-2 flex-wrap">
                               <h4 className="text-xs font-bold text-white leading-tight truncate">{group.groupName}</h4>
                               {requiredGroups.find(rg => rg.id === group.groupId)?.isMandatory && (
-                                <span className="px-1.5 py-0.5 bg-blue-500/20 text-blue-400 text-[6px] font-black uppercase tracking-widest rounded border border-blue-500/30">OBLIGATORIO</span>
+                                <span className="px-1.5 py-0.5 bg-yellow-500/20 text-yellow-400 text-[6px] font-black uppercase tracking-widest rounded border border-yellow-500/30">OBLIGATORIO</span>
                               )}
                             </div>
                             {group.isMember ? (
@@ -2403,7 +2403,7 @@ export default function RobuxCatalog() {
                       }
                     }}
                     disabled={isLoading}
-                    className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                    className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.3)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
                   >
                     {isLoading ? (
                       <>
@@ -2483,7 +2483,7 @@ export default function RobuxCatalog() {
                       </div>
                       <button 
                         onClick={() => setGroupStep(2)}
-                        className="text-[11px] font-black text-blue-500 hover:text-blue-400 transition-colors uppercase tracking-wider"
+                        className="text-[11px] font-black text-yellow-500 hover:text-yellow-400 transition-colors uppercase tracking-wider"
                       >
                         Cambiar
                       </button>
@@ -2500,12 +2500,12 @@ export default function RobuxCatalog() {
                           placeholder="Código de cupón..."
                           value={couponCode}
                           onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                          className="flex-1 bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-blue-500/40 focus:bg-blue-500/5 transition-all"
+                          className="flex-1 bg-white/[0.02] border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white placeholder:text-white/20 focus:outline-none focus:border-yellow-500/40 focus:bg-yellow-500/5 transition-all"
                         />
                         <button
                           onClick={handleApplyCoupon}
                           disabled={isValidatingCoupon || !couponCode.trim()}
-                          className="px-6 py-3 bg-blue-600 hover:bg-blue-500 disabled:bg-blue-600/50 disabled:cursor-not-allowed text-white rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-2"
+                          className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 disabled:bg-yellow-500/50 disabled:cursor-not-allowed text-black rounded-xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-2"
                         >
                           {isValidatingCoupon ? <LoadingSpinner /> : <LucideTag size={14} />}
                           {isValidatingCoupon ? 'Validando...' : 'Aplicar'}
@@ -2584,7 +2584,7 @@ export default function RobuxCatalog() {
                       }, 1500);
                     }}
                     disabled={isLoading}
-                    className="w-full p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-sm transition-all shadow-[0_12px_24px_rgba(37,99,235,0.4)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                    className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_12px_24px_rgba(245,158,11,0.4)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
                   >
                     {isLoading ? (
                       <>

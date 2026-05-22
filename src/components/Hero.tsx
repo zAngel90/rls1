@@ -208,9 +208,9 @@ export default function Hero() {
       {isLoading && (
         <div className="min-h-screen flex items-center justify-center">
           <div className="flex gap-2">
-            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
           </div>
         </div>
       )}
@@ -227,16 +227,16 @@ export default function Hero() {
           filter: "blur(3px)"
         }}
       />
-      {/* Purple-Blue Aura from Left Side */}
-      <div className="absolute inset-y-0 -left-20 w-2/5 z-[1] opacity-100 blur-2xl bg-gradient-to-r from-[#090971]/40 via-[#000041]/30 via-50% to-transparent" />
-      {/* Purple-Blue Aura from Right Side */}
-      <div className="absolute inset-y-0 -right-20 w-2/5 z-[1] opacity-100 blur-2xl bg-gradient-to-l from-[#090971]/45 via-[#000041]/35 via-50% to-transparent" />
+      {/* Yellow-Gold Aura from Left Side */}
+      <div className="absolute inset-y-0 -left-20 w-2/5 z-[1] opacity-100 blur-2xl bg-gradient-to-r from-[#3a1f00]/40 via-[#1a0d00]/30 via-50% to-transparent" />
+      {/* Yellow-Gold Aura from Right Side */}
+      <div className="absolute inset-y-0 -right-20 w-2/5 z-[1] opacity-100 blur-2xl bg-gradient-to-l from-[#3a1f00]/45 via-[#1a0d00]/35 via-50% to-transparent" />
       {/* Corner Overlays - Bottom Left */}
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 z-[1] opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/60 via-[#000041]/45 via-40% to-transparent" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 z-[1] opacity-100 blur-3xl bg-gradient-to-tr from-[#3a1f00]/60 via-[#1a0d00]/45 via-40% to-transparent" />
       {/* Corner Overlays - Bottom Right */}
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 z-[1] opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/65 via-[#000041]/50 via-40% to-transparent" />
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 z-[1] opacity-100 blur-3xl bg-gradient-to-tl from-[#3a1f00]/65 via-[#1a0d00]/50 via-40% to-transparent" />
       {/* Overlay gradient */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-transparent via-[#090971]/10 to-transparent" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-transparent via-[#1a0d00]/10 to-transparent" />
       
       {/* Bottom fade to background color - Smooth transition */}
       <div className="absolute bottom-0 left-0 right-0 h-[500px] z-[3] pointer-events-none" style={{
@@ -276,7 +276,7 @@ export default function Hero() {
           Compra Robux, Items
         </h1>
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
-          <span className="bg-gradient-to-r from-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>Fornite al Mejor Precio</span>
+          <span className="bg-gradient-to-r from-[#F5A500] to-[#FFD000] bg-clip-text text-transparent" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>Fornite al Mejor Precio</span>
         </h2>
 
         {/* Subtitle */}
@@ -331,7 +331,7 @@ export default function Hero() {
             </div>
             <button 
               onClick={() => handleSearch()}
-              className="px-6 py-3.5 bg-[#0099ff] text-white font-semibold hover:bg-[#0088ee] transition-colors text-sm rounded-xl m-1"
+              className="px-6 py-3.5 bg-[#F5A500] text-black font-semibold hover:bg-[#FFD000] transition-colors text-sm rounded-xl m-1"
             >
               Buscar
             </button>
@@ -353,7 +353,7 @@ export default function Hero() {
             }}
             onMouseDown={(e) => e.preventDefault()}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#090971]/20 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#3a1f00]/20 via-transparent to-transparent pointer-events-none"></div>
             <div className="relative z-10">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
               <Search size={13} className="text-white/60" />
@@ -365,14 +365,14 @@ export default function Hero() {
                 <React.Fragment key={result.id}>
                   <button
                     onClick={() => handleSearch(result)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-blue-500/10 transition-all text-left group rounded-xl ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-yellow-500/10 transition-all text-left group rounded-xl ${
                       isSearchDropdownOpen ? 'animate-[itemSlideIn_1.1s_cubic-bezier(0.22,1,0.36,1)_both]' : ''
                     }`}
                     style={{
                       animationDelay: '0.08s'
                     }}
                   >
-                    <div className={`w-10 h-10 rounded-2xl overflow-hidden bg-blue-500/10 border border-blue-500/20 shrink-0 group-hover:border-blue-500/40 transition-all ${
+                    <div className={`w-10 h-10 rounded-2xl overflow-hidden bg-yellow-500/10 border border-yellow-500/20 shrink-0 group-hover:border-yellow-500/40 transition-all ${
                       isSearchDropdownOpen ? 'animate-[avatarAppear_1.1s_cubic-bezier(0.22,1,0.36,1)_forwards]' : ''
                     }`}
                     style={{
@@ -400,7 +400,7 @@ export default function Hero() {
                         <p className="text-[10px] font-semibold text-black/70 truncate">{result.category}</p>
                       </div>
                     </div>
-                    <ArrowRight size={14} className="text-white/10 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                    <ArrowRight size={14} className="text-white/10 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                   </button>
                   {idx < searchResults.length - 1 && (
                     <div className="border-t border-white/[0.04]" />

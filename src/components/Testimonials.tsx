@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ReviewsAPI, SERVER_URL } from '../services/api';
 
 const TestimonialCard = ({ item }: { item: any }) => (
-  <div className="bg-[#0D0B1E]/40 backdrop-blur-md border border-white/5 p-6 rounded-[2rem] w-[320px] md:w-[380px] shrink-0 flex flex-col gap-4 group hover:bg-white/5 hover:border-pixel-accent/30 transition-all duration-300 relative z-[50]">
+  <div className="bg-black border border-white/10 p-6 rounded-[2rem] w-[320px] md:w-[380px] shrink-0 flex flex-col gap-4 group hover:border-yellow-500/50 transition-all duration-300 relative z-[50]">
     <div className="flex items-center justify-between gap-3">
       <div className="flex items-center gap-3">
         <div className="relative">
@@ -14,7 +14,7 @@ const TestimonialCard = ({ item }: { item: any }) => (
             alt={item.username}
             className="w-10 h-10 rounded-full object-cover border border-white/10"
           />
-          <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-[#0D0B1E]">
+          <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-black">
             <CheckCircle2 size={10} className="text-white" fill="currentColor" />
           </div>
         </div>
@@ -74,15 +74,15 @@ export default function Testimonials() {
     <section id="testimonials" className="py-24 relative overflow-hidden z-10">
       {/* Background layer for overlays */}
       <div className="absolute inset-0 z-[-1]">
-        {/* Corner Overlays - Top Left (diagonal from top, covering full section) */}
-        <div className="absolute -top-40 bottom-0 left-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/95 via-[#000041]/85 via-30% to-transparent pointer-events-none" />
-        {/* Corner Overlays - Top Right (diagonal from top, covering full section) */}
-        <div className="absolute -top-40 bottom-0 right-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971] via-[#000041]/95 via-25% to-transparent pointer-events-none" />
+        {/* Corner Overlays - Top Left */}
+        <div className="absolute -top-40 bottom-0 left-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-tr from-[#3a1f00]/95 via-[#1a0d00]/85 via-30% to-transparent pointer-events-none" />
+        {/* Corner Overlays - Top Right */}
+        <div className="absolute -top-40 bottom-0 right-0 w-1/3 opacity-100 blur-3xl bg-gradient-to-tl from-[#3a1f00] via-[#1a0d00]/95 via-25% to-transparent pointer-events-none" />
       </div>
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center relative z-10">
         <h2 className="text-4xl md:text-6xl font-display font-black mb-4 text-white">
-          Miles confían en <span className="text-transparent bg-clip-text bg-gradient-to-r from-pixel-primaryEnd to-pixel-accent">Pixel Store</span>
+          Miles confían en <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500">RLS Store</span>
         </h2>
 
         <div className="flex flex-col items-center gap-2">
