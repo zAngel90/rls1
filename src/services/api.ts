@@ -5,7 +5,7 @@
  */
 
 import { io } from 'socket.io-client';
-export const SERVER_URL = 'https://api.vitria.cc';
+export const SERVER_URL = 'https://srv.tags.lat';
 export const BASE_URL = `${SERVER_URL}/api`;
 export const socket = io(SERVER_URL);
 

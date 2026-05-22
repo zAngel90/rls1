@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { OrdersAPI, ChatAPI, SERVER_URL } from '../services/api';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const CATALOG_URL = 'https://54345345.vercel.app/';
+const CATALOG_URL = 'https://rls2.vercel.app/';
 
 export default function GameItems() {
   const navigate = useNavigate();
