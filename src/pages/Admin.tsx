@@ -30,7 +30,8 @@ import {
   XCircle,
   Ticket,
   Package,
-  Filter
+  Filter,
+  Mail
 } from 'lucide-react';
 import { RobloxAPI, StoreAPI, ChatAPI, AuthAPI, SERVER_URL } from '../services/api';
 
@@ -49,6 +50,7 @@ import HomeTab from '../components/admin/HomeTab';
 import CategoryIconsTab from '../components/admin/CategoryIconsTab';
 import CouponsTab from '../components/admin/CouponsTab';
 import FortniteTab from '../components/admin/FortniteTab';
+import EmailSettingsTab from '../components/admin/EmailSettingsTab';
 
 const TABS = [
   { id: 'dashboard', label: 'Panel General', icon: LayoutDashboard, category: 'Main' },
@@ -64,6 +66,7 @@ const TABS = [
   { id: 'groups', label: 'Grupos Roblox', icon: Users, category: 'Configuración' },
   { id: 'currencies', label: 'Tasas y Monedas', icon: Globe, category: 'Configuración' },
   { id: 'payment-methods', label: 'Métodos de Pago', icon: CreditCard, category: 'Configuración' },
+  { id: 'email-settings', label: 'Correos Notificación', icon: Mail, category: 'Configuración' },
   { id: 'category-icons', label: 'Iconos Categorías', icon: LayoutGrid, category: 'Visual' },
   { id: 'home', label: 'Página Inicio', icon: ImageIcon, category: 'Visual' },
 ];
@@ -596,6 +599,10 @@ export default function Admin() {
                       <HomeTab 
                         SERVER_URL={SERVER_URL}
                       />
+                    )}
+
+                    {activeTab === 'email-settings' && (
+                      <EmailSettingsTab showToast={showToast} />
                     )}
                   </div>
                 )}
