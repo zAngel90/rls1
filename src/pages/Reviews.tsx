@@ -153,7 +153,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="group relative bg-white/[0.04] backdrop-blur-sm border border-blue-500/10 rounded-2xl px-4 sm:px-6 py-4 sm:py-5 transition-all duration-500 hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.1)]"
+      className="group relative bg-white/[0.04] backdrop-blur-sm border border-yellow-500/10 rounded-2xl px-4 sm:px-6 py-4 sm:py-5 transition-all duration-500 hover:border-yellow-500/40 hover:shadow-[0_0_25px_rgba(245,158,11,0.1)]"
     >
       <div className="flex items-start gap-3 sm:gap-4">
         {/* Avatar */}
@@ -206,9 +206,9 @@ const ReviewCard = ({ review }: { review: Review }) => {
           )}
 
           {review.reply && (
-            <div className="mt-4 p-4 rounded-xl bg-white/5 border-l-2 border-blue-500/50">
+            <div className="mt-4 p-4 rounded-xl bg-white/5 border-l-2 border-yellow-500/50">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-blue-400 flex items-center gap-1.5">
+                <span className="text-xs font-bold text-yellow-400 flex items-center gap-1.5">
                   <MessageSquare size={12} />
                   {review.reply.author}
                 </span>
@@ -384,10 +384,10 @@ export default function Reviews() {
     >
       {/* Corner Overlays */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
-        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971]/55 via-[#000041]/40 via-30% to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/45 via-[#000041]/30 via-30% to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
+        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
       </div>
 
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-10 lg:px-16 xl:px-24 pt-20 sm:pt-32 pb-36 md:pb-20 relative z-10">
@@ -406,7 +406,7 @@ export default function Reviews() {
           <aside className="md:sticky md:top-28 md:self-start space-y-3 md:space-y-4">
             
             {/* Overall Rating Card */}
-            <motion.div className="bg-white/[0.03] backdrop-blur-xl border border-blue-500/20 rounded-3xl transition-all duration-500 hover:border-blue-500/50 group/rating relative">
+            <motion.div className="bg-white/[0.03] backdrop-blur-xl border border-yellow-500/20 rounded-3xl transition-all duration-500 hover:border-yellow-500/50 group/rating relative">
               <div className="px-6 pt-5 pb-4 border-b border-white/5">
                 <h3 className="text-xs font-bold text-white/30 uppercase tracking-[0.2em]">Puntuación General</h3>
               </div>
@@ -445,7 +445,7 @@ export default function Reviews() {
               <div className="hidden md:block px-4 pb-4">
                 <button 
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
+                  className="w-full py-3 px-4 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-2xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
                 >
                   <PenLine size={16} />
                   Escribir reseña
@@ -454,7 +454,7 @@ export default function Reviews() {
             </motion.div>
 
             {/* Filters Card - hidden on mobile, show compact version */}
-            <motion.div className="hidden md:block bg-white/[0.03] backdrop-blur-xl border border-blue-500/20 rounded-3xl transition-all duration-500 hover:border-blue-500/50 relative z-20">
+            <motion.div className="hidden md:block bg-white/[0.03] backdrop-blur-xl border border-yellow-500/20 rounded-3xl transition-all duration-500 hover:border-yellow-500/50 relative z-20">
               <div className="p-4 border-b border-white/5 flex items-center justify-between">
                 <h3 className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Filtrar por</h3>
                 <AnimatePresence>
@@ -464,7 +464,7 @@ export default function Reviews() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       onClick={clearFilters}
-                      className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 transition-colors text-[10px] font-bold"
+                      className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 transition-colors text-[10px] font-bold"
                     >
                       <X size={10} />
                       LIMPIAR
@@ -515,7 +515,7 @@ export default function Reviews() {
 
                 <button 
                   onClick={() => { setShowOnlyMyReviews(!showOnlyMyReviews); setCurrentPage(1); }}
-                  className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border transition-all ${showOnlyMyReviews ? 'bg-blue-600/20 border-blue-500/50 text-blue-400' : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/60 hover:text-white'} text-xs font-semibold`}
+                  className={`w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border transition-all ${showOnlyMyReviews ? 'bg-yellow-600/20 border-yellow-500/50 text-yellow-400' : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/60 hover:text-white'} text-xs font-semibold`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
                   {showOnlyMyReviews ? 'Ver Todas' : 'Mis Reseñas'}
@@ -547,7 +547,7 @@ export default function Reviews() {
             {/* Mobile: write review button */}
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex md:hidden w-full items-center justify-center gap-2 py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all active:scale-[0.98] text-sm uppercase tracking-wider"
+              className="flex md:hidden w-full items-center justify-center gap-2 py-3 px-4 bg-yellow-500 hover:bg-yellow-400 text-black font-bold rounded-2xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all active:scale-[0.98] text-sm uppercase tracking-wider"
             >
               <PenLine size={16} />
               Escribir reseña
@@ -570,7 +570,7 @@ export default function Reviews() {
               <button
                 onClick={() => { setFilterRating('all'); setCurrentPage(1); }}
                 className={`shrink-0 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
-                  filterRating === 'all' ? 'bg-blue-500/20 border-blue-500/40 text-blue-400' : 'border-white/10 bg-white/5 text-white/50'
+                  filterRating === 'all' ? 'bg-yellow-500/20 border-yellow-500/40 text-yellow-400' : 'border-white/10 bg-white/5 text-white/50'
                 }`}
               >
                 Todas
@@ -596,7 +596,7 @@ export default function Reviews() {
                   placeholder="Buscar reseñas..."
                   value={searchQuery}
                   onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-yellow-500/50 focus:bg-white/[0.08] transition-all"
                 />
               </motion.div>
 
@@ -605,7 +605,7 @@ export default function Reviews() {
                   {loading ? 'Cargando reseñas...' : (
                     <>
                       Mostrando <span className="text-white/80 font-bold">{startItem}–{endItem}</span> de <span className="text-white/80 font-bold">{filteredReviews.length.toLocaleString()}</span> reseñas
-                      {filterRating !== 'all' && <span className="text-blue-400 ml-2">· (filtrado)</span>}
+                      {filterRating !== 'all' && <span className="text-yellow-400 ml-2">· (filtrado)</span>}
                     </>
                   )}
                 </p>
@@ -694,7 +694,7 @@ export default function Reviews() {
                     <select
                       value={selectedOrderId}
                       onChange={(e) => setSelectedOrderId(e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:border-blue-500/50 transition-all outline-none appearance-none cursor-pointer"
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:border-yellow-500/50 transition-all outline-none appearance-none cursor-pointer"
                       style={{
                         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' opacity='0.3' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                         backgroundRepeat: 'no-repeat',
@@ -728,7 +728,7 @@ export default function Reviews() {
                       value={newText}
                       onChange={(e) => setNewText(e.target.value)}
                       placeholder="¿Qué te pareció el servicio? ¿Fue rápido? ¿Lo recomendarías?"
-                      className="w-full h-32 bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder:text-white/20 focus:border-blue-500/50 transition-all outline-none resize-none"
+                      className="w-full h-32 bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder:text-white/20 focus:border-yellow-500/50 transition-all outline-none resize-none"
                     />
                   </div>
 
@@ -737,7 +737,7 @@ export default function Reviews() {
                     <label className="text-xs font-bold text-white/30 uppercase tracking-widest">Añadir Foto (Opcional)</label>
                     <div className="flex items-center gap-4">
                       {previewUrl ? (
-                        <div className="relative size-24 rounded-2xl overflow-hidden border border-blue-500/50">
+                        <div className="relative size-24 rounded-2xl overflow-hidden border border-yellow-500/50">
                           <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
                           <button 
                             onClick={() => { setNewImage(null); setPreviewUrl(null); }}
@@ -747,7 +747,7 @@ export default function Reviews() {
                           </button>
                         </div>
                       ) : (
-                        <label className="size-24 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-white/10 bg-white/5 hover:bg-white/[0.08] hover:border-blue-500/40 cursor-pointer transition-all">
+                        <label className="size-24 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-white/10 bg-white/5 hover:bg-white/[0.08] hover:border-yellow-500/40 cursor-pointer transition-all">
                           <Camera className="text-white/20" size={24} />
                           <span className="text-[10px] font-bold text-white/30">AÑADIR</span>
                           <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
@@ -764,7 +764,7 @@ export default function Reviews() {
                   <button 
                     onClick={handleSubmitReview}
                     disabled={submitting || !newText.trim()}
-                    className="w-full h-14 bg-blue-600 hover:bg-blue-500 disabled:bg-white/5 disabled:text-white/20 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 mt-4"
+                    className="w-full h-14 bg-yellow-500 hover:bg-yellow-400 disabled:bg-white/5 disabled:text-white/20 text-black font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 mt-4"
                   >
                     {submitting ? <Loader2 className="animate-spin" size={20} /> : <PenLine size={20} />}
                     {submitting ? 'Publicando...' : 'Publicar Reseña'}

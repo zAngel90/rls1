@@ -28,7 +28,7 @@ const SECTION_TO_NAV: Record<string, string> = {
 const NAV_ITEMS = [
   { id: 'inicio', label: 'Inicio', href: '/', icon: Home },
   { id: 'catalogo', label: 'Catálogo', href: '/catalog', icon: LayoutGrid, isDropdown: true },
-  { id: 'fortnite', label: 'Fortnite', href: '/fortnite', icon: Gamepad2 },
+  // { id: 'fortnite', label: 'Fortnite', href: '/fortnite', icon: Gamepad2 },
   { id: 'resenas', label: 'Reseñas', href: '/reviews', icon: Star },
   { id: 'grupos', label: 'Grupos', href: '/groups', icon: Users },
 ];
@@ -143,8 +143,6 @@ export default function Navbar() {
       setActiveNav('resenas');
     } else if (location.pathname === '/groups') {
       setActiveNav('grupos');
-    } else if (location.pathname === '/fortnite') {
-      setActiveNav('fortnite');
     } else if (location.pathname === '/') {
       setActiveNav('inicio');
     }
@@ -242,24 +240,51 @@ export default function Navbar() {
               </button>
 
               <Link to="/" onClick={() => setActiveNav('inicio')} className="flex items-center ml-3">
-                <img src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" alt="RLS Store" className="h-8 w-auto object-contain scale-[1.35] origin-left" style={{ overflow: 'visible' }} />
+                <motion.img 
+                  whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" 
+                  alt="RLS Store" 
+                  className="h-8 w-auto object-contain scale-[1.35] origin-left" 
+                  style={{ overflow: 'visible' }} 
+                />
               </Link>
 
               <div className="flex items-center gap-2">
                 <div className="relative" ref={notifRefMobile}>
-                  <button
-                    className="p-2 text-gray-400 relative"
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9, rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    className="p-2 text-gray-400 hover:text-white relative transition-colors"
                     onClick={(e) => {
                       e.stopPropagation();
                       setShowNotifications(!showNotifications);
                       if (showProfile) setShowProfile(false);
                     }}
                   >
-                    <Bell size={20} />
+                    <motion.div
+                      animate={{
+                        rotate: (unreadCount + orderNotifCount) > 0 ? [0, -15, 15, -15, 15, 0] : 0
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        repeat: (unreadCount + orderNotifCount) > 0 ? Infinity : 0,
+                        repeatDelay: 3
+                      }}
+                    >
+                      <Bell size={20} />
+                    </motion.div>
                     {(unreadCount + orderNotifCount) > 0 && (
-                      <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-[#0D0B1E]"></span>
+                      <motion.span 
+                        initial={{ scale: 0 }}
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 0.3, repeat: Infinity, repeatDelay: 2 }}
+                        className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-[#0D0B1E] shadow-[0_0_8px_rgba(239,68,68,0.6)]"
+                      />
                     )}
-                  </button>
+                  </motion.button>
 
                   {/* Dropdown de notificaciones para móvil */}
                   <AnimatePresence>{showNotifications && (
@@ -367,31 +392,45 @@ export default function Navbar() {
                   )}</AnimatePresence>
                 </div>
                 {isLoggedIn ? (
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     onClick={() => navigate('/account')}
-                    className="size-8 rounded-full border border-white/10 overflow-hidden"
+                    className="size-8 rounded-full border border-white/10 overflow-hidden hover:border-yellow-500/50 transition-colors"
                   >
                     <img
                       src={user?.avatar?.startsWith('http') ? user.avatar : `${SERVER_URL}${user?.avatar || '/avatar.png'}`}
                       alt="Avatar"
                       className="size-full object-cover"
                     />
-                  </button>
+                  </motion.button>
                 ) : (
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1, rotate: 360 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
                     onClick={() => setIsAuthModalOpen(true)}
-                    className="size-8 rounded-full bg-blue-600 flex items-center justify-center text-white"
+                    className="size-8 rounded-full bg-yellow-600 hover:bg-yellow-500 flex items-center justify-center text-white shadow-lg hover:shadow-yellow-500/50 transition-all"
                   >
                     <User size={16} />
-                  </button>
+                  </motion.button>
                 )}
               </div>
             </div>
 
             {/* Desktop View: Logo (Left), Nav (Center), Actions (Right) */}
             <div className="hidden lg:flex items-center justify-between w-full">
-              <Link to="/" onClick={() => setActiveNav('inicio')} className="flex items-center cursor-pointer transition-transform hover:scale-[1.02] active:scale-95 ml-6">
-                <img src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" alt="RLS Store" className="h-10 w-auto object-contain scale-[1.4] origin-left" style={{ overflow: 'visible' }} />
+              <Link to="/" onClick={() => setActiveNav('inicio')} className="flex items-center cursor-pointer ml-6">
+                <motion.img 
+                  whileHover={{ scale: 1.05, rotate: [0, -3, 3, 0] }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" 
+                  alt="RLS Store" 
+                  className="h-10 w-auto object-contain scale-[1.4] origin-left" 
+                  style={{ overflow: 'visible' }} 
+                />
               </Link>
 
               <div className="flex items-center gap-1 bg-white/5 backdrop-blur-sm px-1.5 py-1.5 rounded-full border border-white/[0.08] -my-1 shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)] relative">
@@ -526,14 +565,45 @@ export default function Navbar() {
 
               <div className="flex items-center gap-4 relative">
                 <div className="relative" ref={notifRef}>
-                  <button onClick={(e) => { e.stopPropagation(); setShowNotifications(!showNotifications); }} className="relative p-1.5 text-white hover:text-white/90 transition-colors">
-                    <Bell className="w-6 h-6 fill-white" />
+                  <motion.button 
+                    whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                    whileTap={{ scale: 0.85, rotate: [0, -15, 15, -10, 10, 0] }}
+                    transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                    onClick={(e) => { e.stopPropagation(); setShowNotifications(!showNotifications); }} 
+                    className="relative p-1.5 text-white hover:text-yellow-400 transition-colors"
+                  >
+                    <motion.div
+                      animate={{
+                        rotate: (unreadCount + orderNotifCount) > 0 ? [0, -12, 12, -12, 12, 0] : 0,
+                        y: (unreadCount + orderNotifCount) > 0 ? [0, -2, 0, -2, 0] : 0
+                      }}
+                      transition={{
+                        duration: 0.6,
+                        repeat: (unreadCount + orderNotifCount) > 0 ? Infinity : 0,
+                        repeatDelay: 3,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <Bell className="w-6 h-6 fill-white" />
+                    </motion.div>
                     {(unreadCount + orderNotifCount) > 0 && (
-                      <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1">
+                      <motion.span 
+                        initial={{ scale: 0 }}
+                        animate={{ 
+                          scale: [1, 1.3, 1],
+                          boxShadow: [
+                            '0 0 0 0 rgba(239, 68, 68, 0.7)',
+                            '0 0 0 8px rgba(239, 68, 68, 0)',
+                            '0 0 0 0 rgba(239, 68, 68, 0)'
+                          ]
+                        }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1"
+                      >
                         {(unreadCount + orderNotifCount) > 9 ? '10' : (unreadCount + orderNotifCount)}
-                      </span>
+                      </motion.span>
                     )}
-                  </button>
+                  </motion.button>
                   <AnimatePresence>{showNotifications && (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95, y: 10, originX: '90%', originY: '0%' }}

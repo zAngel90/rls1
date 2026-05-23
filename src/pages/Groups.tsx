@@ -95,10 +95,10 @@ export default function Groups() {
     >
       {/* Corner Overlays */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
-        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971]/55 via-[#000041]/40 via-30% to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/45 via-[#000041]/30 via-30% to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
+        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
       </div>
       
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -110,7 +110,7 @@ export default function Groups() {
             <div className="space-y-4">
               <h1 className="text-4xl font-black text-white leading-tight uppercase tracking-tight">
                 Nuestros Grupos de <br />
-                <span className="text-blue-500">Roblox</span>
+                <span className="text-yellow-500">Roblox</span>
               </h1>
               <p className="text-white/40 text-[15px] leading-relaxed max-w-sm">
                 Unete a nuestros grupos para recibir Robux mediante Group Payout. Necesitas estar en el grupo por lo menos 14 dias para poder recibir pagos.
@@ -123,8 +123,8 @@ export default function Groups() {
               
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="size-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                    <Users size={18} className="text-blue-400" />
+                  <div className="size-10 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center shrink-0">
+                    <Users size={18} className="text-yellow-400" />
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-white mb-1">1. Unete al grupo</h4>
@@ -168,13 +168,13 @@ export default function Groups() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleVerify()}
-                    className="w-full h-12 pl-12 pr-4 bg-white/[0.04] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-blue-500/40 transition-all"
+                    className="w-full h-12 pl-12 pr-4 bg-white/[0.04] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-yellow-500/40 transition-all"
                   />
                 </div>
                 <button 
                   onClick={handleVerify}
                   disabled={isVerifying || !username.trim()}
-                  className="w-full h-12 bg-white/5 border border-white/5 text-white font-bold text-sm rounded-xl hover:bg-blue-600 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full h-12 bg-white/5 border border-white/5 text-white font-bold text-sm rounded-xl hover:bg-yellow-600 hover:text-white transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isVerifying ? 'Verificando...' : 'Verificar'}
                 </button>
@@ -184,7 +184,7 @@ export default function Groups() {
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl"
+                  className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <img src={verificationResults.user.avatarUrl} className="size-8 rounded-full border border-white/10" alt="" />
@@ -200,7 +200,7 @@ export default function Groups() {
                     </div>
                     <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
                       <div 
-                        className="h-full bg-blue-500 transition-all duration-500" 
+                        className="h-full bg-yellow-500 transition-all duration-500" 
                         style={{ width: `${(verificationResults.results.filter((r: any) => r.isMember).length / groups.length) * 100}%` }}
                       />
                     </div>
@@ -221,13 +221,13 @@ export default function Groups() {
               <h2 className="text-2xl font-bold text-white uppercase tracking-tight">Grupos disponibles</h2>
               <div className="flex items-center gap-2 text-white/30 text-xs font-medium">
                 <span>Unete a todos nuestros grupos y espera 14 dias para ser elegible</span>
-                <span className="size-6 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold">{groups.length}</span>
+                <span className="size-6 rounded-full bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold">{groups.length}</span>
               </div>
             </div>
 
             {/* Alert Banner */}
-            <div className="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10 flex gap-3 items-start">
-              <Info size={18} className="text-blue-400 shrink-0 mt-0.5" />
+            <div className="p-4 rounded-2xl bg-yellow-500/5 border border-yellow-500/10 flex gap-3 items-start">
+              <Info size={18} className="text-yellow-400 shrink-0 mt-0.5" />
               <p className="text-xs text-white/60 leading-relaxed">
                 Es indispensable unirse a todos los grupos para recibir tu pedido de Robux por grupo correctamente y sin problemas.
               </p>
@@ -255,7 +255,7 @@ export default function Groups() {
                         ? 'bg-emerald-500/5 border-emerald-500/20' 
                         : verificationResults 
                           ? 'bg-red-500/5 border-red-500/20' 
-                          : 'bg-white/[0.03] border-white/5 hover:border-blue-500/20'
+                          : 'bg-white/[0.03] border-white/5 hover:border-yellow-500/20'
                       }`}
                     >
                       <div className="flex items-center gap-4">
@@ -266,16 +266,16 @@ export default function Groups() {
                             className="size-full object-cover" 
                           />
                           {group.isMandatory && (
-                            <div className="absolute -bottom-1 -right-1 size-5 bg-blue-500 border-2 border-[#0d0c22] rounded-full flex items-center justify-center shadow-lg">
+                            <div className="absolute -bottom-1 -right-1 size-5 bg-yellow-500 border-2 border-[#0d0c22] rounded-full flex items-center justify-center shadow-lg">
                               <CheckCircle2 size={10} className="text-white fill-white" />
                             </div>
                           )}
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h4 className={`text-sm font-bold transition-colors ${isMember ? 'text-emerald-400' : 'text-white group-hover/item:text-blue-400'}`}>{group.name}</h4>
+                            <h4 className={`text-sm font-bold transition-colors ${isMember ? 'text-emerald-400' : 'text-white group-hover/item:text-yellow-400'}`}>{group.name}</h4>
                             {group.isMandatory && (
-                              <span className="px-1.5 py-0.5 rounded-md bg-blue-500/10 text-blue-400 text-[9px] font-black uppercase tracking-wider border border-blue-500/20">Principal</span>
+                              <span className="px-1.5 py-0.5 rounded-md bg-yellow-500/10 text-yellow-400 text-[9px] font-black uppercase tracking-wider border border-yellow-500/20">Principal</span>
                             )}
                           </div>
                           <div className="flex items-center gap-1.5 mt-0.5">
@@ -303,7 +303,7 @@ export default function Groups() {
                         className={`h-9 px-5 text-xs font-bold rounded-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-lg ${
                           isMember 
                           ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-500/20' 
-                          : 'bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/20'
+                          : 'bg-yellow-600 hover:bg-yellow-500 text-white shadow-yellow-500/20'
                         }`}
                       >
                         {isMember ? 'Unido' : 'Unirse'}

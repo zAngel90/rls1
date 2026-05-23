@@ -98,10 +98,10 @@ const LEVEL_CONFIG = TIERS_CONFIG.reduce((acc, tier, index) => {
     color: tier.id === 'BRONCE' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' :
            tier.id === 'SILVER' ? 'bg-slate-400/10 text-slate-300 border-slate-400/20' :
            tier.id === 'GOLD' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' :
-           tier.id === 'DIAMOND' ? 'bg-blue-400/10 text-blue-300 border-blue-400/20' :
+           tier.id === 'DIAMOND' ? 'bg-yellow-400/10 text-yellow-300 border-yellow-400/20' :
            tier.id === 'ROYAL' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
            tier.id === 'MYTHIC' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
-           'bg-blue-500/10 text-blue-400 border-blue-500/20',
+           'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
     icon: tier.icon,
     desc: tier.desc,
     rbx: tier.rbx,
@@ -345,10 +345,10 @@ export default function Account() {
     >
       {/* Corner Overlays */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
-        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#090971]/55 via-[#000041]/40 via-30% to-transparent" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#090971]/45 via-[#000041]/30 via-30% to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#090971]/50 via-[#000041]/35 via-30% to-transparent" />
+        <div className="absolute top-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-br from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute top-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-bl from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tr from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-100 blur-3xl bg-gradient-to-tl from-[#f59e0b]/15 via-black/40 via-30% to-transparent" />
       </div>
       
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -364,14 +364,14 @@ export default function Account() {
           <aside className="space-y-6">
             {/* User Info Card */}
             <div className="bg-white/[0.03] border border-white/5 rounded-3xl p-5 flex items-center gap-4">
-              <div className="size-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden">
+              <div className="size-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center overflow-hidden">
                 <img src={user.avatar?.startsWith('http') ? user.avatar : `${SERVER_URL}${user?.avatar || '/avatar.png'}`} alt="Avatar" className="size-full object-cover" />
               </div>
               <div className="min-w-0">
                 <h4 className="text-sm font-bold text-white truncate">{user.username}</h4>
                 <div className="flex items-center gap-2 mt-0.5">
                   <span className={`text-[8px] px-1.5 py-0.5 rounded-full border font-black uppercase tracking-wider ${
-                    LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.color || 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                    LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.color || 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
                   }`}>
                     {LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.name || 'Cliente'}
                   </span>
@@ -390,11 +390,11 @@ export default function Account() {
                         key={item.id}
                         onClick={() => setSearchParams({ tab: item.id })}
                         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all group ${activeTab === item.id
-                            ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                            ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
                             : 'text-white/40 hover:bg-white/5 hover:text-white border border-transparent'
                           }`}
                       >
-                        <item.icon size={18} className={activeTab === item.id ? 'text-blue-400' : 'group-hover:text-white transition-colors'} />
+                        <item.icon size={18} className={activeTab === item.id ? 'text-yellow-400' : 'group-hover:text-white transition-colors'} />
                         <span className="text-sm font-bold">{item.label}</span>
                       </button>
                     ))}
@@ -443,14 +443,14 @@ export default function Account() {
                             />
                             {isUpdating && (
                               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
-                                <div className="size-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                <div className="size-6 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
                               </div>
                             )}
                           </div>
                           <button 
                             onClick={() => setIsAvatarModalOpen(true)}
                             disabled={isUpdating}
-                            className="absolute -bottom-2 -right-2 size-10 bg-blue-600 rounded-2xl flex items-center justify-center text-white border-4 border-[#0d0c22] group-hover:scale-110 transition-transform shadow-xl disabled:opacity-50"
+                            className="absolute -bottom-2 -right-2 size-10 bg-yellow-600 rounded-2xl flex items-center justify-center text-white border-4 border-[#0d0c22] group-hover:scale-110 transition-transform shadow-xl disabled:opacity-50"
                           >
                             <Camera size={18} />
                           </button>
@@ -467,7 +467,7 @@ export default function Account() {
                           <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
                             <h2 className="text-3xl md:text-4xl font-black text-white">{user.username}</h2>
                             <span className={`w-fit mx-auto md:mx-0 text-[10px] px-3 py-1 rounded-full border font-black uppercase tracking-wider ${
-                              LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.color || 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                              LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.color || 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
                             }`}>
                               {LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.name || 'Cliente'}
                             </span>
@@ -480,13 +480,13 @@ export default function Account() {
                             <div className="max-w-md">
                               <div className="flex justify-between text-[10px] font-black uppercase tracking-widest mb-2">
                                 <span className="text-white/40">Progreso de Nivel</span>
-                                <span className="text-blue-400">{progress.current} / {progress.next} Robux</span>
+                                <span className="text-yellow-400">{progress.current} / {progress.next} Robux</span>
                               </div>
                               <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                                 <motion.div 
                                   initial={{ width: 0 }}
                                   animate={{ width: `${progress.percent}%` }}
-                                  className="h-full bg-blue-500 rounded-full"
+                                  className="h-full bg-yellow-500 rounded-full"
                                 />
                               </div>
                             </div>
@@ -495,7 +495,7 @@ export default function Account() {
                       </div>
 
                       {/* Decorative Background Glow */}
-                      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 blur-[100px] -mr-32 -mt-32 rounded-full"></div>
+                      <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/5 blur-[100px] -mr-32 -mt-32 rounded-full"></div>
                     </div>
 
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
@@ -576,7 +576,7 @@ export default function Account() {
                         <h4 className="text-sm font-bold text-white">Notificaciones Push</h4>
                         <p className="text-xs text-white/40">Recibe avisos sobre el estado de tus pedidos y mensajes de soporte.</p>
                       </div>
-                      <div className="w-12 h-6 bg-blue-600 rounded-full relative cursor-pointer"><div className="absolute right-1 top-1 size-4 bg-white rounded-full"></div></div>
+                      <div className="w-12 h-6 bg-yellow-600 rounded-full relative cursor-pointer"><div className="absolute right-1 top-1 size-4 bg-white rounded-full"></div></div>
                     </div>
                   </div>
                 </div>
@@ -590,13 +590,13 @@ export default function Account() {
                   <div className="max-w-md space-y-4">
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-white/20 uppercase tracking-widest px-2">Contraseña Actual</label>
-                      <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/10 outline-none focus:border-blue-500/50 transition-all" />
+                      <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/10 outline-none focus:border-yellow-500/50 transition-all" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-white/20 uppercase tracking-widest px-2">Nueva Contraseña</label>
-                      <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/10 outline-none focus:border-blue-500/50 transition-all" />
+                      <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-white/10 outline-none focus:border-yellow-500/50 transition-all" />
                     </div>
-                    <button className="mt-4 px-8 py-4 bg-blue-600 text-white rounded-2xl font-black text-sm hover:bg-blue-500 transition-all">Actualizar Seguridad</button>
+                    <button className="mt-4 px-8 py-4 bg-yellow-600 text-white rounded-2xl font-black text-sm hover:bg-yellow-500 transition-all">Actualizar Seguridad</button>
                   </div>
                 </div>
               </div>
@@ -616,10 +616,10 @@ export default function Account() {
                       <div 
                         key={order.id} 
                         onClick={() => navigate(`/order/${order.id}`)}
-                        className="bg-white/[0.03] border border-white/5 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-white/[0.05] hover:border-blue-500/30 transition-all cursor-pointer group"
+                        className="bg-white/[0.03] border border-white/5 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-white/[0.05] hover:border-yellow-500/30 transition-all cursor-pointer group"
                       >
                         <div className="flex items-center gap-6">
-                          <div className="size-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
+                          <div className="size-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-400 shrink-0 group-hover:scale-110 transition-transform">
                             <ShoppingBag size={24} />
                           </div>
                           <div>
@@ -660,7 +660,7 @@ export default function Account() {
                             >
                               <MessageSquare size={18} />
                             </button>
-                            <div className="p-3 bg-blue-500/10 text-blue-400 rounded-xl opacity-0 group-hover:opacity-100 transition-all">
+                            <div className="p-3 bg-yellow-500/10 text-yellow-400 rounded-xl opacity-0 group-hover:opacity-100 transition-all">
                                <ChevronRight size={18} />
                             </div>
                           </div>
@@ -670,7 +670,7 @@ export default function Account() {
                   </div>
                 ) : (
                   <div className="bg-white/[0.03] border border-white/5 rounded-[2.5rem] p-12 text-center">
-                    <div className="size-20 bg-blue-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 text-blue-400">
+                    <div className="size-20 bg-yellow-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 text-yellow-400">
                       <ShoppingBag size={40} />
                     </div>
                     <h3 className="text-xl font-black text-white mb-2">No tienes pedidos aún</h3>
@@ -683,8 +683,8 @@ export default function Account() {
             {activeTab === 'descuentos' && (
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-500/20 rounded-xl">
-                    <Tag className="text-blue-500" size={20} />
+                  <div className="p-2 bg-yellow-500/20 rounded-xl">
+                    <Tag className="text-yellow-500" size={20} />
                   </div>
                   <div>
                     <h1 className="text-xl font-black text-white tracking-wide uppercase">Mis Cupones</h1>
@@ -699,7 +699,7 @@ export default function Account() {
                       transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
                       className="inline-block mb-4"
                     >
-                      <Tag className="text-blue-500/40" size={32} />
+                      <Tag className="text-yellow-500/40" size={32} />
                     </motion.div>
                     <p className="text-xs font-bold text-white/30 uppercase tracking-wider">Buscando promociones...</p>
                   </div>
@@ -729,7 +729,7 @@ export default function Account() {
                         className="relative flex flex-col md:flex-row items-stretch gap-6 p-6 md:p-8 rounded-3xl border border-white/5 bg-white/[0.03] backdrop-blur-xl shadow-[6px_6px_0px_0px_rgba(12,10,28,1)] hover:shadow-[3px_3px_0px_0px_rgba(12,10,28,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:border-white/10 transition-all group duration-300 overflow-hidden cursor-pointer select-none"
                       >
                         {/* Background premium blur wash (matches standard glass panels) */}
-                        <div className="absolute top-0 right-0 w-[180px] h-[180px] bg-blue-500/5 rounded-full blur-[60px] pointer-events-none transition-colors duration-500 group-hover:bg-white/[0.03]"></div>
+                        <div className="absolute top-0 right-0 w-[180px] h-[180px] bg-yellow-500/5 rounded-full blur-[60px] pointer-events-none transition-colors duration-500 group-hover:bg-white/[0.03]"></div>
                         <div className="absolute bottom-0 left-0 w-[120px] h-[120px] bg-indigo-500/5 rounded-full blur-[50px] pointer-events-none transition-colors duration-500 group-hover:bg-white/[0.02]"></div>
 
                         {/* Premium Signature Oval Pattern */}
@@ -927,9 +927,9 @@ export default function Account() {
                       const neonColor = tier.color?.includes('orange') ? '#f97316' :
                                        tier.color?.includes('slate') ? '#94a3b8' :
                                        tier.color?.includes('yellow') ? '#eab308' :
-                                       tier.color?.includes('blue') ? '#3b82f6' :
+                                       tier.color?.includes('blue') ? '#eab308' :
                                        tier.color?.includes('purple') ? '#a855f7' :
-                                       tier.color?.includes('red') ? '#ef4444' : '#3b82f6';
+                                       tier.color?.includes('red') ? '#ef4444' : '#eab308';
                       
                       return (
                         <SpotlightCard 
@@ -937,12 +937,12 @@ export default function Account() {
                           isCurrent={isCurrent}
                           className={`p-4 rounded-2xl border transition-all duration-300 group cursor-pointer flex items-center gap-4 ${
                             isCurrent 
-                              ? 'bg-blue-500/10 border-blue-500/30 shadow-[4px_4px_0px_0px_rgba(59,130,246,0.2)]' 
+                              ? 'bg-yellow-500/10 border-yellow-500/30 shadow-[4px_4px_0px_0px_rgba(234,179,8,0.2)]' 
                               : `bg-white/[0.03] border-white/5 shadow-[4px_4px_0px_0px_rgba(255,255,255,0.02)] ${
                                   tier.color?.includes('orange') ? 'hover:bg-orange-500/10 hover:border-orange-500/30' :
                                   tier.color?.includes('slate') || tier.color?.includes('gray') ? 'hover:bg-slate-400/10 hover:border-slate-400/30' :
                                   tier.color?.includes('yellow') ? 'hover:bg-yellow-500/10 hover:border-yellow-500/30' :
-                                  tier.color?.includes('blue') ? 'hover:bg-blue-400/10 hover:border-blue-400/30' :
+                                  tier.color?.includes('blue') ? 'hover:bg-yellow-400/10 hover:border-yellow-400/30' :
                                   tier.color?.includes('purple') ? 'hover:bg-purple-500/10 hover:border-purple-500/30' :
                                   tier.color?.includes('red') ? 'hover:bg-red-500/10 hover:border-red-500/30' : 'hover:bg-white/[0.06] hover:border-white/10'
                                 }`
