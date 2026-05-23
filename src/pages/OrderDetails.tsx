@@ -273,7 +273,7 @@ const OrderDetails = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed': return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
-      case 'processing': return 'text-blue-400 bg-blue-500/10 border-blue-500/20';
+      case 'processing': return 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20';
       case 'pending': return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
       case 'cancelled': return 'text-red-400 bg-red-500/10 border-red-500/20';
       default: return 'text-white/40 bg-white/5 border-white/10';
@@ -349,9 +349,16 @@ const OrderDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0d0c22] text-white pt-24 pb-12 px-4 sm:px-6 overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-24 pb-12 px-4 sm:px-6 overflow-hidden relative">
+      {/* Corner Overlays */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] blur-[100px] bg-[#f59e0b] opacity-[0.08]" />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] blur-[100px] bg-[#f59e0b] opacity-[0.10]" />
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] blur-[100px] bg-[#f59e0b] opacity-[0.06]" />
+        <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] blur-[100px] bg-[#f59e0b] opacity-[0.08]" />
+      </div>
       <motion.div 
-        className="max-w-5xl mx-auto"
+        className="max-w-5xl mx-auto relative z-10"
         initial={{ y: -30, opacity: 0, scale: 0.98 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ type: "spring", stiffness: 60, damping: 14, mass: 1 }}
@@ -370,13 +377,13 @@ const OrderDetails = () => {
                 <h1 className="text-xl font-black uppercase tracking-tight">Pedido</h1>
                 <div 
                   onClick={() => copyToClipboard(order.id, 'id')}
-                  className="flex items-center gap-1.5 px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded-md cursor-pointer hover:bg-blue-500/20 transition-all group"
+                  className="flex items-center gap-1.5 px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/20 rounded-md cursor-pointer hover:bg-yellow-500/20 transition-all group"
                 >
-                  <span className="text-[10px] font-black text-blue-400 uppercase tracking-wider">#{order.id}</span>
+                  <span className="text-[10px] font-black text-yellow-400 uppercase tracking-wider">#{order.id}</span>
                   {copiedField === 'id' ? (
                     <CheckCircle2 size={10} className="text-emerald-400" />
                   ) : (
-                    <Copy size={10} className="text-blue-400 group-hover:scale-110 transition-transform" />
+                    <Copy size={10} className="text-yellow-400 group-hover:scale-110 transition-transform" />
                   )}
                 </div>
               </div>
@@ -386,20 +393,20 @@ const OrderDetails = () => {
             </div>
           </div>
           <div className={`px-3 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-widest flex items-center gap-2 ${getStatusColor(order.status)}`}>
-            <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${order.status === 'completed' ? 'bg-emerald-400' : (order.status === 'processing' ? 'bg-blue-400' : 'bg-amber-400')}`}></div>
+            <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${order.status === 'completed' ? 'bg-emerald-400' : (order.status === 'processing' ? 'bg-yellow-400' : 'bg-amber-400')}`}></div>
             {getStatusLabel(order.status)}
           </div>
         </div>
 
         {/* Order Stepper (REINSTATED) */}
-        <div className="bg-gradient-to-br from-[#1a1835]/80 via-[#13102a]/70 to-[#0f0d22]/80 border border-purple-500/10 rounded-[28px] p-6 mb-6 relative overflow-hidden backdrop-blur-xl">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-50"></div>
+        <div className="bg-white/[0.02] border border-white/[0.06] rounded-[28px] p-6 mb-6 relative overflow-hidden backdrop-blur-xl">
+          <div className="absolute inset-0 bg-gradient-to-b from-yellow-500/5 to-transparent opacity-50"></div>
           <div className="relative flex items-center justify-between max-w-3xl mx-auto">
             {/* Steps */}
             <div className="flex flex-col items-center gap-2 relative z-10">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all duration-500 ${
                 order.status === 'pending' ? 'bg-amber-500 text-white shadow-amber-500/30 scale-110 animate-pulse ring-4 ring-amber-500/20' : 
-                order.status !== 'cancelled' ? 'bg-blue-500 text-white shadow-blue-500/20' : 
+                order.status !== 'cancelled' ? 'bg-yellow-500 text-white shadow-yellow-500/20' : 
                 'bg-white/5 text-white/20'
               }`}>
                 <Clock size={18} />
@@ -408,18 +415,18 @@ const OrderDetails = () => {
             </div>
 
             <div className={`flex-1 h-0.5 mx-3 rounded-full overflow-hidden bg-white/5`}>
-              <div className={`h-full transition-all duration-1000 ${['processing', 'completed'].includes(order.status) ? 'w-full bg-blue-500' : 'w-0'}`}></div>
+              <div className={`h-full transition-all duration-1000 ${['processing', 'completed'].includes(order.status) ? 'w-full bg-yellow-500' : 'w-0'}`}></div>
             </div>
 
             <div className="flex flex-col items-center gap-2 relative z-10">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all duration-500 ${
-                order.status === 'processing' ? 'bg-blue-500 text-white shadow-blue-500/30 scale-110 animate-pulse ring-4 ring-blue-500/20' : 
-                order.status === 'completed' ? 'bg-blue-500 text-white shadow-blue-500/20' : 
+                order.status === 'processing' ? 'bg-yellow-500 text-white shadow-yellow-500/30 scale-110 animate-pulse ring-4 ring-yellow-500/20' : 
+                order.status === 'completed' ? 'bg-yellow-500 text-white shadow-yellow-500/20' : 
                 'bg-white/5 text-white/20 border border-white/10'
               }`}>
                 <Truck size={18} />
               </div>
-              <span className={`text-[9px] font-black uppercase tracking-widest ${order.status === 'processing' ? 'text-blue-400' : ['processing', 'completed'].includes(order.status) ? 'text-white' : 'text-white/20'}`}>Procesando</span>
+              <span className={`text-[9px] font-black uppercase tracking-widest ${order.status === 'processing' ? 'text-yellow-400' : ['processing', 'completed'].includes(order.status) ? 'text-white' : 'text-white/20'}`}>Procesando</span>
             </div>
 
             <div className={`flex-1 h-0.5 mx-3 rounded-full overflow-hidden bg-white/5`}>
@@ -442,13 +449,11 @@ const OrderDetails = () => {
 
         {/* MM2 Delivery Control - Only for MM2 orders */}
         {(order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('mm2')))) && (
-          <div className="bg-gradient-to-br from-[#1a1835]/90 via-[#13102a]/80 to-[#0f0d22]/90 border border-purple-500/10 rounded-[28px] overflow-hidden relative backdrop-blur-xl mb-6">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.05] via-blue-500/[0.03] to-transparent opacity-40"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,85,247,0.08),transparent_50%)]"></div>
+          <div className="bg-white/[0.02] border border-white/[0.06] rounded-[28px] overflow-hidden relative backdrop-blur-xl mb-6">
             
             {/* Header */}
             <div className="p-5 border-b border-white/5 bg-white/[0.01] flex items-center gap-3 relative z-10">
-              <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
+              <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400">
                 <Truck size={16} />
               </div>
               <h3 className="text-base font-black uppercase tracking-tight">Control de Entrega</h3>
@@ -461,20 +466,20 @@ const OrderDetails = () => {
                 <div className="flex flex-col items-center gap-2 flex-1">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all ${
                     order.mm2DeliveryStatus === 'pending' || !order.mm2DeliveryStatus
-                      ? 'bg-blue-500 text-white shadow-blue-500/30 ring-4 ring-blue-500/20'
-                      : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                      ? 'bg-yellow-500 text-white shadow-yellow-500/30 ring-4 ring-yellow-500/20'
+                      : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
                   }`}>
                     <Clock size={20} />
                   </div>
                   <span className={`text-[9px] font-black uppercase tracking-widest text-center ${
-                    order.mm2DeliveryStatus === 'pending' || !order.mm2DeliveryStatus ? 'text-blue-400' : 'text-white/40'
+                    order.mm2DeliveryStatus === 'pending' || !order.mm2DeliveryStatus ? 'text-yellow-400' : 'text-white/40'
                   }`}>Esperando<br/>cliente</span>
                 </div>
 
                 {/* Connector */}
                 <div className="flex-1 h-0.5 mx-2 bg-white/5 rounded-full">
                   <div className={`h-full transition-all ${
-                    ['requested', 'ready', 'completed'].includes(order.mm2DeliveryStatus || '') ? 'w-full bg-blue-500' : 'w-0'
+                    ['requested', 'ready', 'completed'].includes(order.mm2DeliveryStatus || '') ? 'w-full bg-yellow-500' : 'w-0'
                   } rounded-full`}></div>
                 </div>
 
@@ -482,15 +487,15 @@ const OrderDetails = () => {
                 <div className="flex flex-col items-center gap-2 flex-1">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
                     order.mm2DeliveryStatus === 'requested'
-                      ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30 ring-4 ring-blue-500/20'
+                      ? 'bg-yellow-500 text-white shadow-lg shadow-yellow-500/30 ring-4 ring-yellow-500/20'
                       : ['ready', 'completed'].includes(order.mm2DeliveryStatus || '')
-                      ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                      ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
                       : 'bg-white/5 text-white/20 border border-white/10'
                   }`}>
                     <User size={20} />
                   </div>
                   <span className={`text-[9px] font-black uppercase tracking-widest text-center ${
-                    order.mm2DeliveryStatus === 'requested' ? 'text-blue-400' : 
+                    order.mm2DeliveryStatus === 'requested' ? 'text-yellow-400' : 
                     ['ready', 'completed'].includes(order.mm2DeliveryStatus || '') ? 'text-white/40' : 'text-white/20'
                   }`}>Solicitado</span>
                 </div>
@@ -498,7 +503,7 @@ const OrderDetails = () => {
                 {/* Connector */}
                 <div className="flex-1 h-0.5 mx-2 bg-white/5 rounded-full">
                   <div className={`h-full transition-all ${
-                    ['ready', 'completed'].includes(order.mm2DeliveryStatus || '') ? 'w-full bg-blue-500' : 'w-0'
+                    ['ready', 'completed'].includes(order.mm2DeliveryStatus || '') ? 'w-full bg-yellow-500' : 'w-0'
                   } rounded-full`}></div>
                 </div>
 
@@ -548,7 +553,7 @@ const OrderDetails = () => {
                   Entrega Completada
                 </div>
               ) : order.mm2DeliveryStatus === 'ready' ? (
-                <div className="w-full py-3 bg-blue-500/20 border border-blue-500/30 text-blue-400 rounded-xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                <div className="w-full py-3 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 rounded-xl font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2">
                   <Info size={18} />
                   Servidor privado disponible abajo
                 </div>
@@ -565,7 +570,7 @@ const OrderDetails = () => {
 
               {/* MM2 Account Info */}
               <div className="mt-4 p-3 bg-white/[0.02] border border-white/5 rounded-xl flex items-start gap-3">
-                <div className="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center text-purple-400 shrink-0">
+                <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400 shrink-0">
                   <Info size={16} />
                 </div>
                 <div>
@@ -641,18 +646,16 @@ const OrderDetails = () => {
           {/* Main Content (Left) - 7 Columns */}
           <div className="lg:col-span-7 space-y-4">
             {/* Product Summary */}
-            <div className="bg-gradient-to-br from-[#1a1835]/90 via-[#13102a]/80 to-[#0f0d22]/90 border border-purple-500/10 rounded-[28px] p-6 hover:border-purple-500/20 transition-all duration-300 relative overflow-hidden backdrop-blur-xl group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.05] via-blue-500/[0.03] to-transparent opacity-40"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,85,247,0.08),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-[28px] p-6 hover:border-white/10 transition-all duration-300 relative overflow-hidden backdrop-blur-xl group">
               <div className="relative z-10">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-[#1a1835] border border-white/5 rounded-2xl flex items-center justify-center shadow-inner relative group p-2">
-                    <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                  <div className="w-14 h-14 bg-black border border-white/5 rounded-2xl flex items-center justify-center shadow-inner relative group p-2">
+                    <div className="absolute inset-0 bg-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
                     {order.type === 'trade_limited' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('limited'))) ? (
-                      <ShoppingCart className="w-8 h-8 text-blue-400" />
+                      <ShoppingCart className="w-8 h-8 text-yellow-400" />
                     ) : order.type === 'fortnite' ? (
-                      <ShoppingCart className="w-8 h-8 text-blue-400" />
+                      <ShoppingCart className="w-8 h-8 text-yellow-400" />
                     ) : (order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('mm2')))) ? (
                       <img src="https://www.peekstore.com/_next/image?url=%2Fmm2-logo.webp&w=64&q=75" className="w-full h-full object-contain rounded-lg" alt="MM2" />
                     ) : (
@@ -680,7 +683,7 @@ const OrderDetails = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-black tracking-tighter text-blue-400">
+                  <div className="text-2xl font-black tracking-tighter text-yellow-400">
                     {order.total.toFixed(2)} <span className="text-xs font-bold text-white/20">{order.currency}</span>
                   </div>
                 </div>
@@ -689,11 +692,9 @@ const OrderDetails = () => {
 
             </div>
             {/* Delivery Information Box */}
-            <div className="bg-gradient-to-br from-[#1a1835]/90 via-[#13102a]/80 to-[#0f0d22]/90 border border-purple-500/10 rounded-[28px] overflow-hidden relative backdrop-blur-xl group">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.05] via-blue-500/[0.03] to-transparent opacity-40"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,85,247,0.08),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-[28px] overflow-hidden relative backdrop-blur-xl group">
               <div className="p-5 border-b border-white/5 bg-white/[0.01] flex items-center gap-3">
-                <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
+                <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400">
                    <Truck size={16} />
                 </div>
                 <h3 className="text-base font-black uppercase tracking-tight">Información de Entrega</h3>
@@ -706,7 +707,7 @@ const OrderDetails = () => {
                     {/* Método Regalo */}
                     <div className="p-4 bg-white/[0.01] border border-white/5 rounded-2xl flex items-center justify-between">
                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
+                          <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400">
                              <Zap size={14} />
                           </div>
                           <div>
@@ -722,13 +723,13 @@ const OrderDetails = () => {
                         {order.cart.map((item: any, idx: number) => (
                           <div 
                             key={idx} 
-                            className="flex items-center gap-3 p-2.5 rounded-2xl bg-blue-500/10 border border-blue-500/30"
+                            className="flex items-center gap-3 p-2.5 rounded-2xl bg-yellow-500/10 border border-yellow-500/30"
                           >
                             <div className="w-10 h-10 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
                               <img src={item?.image || item?.img} alt="" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-[9px] font-black uppercase tracking-widest mb-0.5 text-blue-400">
+                              <p className="text-[9px] font-black uppercase tracking-widest mb-0.5 text-yellow-400">
                                 Skin Fortnite
                               </p>
                               <p className="text-xs font-bold text-white truncate">{item?.name}</p>
@@ -783,12 +784,12 @@ const OrderDetails = () => {
                     
                     {/* Trade Item (Tu Item) */}
                     {order.tradeItem && (
-                      <div className="flex items-center gap-3 p-2.5 bg-blue-500/10 border border-blue-500/30 rounded-2xl">
+                      <div className="flex items-center gap-3 p-2.5 bg-yellow-500/10 border border-yellow-500/30 rounded-2xl">
                         <div className="w-10 h-10 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
                           <img src={order.tradeItem.thumbnail || order.tradeItem.img || order.tradeItem.image} alt="" className="w-full h-full object-contain p-1" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[9px] text-blue-400 font-black uppercase tracking-widest mb-0.5">Tu Item (Trade)</p>
+                          <p className="text-[9px] text-yellow-400 font-black uppercase tracking-widest mb-0.5">Tu Item (Trade)</p>
                           <p className="text-xs font-bold text-white truncate">{order.tradeItem.name}</p>
                         </div>
                       </div>
@@ -799,7 +800,7 @@ const OrderDetails = () => {
                     {/* Method Row - Only for Robux */}
                     <div className="p-4 bg-white/[0.01] border border-white/5 rounded-2xl flex items-center justify-between">
                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
+                          <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400">
                              <Zap size={14} />
                           </div>
                           <div>
@@ -848,11 +849,11 @@ const OrderDetails = () => {
 
                 {/* Status/Required Row - Only for Robux gamepass */}
                 {order.method === 'gamepass' && !(order.type === 'trade_limited' || order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('limited') || String(item.game || '').toLowerCase().includes('mm2')))) && (
-                  <div className="p-4 bg-blue-500/5 border border-blue-500/10 rounded-2xl">
+                  <div className="p-4 bg-yellow-500/5 border border-yellow-500/10 rounded-2xl">
                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="flex flex-col gap-1.5">
                            <h4 className="text-xs font-black text-white uppercase tracking-tight flex items-center gap-1.5">
-                             <ShieldCheck size={14} className="text-blue-400" />
+                             <ShieldCheck size={14} className="text-yellow-400" />
                              Precio Requerido: {Math.ceil(order.amount / 0.7)} R$
                            </h4>
                            <div className="flex items-center gap-1.5">
@@ -864,7 +865,7 @@ const OrderDetails = () => {
                           href={`https://www.roblox.com/game-pass/${order.gamepassId}`} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="relative z-10 pointer-events-auto w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 cursor-pointer"
+                          className="relative z-10 pointer-events-auto w-full sm:w-auto px-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 cursor-pointer"
                         >
                            <ShoppingCart size={14} /> Comprar Gamepass
                         </a>
@@ -875,15 +876,14 @@ const OrderDetails = () => {
             </div>
 
             {/* Bottom Chat Bar Summary */}
-            <div className="bg-gradient-to-br from-[#1a1835]/90 via-[#13102a]/80 to-[#0f0d22]/90 border border-purple-500/10 rounded-[24px] p-3 flex items-center justify-between hover:border-purple-500/20 transition-all cursor-pointer group relative overflow-hidden backdrop-blur-xl" onClick={() => scrollToBottom()}>
-               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.03] to-transparent opacity-40"></div>
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-3 flex items-center justify-between hover:border-white/10 transition-all cursor-pointer group relative overflow-hidden backdrop-blur-xl" onClick={() => scrollToBottom()}>
                <div className="relative z-10 flex items-center justify-between w-full">
                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400 shrink-0">
+                  <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400 shrink-0">
                      <MessageSquare size={14} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[9px] font-black text-white/40 uppercase tracking-widest mb-0.5">Chat del pedido <span className="ml-1.5 text-blue-400 font-bold bg-blue-500/10 px-1 py-0.5 rounded-md text-[8px]">{messages.length}</span></p>
+                    <p className="text-[9px] font-black text-white/40 uppercase tracking-widest mb-0.5">Chat del pedido <span className="ml-1.5 text-yellow-400 font-bold bg-yellow-500/10 px-1 py-0.5 rounded-md text-[8px]">{messages.length}</span></p>
                     <p className="text-[10px] font-bold text-white/60 truncate italic">
                       {messages.length > 0 ? `${messages[messages.length-1].sender === 'admin' ? 'Soporte' : 'Tú'}: ${messages[messages.length-1].text}` : 'Inicia una conversación...'}
                     </p>
@@ -897,11 +897,10 @@ const OrderDetails = () => {
           {/* Sidebar (Right) - 5 Columns */}
           <div className="lg:col-span-5 space-y-4">
             {/* Payment Proof Card */}
-            <div className="bg-gradient-to-br from-[#1a1835]/90 via-[#13102a]/80 to-[#0f0d22]/90 border border-purple-500/10 rounded-[28px] p-5 relative overflow-hidden backdrop-blur-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.05] via-blue-500/[0.03] to-transparent opacity-40"></div>
+            <div className="bg-white/[0.02] border border-white/[0.06] rounded-[28px] p-5 relative overflow-hidden backdrop-blur-xl">
               <div className="relative z-10">
               <div className="flex items-center gap-2 mb-4">
-                 <div className="w-6 h-6 bg-blue-500/10 rounded-md flex items-center justify-center text-blue-400">
+                 <div className="w-6 h-6 bg-yellow-500/10 rounded-md flex items-center justify-center text-yellow-400">
                     <ImageIcon size={12} />
                  </div>
                  <h3 className="text-[11px] font-black uppercase tracking-tight">Comprobante</h3>
@@ -928,12 +927,12 @@ const OrderDetails = () => {
             </div>
 
             {/* Status Card */}
-            <div className={`p-4 rounded-[20px] border flex items-center gap-3 ${order.status === 'completed' ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-blue-500/10 border-blue-500/20'}`}>
-               <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${order.status === 'completed' ? 'bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'bg-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.3)]'}`}>
+            <div className={`p-4 rounded-[20px] border flex items-center gap-3 ${order.status === 'completed' ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-yellow-500/10 border-yellow-500/20'}`}>
+               <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${order.status === 'completed' ? 'bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'bg-yellow-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.3)]'}`}>
                   <CheckCircle2 size={14} />
                </div>
                <div>
-                  <h4 className={`text-xs font-black uppercase tracking-tight ${order.status === 'completed' ? 'text-emerald-400' : 'text-blue-400'}`}>Pedido {getStatusLabel(order.status)}</h4>
+                  <h4 className={`text-xs font-black uppercase tracking-tight ${order.status === 'completed' ? 'text-emerald-400' : 'text-yellow-400'}`}>Pedido {getStatusLabel(order.status)}</h4>
                   <p className="text-[9px] text-white/40 font-bold uppercase tracking-widest mt-0.5 leading-tight">
                     {order.status === 'completed' ? '¡Tu pedido ha sido entregado!' : 'Estamos procesando tu pedido.'}
                   </p>
@@ -941,10 +940,10 @@ const OrderDetails = () => {
             </div>
 
             {/* Chat de Soporte Box */}
-            <div className="bg-[#0f1126] border border-white/[0.06] rounded-[24px] flex flex-col h-[400px] overflow-hidden shadow-xl relative">
+            <div className="bg-black border border-white/[0.06] rounded-[24px] flex flex-col h-[400px] overflow-hidden shadow-xl relative">
                <div className="p-4 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
                   <div className="flex items-center gap-3">
-                     <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
+                     <div className="w-8 h-8 bg-yellow-500/10 rounded-lg flex items-center justify-center text-yellow-400">
                         <MessageSquare size={16} />
                      </div>
                      <div>
@@ -953,13 +952,13 @@ const OrderDetails = () => {
                      </div>
                   </div>
                   <div className="px-2 py-1 bg-white/5 rounded-full flex items-center gap-1.5">
-                     <div className="w-1 h-1 bg-blue-400 rounded-full animate-pulse" />
+                     <div className="w-1 h-1 bg-yellow-400 rounded-full animate-pulse" />
                      <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">Soporte</span>
                   </div>
                </div>
 
                {/* Messages Area */}
-               <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar bg-black/10" ref={messagesContainerRef}>
+               <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar bg-black" ref={messagesContainerRef}>
                   {messages.length === 0 ? (
                     <div className="h-full flex flex-col items-center justify-center text-center opacity-10">
                        <MessageSquare size={36} className="mb-3" />
@@ -973,13 +972,13 @@ const OrderDetails = () => {
                            {/* Avatar for support messages */}
                            {!isMe && (
                              <div className="flex items-center gap-1.5 mb-1 ml-1">
-                                <div className="w-4 h-4 bg-blue-500 rounded-md flex items-center justify-center">
+                                <div className="w-4 h-4 bg-yellow-500 rounded-md flex items-center justify-center">
                                    <Zap size={8} className="text-white" />
                                 </div>
                                 <span className="text-[8px] font-black text-white/20 uppercase tracking-widest">Soporte</span>
                              </div>
                            )}
-                           <div className={`max-w-[85%] p-3 rounded-xl ${isMe ? 'bg-blue-600 text-white rounded-tr-none shadow-md shadow-blue-600/10' : 'bg-[#1a1b3a] text-white/90 rounded-tl-none border border-white/5'}`}>
+                           <div className={`max-w-[85%] p-3 rounded-xl ${isMe ? 'bg-yellow-600 text-white rounded-tr-none shadow-md shadow-yellow-600/10' : 'bg-black text-white/90 rounded-tl-none border border-white/5'}`}>
                               <p className="text-[11px] font-medium leading-relaxed">{msg.text}</p>
                               <p className={`text-[7px] mt-1.5 font-black uppercase tracking-widest text-right ${isMe ? 'text-white/40' : 'text-white/20'}`}>{msg.time}</p>
                            </div>
@@ -990,7 +989,7 @@ const OrderDetails = () => {
                </div>
 
                {/* Chat Input */}
-               <div className="p-3 bg-[#0d0c22] border-t border-white/5">
+               <div className="p-3 bg-black border-t border-white/5">
                   {chat?.status === 'Finalizado' ? (
                     <div className="py-2.5 px-3 bg-red-500/10 border border-red-500/20 rounded-xl flex flex-col items-center text-center">
                        <span className="text-[9px] font-black text-red-500 uppercase tracking-widest mb-0.5">Este chat ha sido finalizado</span>
@@ -1002,12 +1001,12 @@ const OrderDetails = () => {
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
                           placeholder="Mensaje..."
-                          className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-[11px] font-medium outline-none focus:border-blue-500/50 transition-all pr-10"
+                          className="flex-1 bg-black border border-white/10 rounded-xl px-4 py-2 text-[11px] font-medium outline-none focus:border-yellow-500/50 transition-all pr-10"
                        />
                        <button 
                           type="submit"
                           disabled={!newMessage.trim() || isSending}
-                          className="absolute right-1 w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-500 transition-all disabled:opacity-50"
+                          className="absolute right-1 w-7 h-7 bg-yellow-600 rounded-lg flex items-center justify-center text-white hover:bg-yellow-500 transition-all disabled:opacity-50"
                        >
                           {isSending ? (
                             <div className="w-2.5 h-2.5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
@@ -1071,7 +1070,7 @@ const OrderDetails = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-br from-[#1a1835] via-[#13102a] to-[#0f0d22] border border-blue-500/20 rounded-3xl p-8 max-w-md w-full relative overflow-hidden"
+              className="bg-[#0d0c22]/95 border border-yellow-500/20 rounded-3xl p-8 max-w-md w-full relative overflow-hidden backdrop-blur-xl"
             >
               {/* Close Button */}
               <button
@@ -1084,10 +1083,10 @@ const OrderDetails = () => {
               {/* Animated Circle */}
               <div className="flex justify-center mb-6">
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-full border-4 border-blue-500/20 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-full border-4 border-t-blue-500 border-r-blue-500/50 border-b-blue-500/20 border-l-blue-500/20 animate-spin"></div>
+                  <div className="w-24 h-24 rounded-full border-4 border-yellow-500/20 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full border-4 border-t-yellow-500 border-r-yellow-500/50 border-b-yellow-500/20 border-l-yellow-500/20 animate-spin"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-black text-blue-400">K</span>
+                      <span className="text-2xl font-black text-yellow-400">K</span>
                     </div>
                   </div>
                 </div>
@@ -1101,16 +1100,16 @@ const OrderDetails = () => {
 
               {/* Timer */}
               <div className="flex items-center justify-center gap-2 mb-6">
-                <Clock size={16} className="text-blue-400" />
+                <Clock size={16} className="text-yellow-400" />
                 <span className="text-sm font-bold text-white/40">Expira en</span>
-                <span className="text-lg font-black text-blue-400">{formatTime(mm2TimeLeft)}</span>
+                <span className="text-lg font-black text-yellow-400">{formatTime(mm2TimeLeft)}</span>
               </div>
 
               {/* Loading Dots */}
               <div className="flex justify-center gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
               </div>
             </motion.div>
           </motion.div>
@@ -1174,7 +1173,7 @@ const OrderDetails = () => {
                       value={reviewText}
                       onChange={(e) => setReviewText(e.target.value)}
                       placeholder="¿Qué te pareció el servicio? ¿Fue rápido? ¿Lo recomendarías?"
-                      className="w-full h-32 bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder:text-white/20 focus:border-blue-500/50 transition-all outline-none resize-none"
+                      className="w-full h-32 bg-white/5 border border-white/10 rounded-2xl p-4 text-white placeholder:text-white/20 focus:border-yellow-500/50 transition-all outline-none resize-none"
                     />
                   </div>
 
@@ -1183,7 +1182,7 @@ const OrderDetails = () => {
                     <label className="text-xs font-bold text-white/30 uppercase tracking-widest">Añadir Foto (Opcional)</label>
                     <div className="flex items-center gap-4">
                       {reviewPreviewUrl ? (
-                        <div className="relative size-24 rounded-2xl overflow-hidden border border-blue-500/50">
+                        <div className="relative size-24 rounded-2xl overflow-hidden border border-yellow-500/50">
                           <img src={reviewPreviewUrl} alt="Preview" className="w-full h-full object-cover" />
                           <button 
                             onClick={() => { setReviewImage(null); setReviewPreviewUrl(null); }}
@@ -1193,7 +1192,7 @@ const OrderDetails = () => {
                           </button>
                         </div>
                       ) : (
-                        <label className="size-24 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-white/10 bg-white/5 hover:bg-white/[0.08] hover:border-blue-500/40 cursor-pointer transition-all">
+                        <label className="size-24 flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-white/10 bg-white/5 hover:bg-white/[0.08] hover:border-yellow-500/40 cursor-pointer transition-all">
                           <Camera className="text-white/20" size={24} />
                           <span className="text-[10px] font-bold text-white/30">AÑADIR</span>
                           <input 
@@ -1272,7 +1271,7 @@ const OrderDetails = () => {
                         }
                       }}
                       disabled={submittingReview || !reviewText.trim()}
-                      className="flex-1 h-14 bg-blue-600 hover:bg-blue-500 disabled:bg-white/5 disabled:text-white/20 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3"
+                      className="flex-1 h-14 bg-yellow-600 hover:bg-yellow-500 disabled:bg-white/5 disabled:text-white/20 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3"
                     >
                       {submittingReview ? <Loader2 className="animate-spin" size={20} /> : <PenLine size={20} />}
                       {submittingReview ? 'Publicando...' : 'Publicar Reseña'}
