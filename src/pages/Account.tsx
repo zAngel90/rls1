@@ -746,11 +746,11 @@ export default function Account() {
                           setCopiedId(c.id);
                           setTimeout(() => setCopiedId(null), 2000);
                         }}
-                        className="relative flex flex-col md:flex-row items-stretch gap-4 md:gap-6 p-4 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.03] backdrop-blur-xl shadow-[4px_4px_0px_0px_rgba(12,10,28,1)] md:shadow-[6px_6px_0px_0px_rgba(12,10,28,1)] hover:shadow-[2px_2px_0px_0px_rgba(12,10,28,1)] md:hover:shadow-[3px_3px_0px_0px_rgba(12,10,28,1)] hover:translate-x-[2px] hover:translate-y-[2px] md:hover:translate-x-[3px] md:hover:translate-y-[3px] hover:border-white/10 transition-all group duration-300 overflow-hidden cursor-pointer select-none"
+                        className="relative flex flex-col md:flex-row items-stretch gap-4 md:gap-6 p-4 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.03] backdrop-blur-xl shadow-[4px_4px_0px_0px_rgba(234,179,8,0.4)] md:shadow-[6px_6px_0px_0px_rgba(234,179,8,0.4)] hover:shadow-[2px_2px_0px_0px_rgba(234,179,8,0.6)] md:hover:shadow-[3px_3px_0px_0px_rgba(234,179,8,0.6)] hover:translate-x-[2px] hover:translate-y-[2px] md:hover:translate-x-[3px] md:hover:translate-y-[3px] hover:border-yellow-500/30 transition-all group duration-300 overflow-hidden cursor-pointer select-none"
                       >
                         {/* Background premium blur wash (matches standard glass panels) */}
                         <div className="absolute top-0 right-0 w-[180px] h-[180px] bg-yellow-500/5 rounded-full blur-[60px] pointer-events-none transition-colors duration-500 group-hover:bg-white/[0.03]"></div>
-                        <div className="absolute bottom-0 left-0 w-[120px] h-[120px] bg-indigo-500/5 rounded-full blur-[50px] pointer-events-none transition-colors duration-500 group-hover:bg-white/[0.02]"></div>
+                        <div className="absolute bottom-0 left-0 w-[120px] h-[120px] bg-yellow-500/5 rounded-full blur-[50px] pointer-events-none transition-colors duration-500 group-hover:bg-yellow-500/10"></div>
 
                         {/* Premium Signature Oval Pattern */}
                         <div className="absolute top-[-15%] right-[-10%] w-[60%] h-[50%] bg-white/[0.02] rounded-[100%] rotate-[-25deg] pointer-events-none transition-colors duration-700 group-hover:bg-white/[0.04] z-0" />
