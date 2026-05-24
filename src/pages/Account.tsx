@@ -32,12 +32,12 @@ import { RobloxAPI, StoreAPI, AuthAPI, SERVER_URL, OrdersAPI, CouponsAPI } from 
 
 const TIERS_CONFIG = [
   { id: 'NINGUNO', name: 'Sin Rango', rbx: 0, desc: 'Realiza tu primera compra para obtener rango', benefit: 'Sin beneficios especiales', icon: Leaf, color: 'text-white/20' },
-  { id: 'BRONCE', name: 'Bronce', rbx: 1, desc: 'Rol personalizado en Discord', benefit: 'Acceso a canales exclusivos', logo: '/images/bronce.png', color: 'text-orange-400' },
-  { id: 'SILVER', name: 'Plata', rbx: 3000, desc: 'Rol personalizado en Discord', benefit: 'Prioridad en soporte', logo: '/images/plata.png', color: 'text-slate-300' },
-  { id: 'GOLD', name: 'Oro', rbx: 10000, desc: 'Rol personalizado en Discord', benefit: 'Descuentos exclusivos', logo: '/images/oro.png', color: 'text-yellow-400' },
-  { id: 'DIAMOND', name: 'Diamante', rbx: 25000, desc: 'Rol personalizado en Discord', benefit: 'Sorteos VIP mensuales', logo: '/images/diamante.png', color: 'text-blue-300' },
-  { id: 'ROYAL', name: 'Royal', rbx: 50000, desc: 'Rol personalizado en Discord', benefit: 'Invitación a eventos secretos', logo: '/images/Royal.png', color: 'text-purple-400' },
-  { id: 'MYTHIC', name: 'Mythic', rbx: 80000, desc: 'Nivel legendario máximo', benefit: 'Beneficios supremos VIP', logo: '/images/mythic.png', color: 'text-red-500' },
+  { id: 'BRONCE', name: 'Bronce', rbx: 1500, desc: 'Rol personalizado en Discord', benefit: 'Acceso a canales exclusivos', logo: '/images/bronce.png', color: 'text-orange-400' },
+  { id: 'PLATA', name: 'Plata', rbx: 3000, desc: 'Rol personalizado en Discord', benefit: 'Prioridad en soporte', logo: '/images/plata.png', color: 'text-slate-300' },
+  { id: 'ORO', name: 'Oro', rbx: 8000, desc: 'Rol personalizado en Discord', benefit: 'Descuentos exclusivos', logo: '/images/oro.png', color: 'text-yellow-400' },
+  { id: 'PLATINO', name: 'Platino', rbx: 15000, desc: 'Rol personalizado en Discord', benefit: 'Sorteos VIP mensuales', logo: '/images/diamante.png', color: 'text-cyan-300' },
+  { id: 'DIAMANTE', name: 'Diamante', rbx: 30000, desc: 'Rol personalizado en Discord', benefit: 'Invitación a eventos secretos', logo: '/images/Royal.png', color: 'text-blue-400' },
+  { id: 'ESMERALDA', name: 'Esmeralda', rbx: 60000, desc: 'Nivel legendario máximo', benefit: 'Beneficios supremos VIP', logo: '/images/mythic.png', color: 'text-green-500' },
 ];
 
 const TiltButton = ({ label, icon: Icon, onClick, isSuccess }: { label: string, icon: any, onClick: (e: any) => void, isSuccess: boolean }) => {
@@ -96,11 +96,11 @@ const LEVEL_CONFIG = TIERS_CONFIG.reduce((acc, tier, index) => {
   acc[tier.id] = { 
     name: tier.name, 
     color: tier.id === 'BRONCE' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' :
-           tier.id === 'SILVER' ? 'bg-slate-400/10 text-slate-300 border-slate-400/20' :
-           tier.id === 'GOLD' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' :
-           tier.id === 'DIAMOND' ? 'bg-yellow-400/10 text-yellow-300 border-yellow-400/20' :
-           tier.id === 'ROYAL' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
-           tier.id === 'MYTHIC' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
+           tier.id === 'PLATA' ? 'bg-slate-400/10 text-slate-300 border-slate-400/20' :
+           tier.id === 'ORO' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' :
+           tier.id === 'PLATINO' ? 'bg-cyan-400/10 text-cyan-300 border-cyan-400/20' :
+           tier.id === 'DIAMANTE' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
+           tier.id === 'ESMERALDA' ? 'bg-green-500/10 text-green-400 border-green-500/20' :
            'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
     icon: tier.icon,
     desc: tier.desc,
@@ -129,7 +129,7 @@ const SIDEBAR_SECTIONS = [
   {
     title: 'PROGRESO',
     items: [
-      { id: 'tiers', label: 'Pixel Tiers', icon: Crown }
+      { id: 'tiers', label: 'RLS Tiers', icon: Crown }
     ]
   }
 ];
@@ -808,7 +808,7 @@ export default function Account() {
                       <Crown className="text-yellow-600" size={20} />
                     </div>
                     <div>
-                      <h1 className="text-xl font-bold text-white tracking-wide">Pixel Tiers</h1>
+                      <h1 className="text-xl font-bold text-white tracking-wide">RLS Tiers</h1>
                       <p className="text-[11px] text-white/40">Tu progreso y recompensas</p>
                     </div>
                   </div>
