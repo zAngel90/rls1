@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Lock, User, LogIn, Loader2 } from 'lucide-react';
 import { AuthAPI, SERVER_URL } from '../services/api';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
   
   // Form State
   const [formData, setFormData] = useState({
@@ -21,15 +23,65 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
     password: ''
   });
 
+  // Google OAuth callback handler
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    
+    if (code && state === 'google_login') {
+      handleGoogleCallback(code);
+    }
+  }, []);
+
+  const handleGoogleCallback = async (code: string) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${SERVER_URL}/api/auth/google-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code })
+      });
+      
+      const data = await response.json();
+      
+      if (data.success && data.token) {
+        localStorage.setItem('pixel_token', data.token);
+        localStorage.setItem('pixel_user', JSON.stringify(data.user));
+        if (onSuccess) onSuccess(data.user);
+        window.history.replaceState({}, document.title, window.location.pathname);
+        onClose();
+      } else {
+        setError(data.error || 'Error al iniciar sesión con Google');
+      }
+    } catch (err) {
+      setError('Error al procesar login con Google');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = () => {
+    const GOOGLE_CLIENT_ID = '1001764541241-vk0qafbpa5lcnrbjai805e964jfctpop.apps.googleusercontent.com';
+    const REDIRECT_URI = 'https://rbxlatamstore.com';
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=email%20profile&state=google_login`;
+    window.location.href = googleAuthUrl;
+  };
+
   const handleSubmit = async () => {
+    if (!turnstileToken) {
+      setError('Por favor completa la verificación antibot');
+      return;
+    }
+    
     setIsLoading(true);
     setError('');
     try {
       let res;
       if (mode === 'login') {
-        res = await AuthAPI.login({ email: formData.email, password: formData.password });
+        res = await AuthAPI.login({ email: formData.email, password: formData.password, turnstileToken });
       } else {
-        res = await AuthAPI.register(formData);
+        res = await AuthAPI.register({ ...formData, turnstileToken });
       }
 
       if (res.success) {
@@ -155,6 +207,14 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                 </div>
               </div>
 
+              {/* Cloudflare Turnstile */}
+              <div className="mt-4 flex justify-center">
+                <Turnstile
+                  siteKey="0x4AAAAAADVl_MPRgtRfacZY"
+                  onSuccess={(token: string) => setTurnstileToken(token)}
+                />
+              </div>
+
               {error && (
                 <div className="mt-3 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-xl">
                   <p className="text-[10px] text-red-400 font-bold text-center">{error}</p>
@@ -184,6 +244,18 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
 
               {/* Social Logins */}
               <div className="grid grid-cols-1 gap-3">
+                <button 
+                  onClick={handleGoogleLogin}
+                  className="flex items-center justify-center gap-2 bg-white py-3 rounded-xl hover:bg-gray-100 transition-all group shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" className="group-hover:scale-110 transition-transform">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  </svg>
+                  <span className="text-sm font-black text-gray-700">Continuar con Google</span>
+                </button>
                 <button 
                   onClick={() => window.location.href = `${SERVER_URL}/api/auth/discord`}
                   className="flex items-center justify-center gap-2 bg-[#5865F2] py-3 rounded-xl hover:bg-[#4752C4] transition-all group shadow-lg shadow-[#5865F2]/20 hover:scale-[1.02] active:scale-[0.98]"

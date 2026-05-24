@@ -825,7 +825,7 @@ export default function Navbar() {
                     )}</AnimatePresence>
                   </div>
                 ) : (
-                  <button onClick={() => setIsAuthModalOpen(true)} className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white px-5 py-2 rounded-full font-medium text-xs hover:opacity-90 transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                  <button onClick={() => setIsAuthModalOpen(true)} className="flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-yellow-400 text-black px-5 py-2 rounded-full font-bold text-xs hover:opacity-90 transition-all shadow-[0_0_20px_rgba(234,179,8,0.4)]">
                     <User size={14} /> Iniciar Sesión
                   </button>
                 )}
@@ -843,31 +843,33 @@ export default function Navbar() {
             setUser(userData);
           }}
         />
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] pointer-events-auto" />
-              <motion.div initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }} transition={{ type: 'spring', stiffness: 300, damping: 30 }} className="fixed top-0 left-0 bottom-0 w-[280px] bg-[#161530] z-[60] p-6 flex flex-col pointer-events-auto border-r border-white/10">
-                <div className="flex items-center justify-between mb-8">
-                  <img src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" alt="Logo" className="h-8" />
-                  <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-gray-400 hover:text-white"><X size={24} /></button>
-                </div>
-                <div className="flex flex-col gap-2">
-                  {NAV_ITEMS.map(item => (
-                    <Link key={item.id} to={item.href} onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 p-3 rounded-2xl transition-all ${activeNav === item.id ? 'bg-blue-500/10 text-blue-400' : 'text-gray-400 hover:text-white'}`}>
-                      <item.icon size={18} /> <span className="font-bold text-sm">{item.label}</span>
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Mobile Menu Lateral - Fuera del nav para z-index independiente */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] pointer-events-auto" />
+            <motion.div initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }} transition={{ type: 'spring', stiffness: 300, damping: 30 }} className="fixed top-4 left-4 bottom-4 w-[280px] bg-black/95 backdrop-blur-xl z-[9999] p-6 flex flex-col pointer-events-auto border border-yellow-500/20 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+              <div className="flex items-center justify-between mb-8">
+                <img src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" alt="Logo" className="h-8" />
+                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-gray-400 hover:text-white"><X size={24} /></button>
+              </div>
+              <div className="flex flex-col gap-2">
+                {NAV_ITEMS.map(item => (
+                  <Link key={item.id} to={item.href} onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 p-3 rounded-2xl transition-all ${activeNav === item.id ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
+                    <item.icon size={18} /> <span className="font-bold text-sm">{item.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Bottom Navigation (Floating) */}
       <div className="fixed bottom-6 inset-x-0 mx-auto z-[70] lg:hidden w-[calc(100%-2.5rem)] max-w-[400px]">
-        <div className="bg-[#161530]/80 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-2 flex items-center justify-around shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <div className="bg-black/80 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-2 flex items-center justify-around shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           {[
             { id: 'inicio', icon: Home, label: 'Inicio', href: '/' },
             { id: 'catalogo', icon: LayoutGrid, label: 'Catálogo', href: '/catalog' },
@@ -887,7 +889,7 @@ export default function Navbar() {
                     setActiveNav(item.id);
                   }
                 }}
-                className={`relative flex items-center gap-2 px-3 py-2.5 rounded-full transition-all duration-300 ${isActive ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30' : 'text-gray-500 hover:text-white'
+                className={`relative flex items-center gap-2 px-3 py-2.5 rounded-full transition-all duration-300 ${isActive ? 'bg-yellow-500 text-black shadow-lg shadow-yellow-500/30' : 'text-gray-500 hover:text-white'
                   }`}
               >
                 <item.icon size={20} className={isActive ? 'shrink-0' : ''} />

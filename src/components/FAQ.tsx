@@ -87,7 +87,7 @@ export default function FAQ() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main FAQ Container (The "Grid" container requested) */}
-        <div className="bg-[#0D0B1E]/40 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-6 md:p-8 lg:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden">
+        <div className="bg-black/40 backdrop-blur-3xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-6 md:p-8 lg:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden">
           {/* Top Light Effect */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-24 bg-pixel-accent/20 blur-[80px] rounded-full pointer-events-none z-0" />
           

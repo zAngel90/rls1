@@ -440,6 +440,16 @@ export default function RobuxCatalog() {
 
   return (
     <>
+      <style>{`
+        /* Ocultar menú móvil de navegación flotante en esta página */
+        nav + div.fixed.bottom-6 {
+          display: none !important;
+        }
+        /* Asegurar que cualquier menú de navegación móvil esté oculto */
+        body > div > nav ~ div[class*="bottom-6"] {
+          display: none !important;
+        }
+      `}</style>
       <motion.div 
       initial={{ opacity: 0, filter: 'blur(10px)' }}
       animate={{ opacity: 1, filter: 'blur(0px)' }}
@@ -2607,7 +2617,7 @@ export default function RobuxCatalog() {
 
     {/* Mobile Bottom Bar - Fixed */}
     {displayAmount > 0 && (
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0d0c22] border-t border-white/10 p-4 backdrop-blur-xl">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-black border-t border-white/10 p-4 backdrop-blur-xl">
         <div className="max-w-lg mx-auto">
           {/* Method Selector */}
           <div className="flex gap-2 mb-3">
@@ -2615,7 +2625,7 @@ export default function RobuxCatalog() {
               onClick={() => setMethod('gamepass')}
               className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                 method === 'gamepass' 
-                  ? 'bg-white/10 text-white border border-white/20' 
+                  ? 'bg-yellow-500 text-black border border-yellow-400' 
                   : 'bg-white/5 text-white/40 border border-white/10'
               }`}
             >
@@ -2626,7 +2636,7 @@ export default function RobuxCatalog() {
               onClick={() => setMethod('group')}
               className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                 method === 'group' 
-                  ? 'bg-white/10 text-white border border-white/20' 
+                  ? 'bg-yellow-500 text-black border border-yellow-400' 
                   : 'bg-white/5 text-white/40 border border-white/10'
               }`}
             >
@@ -2653,7 +2663,7 @@ export default function RobuxCatalog() {
             <button
               onClick={handlePurchase}
               disabled={isLoading}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-black text-sm transition-all shadow-[0_8px_16px_rgba(37,99,235,0.4)] flex items-center justify-center gap-2 uppercase tracking-wider"
+              className="px-6 py-3 bg-yellow-500 hover:bg-yellow-400 text-black rounded-xl font-black text-sm transition-all shadow-[0_8px_16px_rgba(234,179,8,0.4)] flex items-center justify-center gap-2 uppercase tracking-wider"
             >
               {isLoading ? (
                 <>

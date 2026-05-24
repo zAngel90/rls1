@@ -341,7 +341,7 @@ export default function Account() {
       initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="min-h-screen pt-20 pb-20 px-4 md:px-8 lg:px-12 relative"
+      className="min-h-screen pt-16 pb-24 px-3 md:px-8 lg:px-12 relative"
     >
       {/* Corner Overlays */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
@@ -358,10 +358,30 @@ export default function Account() {
           <p className="text-white/20 text-sm mt-1">Gestión de perfil y pedidos</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 items-start">
+        {/* Mobile Navigation Tabs */}
+        <div className="lg:hidden mb-6 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 pb-2">
+            {SIDEBAR_SECTIONS.flatMap(section => section.items).map(item => (
+              <button
+                key={item.id}
+                onClick={() => setSearchParams({ tab: item.id })}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap text-sm font-bold transition-all shrink-0 ${
+                  activeTab === item.id
+                    ? 'bg-yellow-500 text-black'
+                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                <item.icon size={16} />
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-          {/* Sidebar */}
-          <aside className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-4 md:gap-8 items-start">
+
+          {/* Sidebar - Hidden on mobile */}
+          <aside className="hidden lg:block space-y-6">
             {/* User Info Card */}
             <div className="bg-white/[0.03] border border-white/5 rounded-3xl p-5 flex items-center gap-4">
               <div className="size-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center overflow-hidden">
@@ -426,16 +446,16 @@ export default function Account() {
                 {activeTab === 'perfil' && (
                   <div className="space-y-8">
                     {/* Large Banner Card */}
-                    <div className="bg-white/[0.03] border border-white/5 rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden group/banner">
+                    <div className="bg-white/[0.03] border border-white/5 rounded-3xl md:rounded-[2.5rem] p-4 md:p-8 lg:p-12 flex flex-col md:flex-row items-center gap-4 md:gap-8 relative overflow-hidden group/banner">
                       {/* Premium Oval Pattern (Matching Checkout) */}
                       <div className="absolute top-[-10%] right-[-15%] w-[70%] h-[60%] bg-white/[0.03] rounded-[100%] rotate-[-25deg] pointer-events-none group-hover/banner:bg-white/[0.05] transition-colors duration-700" />
                       <div className="absolute bottom-[-15%] left-[-10%] w-[60%] h-[50%] bg-white/[0.02] rounded-[100%] rotate-[15deg] pointer-events-none group-hover/banner:bg-white/[0.04] transition-colors duration-700" />
                       <div className="absolute top-[20%] left-[-20%] w-[50%] h-[40%] bg-white/[0.015] rounded-[100%] rotate-[-10deg] pointer-events-none group-hover/banner:bg-white/[0.03] transition-colors duration-700" />
                       
-                      <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 w-full">
+                      <div className="relative z-10 flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full">
                         {/* Avatar Section */}
                         <div className="relative group">
-                          <div className="size-32 md:size-40 rounded-[2.5rem] overflow-hidden border-4 border-white/10 shadow-2xl relative">
+                          <div className="size-24 md:size-32 lg:size-40 rounded-2xl md:rounded-[2.5rem] overflow-hidden border-2 md:border-4 border-white/10 shadow-2xl relative">
                             <img 
                               src={user.avatar?.startsWith('http') ? user.avatar : `${SERVER_URL}${user.avatar}`} 
                               alt={user.username}
@@ -464,8 +484,8 @@ export default function Account() {
                         </div>
 
                         <div className="text-center md:text-left flex-grow">
-                          <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
-                            <h2 className="text-3xl md:text-4xl font-black text-white">{user.username}</h2>
+                          <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 mb-2">
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white">{user.username}</h2>
                             <span className={`w-fit mx-auto md:mx-0 text-[10px] px-3 py-1 rounded-full border font-black uppercase tracking-wider ${
                               LEVEL_CONFIG[user.level as keyof typeof LEVEL_CONFIG]?.color || 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
                             }`}>
@@ -498,7 +518,7 @@ export default function Account() {
                       <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-500/5 blur-[100px] -mr-32 -mt-32 rounded-full"></div>
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-8">
                       {/* Personal Info */}
                       <div className="space-y-4">
                         <h3 className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] px-2">INFORMACIÓN PERSONAL</h3>
@@ -616,7 +636,7 @@ export default function Account() {
                       <div 
                         key={order.id} 
                         onClick={() => navigate(`/order/${order.id}`)}
-                        className="bg-white/[0.03] border border-white/5 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-white/[0.05] hover:border-yellow-500/30 transition-all cursor-pointer group"
+                        className="bg-white/[0.03] border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-6 hover:bg-white/[0.05] hover:border-yellow-500/30 transition-all cursor-pointer group"
                       >
                         <div className="flex items-center gap-6">
                           <div className="size-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-400 shrink-0 group-hover:scale-110 transition-transform">
@@ -726,7 +746,7 @@ export default function Account() {
                           setCopiedId(c.id);
                           setTimeout(() => setCopiedId(null), 2000);
                         }}
-                        className="relative flex flex-col md:flex-row items-stretch gap-6 p-6 md:p-8 rounded-3xl border border-white/5 bg-white/[0.03] backdrop-blur-xl shadow-[6px_6px_0px_0px_rgba(12,10,28,1)] hover:shadow-[3px_3px_0px_0px_rgba(12,10,28,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:border-white/10 transition-all group duration-300 overflow-hidden cursor-pointer select-none"
+                        className="relative flex flex-col md:flex-row items-stretch gap-4 md:gap-6 p-4 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.03] backdrop-blur-xl shadow-[4px_4px_0px_0px_rgba(12,10,28,1)] md:shadow-[6px_6px_0px_0px_rgba(12,10,28,1)] hover:shadow-[2px_2px_0px_0px_rgba(12,10,28,1)] md:hover:shadow-[3px_3px_0px_0px_rgba(12,10,28,1)] hover:translate-x-[2px] hover:translate-y-[2px] md:hover:translate-x-[3px] md:hover:translate-y-[3px] hover:border-white/10 transition-all group duration-300 overflow-hidden cursor-pointer select-none"
                       >
                         {/* Background premium blur wash (matches standard glass panels) */}
                         <div className="absolute top-0 right-0 w-[180px] h-[180px] bg-yellow-500/5 rounded-full blur-[60px] pointer-events-none transition-colors duration-500 group-hover:bg-white/[0.03]"></div>
@@ -1040,18 +1060,18 @@ export default function Account() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[200] flex items-center justify-center p-3 md:p-4"
             onClick={() => setIsAvatarModalOpen(false)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-b from-[#0d0c22] to-[#0a0919] border border-white/10 rounded-3xl p-6 max-w-md w-full shadow-2xl"
+              className="bg-black border border-yellow-500/20 rounded-2xl md:rounded-3xl p-4 md:p-6 max-w-md w-full shadow-2xl"
             >
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-black text-white">Seleccionar Avatar</h3>
+              <div className="flex items-center justify-between mb-4 md:mb-6">
+                <h3 className="text-lg md:text-xl font-black text-white">Seleccionar Avatar</h3>
                 <button
                   onClick={() => setIsAvatarModalOpen(false)}
                   className="size-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all"
@@ -1061,21 +1081,21 @@ export default function Account() {
               </div>
 
               {/* Opción de subir foto */}
-              <div className="mb-6">
+              <div className="mb-4 md:mb-6">
                 <button
                   onClick={() => {
                     fileInputRef.current?.click();
                     setIsAvatarModalOpen(false);
                   }}
-                  className="w-full p-4 rounded-2xl border-2 border-dashed border-white/10 hover:border-blue-500/50 bg-white/[0.02] hover:bg-blue-500/5 transition-all group"
+                  className="w-full p-3 md:p-4 rounded-xl md:rounded-2xl border-2 border-dashed border-yellow-500/20 hover:border-yellow-500/50 bg-yellow-500/5 hover:bg-yellow-500/10 transition-all group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="size-12 rounded-xl bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
-                      <Camera size={20} className="text-blue-400" />
+                    <div className="size-10 md:size-12 rounded-xl bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20 transition-all">
+                      <Camera size={18} className="text-yellow-400" />
                     </div>
                     <div className="text-left">
-                      <p className="text-sm font-bold text-white">Subir foto personalizada</p>
-                      <p className="text-xs text-white/40">JPG, PNG o GIF</p>
+                      <p className="text-xs md:text-sm font-bold text-white">Subir foto personalizada</p>
+                      <p className="text-[10px] md:text-xs text-white/40">JPG, PNG o GIF</p>
                     </div>
                   </div>
                 </button>
@@ -1083,8 +1103,8 @@ export default function Account() {
 
               {/* Avatares predeterminados */}
               <div className="space-y-3">
-                <p className="text-xs font-black text-white/40 uppercase tracking-widest">O elige un avatar predeterminado</p>
-                <div className="grid grid-cols-4 gap-3">
+                <p className="text-[10px] md:text-xs font-black text-white/40 uppercase tracking-widest text-center">O elige un avatar predeterminado</p>
+                <div className="grid grid-cols-4 gap-2 md:gap-3">
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => {
                     const avatarUrl = `https://api.dicebear.com/7.x/bottts/svg?seed=pixel${num * 42}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`;
                     return (
@@ -1094,8 +1114,8 @@ export default function Account() {
                           handleUpdateProfile({ avatar: avatarUrl });
                           setIsAvatarModalOpen(false);
                         }}
-                        className={`aspect-square rounded-2xl overflow-hidden border-2 transition-all hover:scale-105 active:scale-95 ${
-                          user.avatar === avatarUrl ? 'border-blue-500 ring-4 ring-blue-500/20' : 'border-white/10 hover:border-white/30'
+                        className={`aspect-square rounded-xl md:rounded-2xl overflow-hidden border-2 transition-all hover:scale-105 active:scale-95 ${
+                          user.avatar === avatarUrl ? 'border-yellow-500 ring-2 md:ring-4 ring-yellow-500/30' : 'border-white/10 hover:border-yellow-500/50'
                         }`}
                       >
                         <img src={avatarUrl} alt="Avatar option" className="w-full h-full object-cover" />

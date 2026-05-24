@@ -218,23 +218,22 @@ export default function Hero() {
     <section className="relative min-h-screen flex flex-col overflow-x-hidden pb-20">
       {/* Background Image */}
       <div
-        className="absolute inset-0 z-0 opacity-30"
+        className="absolute inset-0 z-0 opacity-30 lg:blur-[3px]"
         style={{
           backgroundImage: `url('https://i.postimg.cc/wjNMvZfd/wallpaper-PC.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center top",
-          backgroundRepeat: "no-repeat",
-          filter: "blur(3px)"
+          backgroundRepeat: "no-repeat"
         }}
       />
       {/* Yellow-Gold Aura from Left Side */}
-      <div className="absolute inset-y-0 -left-20 w-2/5 z-[1] opacity-100 blur-2xl bg-gradient-to-r from-[#3a1f00]/40 via-[#1a0d00]/30 via-50% to-transparent" />
+      <div className="absolute inset-y-0 -left-20 w-2/5 z-[1] opacity-100 lg:blur-2xl bg-gradient-to-r from-[#3a1f00]/40 via-[#1a0d00]/30 via-50% to-transparent" />
       {/* Yellow-Gold Aura from Right Side */}
-      <div className="absolute inset-y-0 -right-20 w-2/5 z-[1] opacity-100 blur-2xl bg-gradient-to-l from-[#3a1f00]/45 via-[#1a0d00]/35 via-50% to-transparent" />
+      <div className="absolute inset-y-0 -right-20 w-2/5 z-[1] opacity-100 lg:blur-2xl bg-gradient-to-l from-[#3a1f00]/45 via-[#1a0d00]/35 via-50% to-transparent" />
       {/* Corner Overlays - Bottom Left */}
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 z-[1] opacity-100 blur-3xl bg-gradient-to-tr from-[#3a1f00]/60 via-[#1a0d00]/45 via-40% to-transparent" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 z-[1] opacity-100 lg:blur-3xl bg-gradient-to-tr from-[#3a1f00]/60 via-[#1a0d00]/45 via-40% to-transparent" />
       {/* Corner Overlays - Bottom Right */}
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 z-[1] opacity-100 blur-3xl bg-gradient-to-tl from-[#3a1f00]/65 via-[#1a0d00]/50 via-40% to-transparent" />
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 z-[1] opacity-100 lg:blur-3xl bg-gradient-to-tl from-[#3a1f00]/65 via-[#1a0d00]/50 via-40% to-transparent" />
       {/* Overlay gradient */}
       <div className="absolute inset-0 z-[2] bg-gradient-to-b from-transparent via-[#1a0d00]/10 to-transparent" />
       
@@ -287,7 +286,7 @@ export default function Hero() {
         </p>
 
         {/* Stats Box */}
-        <div className="flex items-center gap-0 mb-6 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/[0.08] rounded-2xl shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)]">
+        <div className="flex items-center gap-0 mb-6 px-8 py-4 bg-white/5 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)]">
           <div className="flex items-center gap-2 px-4">
             <CheckCircle className="w-5 h-5 text-[#00d4aa]" />
             <div className="flex flex-col">
@@ -315,7 +314,7 @@ export default function Hero() {
 
         {/* Search Bar */}
         <div className="w-full max-w-2xl mb-5 relative">
-          <div className="flex items-center bg-white/5 backdrop-blur-md border border-white/[0.08] rounded-2xl shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)] overflow-hidden">
+          <div className="flex items-center bg-white/5 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)] overflow-hidden">
             <div className="flex items-center gap-3 flex-1 px-5 py-3.5">
               <Search className="w-5 h-5 text-white/50" />
               <input
@@ -339,7 +338,7 @@ export default function Hero() {
 
           {/* Dropdown de resultados */}
           <div
-            className={`absolute top-[calc(100%+8px)] left-0 right-0 z-50 backdrop-blur-md border border-white/[0.08] rounded-2xl overflow-hidden origin-top transition-all duration-[400ms] shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)] ${
+            className={`absolute top-[calc(100%+8px)] left-0 right-0 z-50 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl overflow-hidden origin-top transition-all duration-[400ms] shadow-[0_0_15px_rgba(255,255,255,0.08),inset_0_1px_1px_rgba(255,255,255,0.12)] ${
               isSearchDropdownOpen && searchResults.length > 0
                 ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
                 : 'opacity-0 -translate-y-2 scale-[0.98] pointer-events-none'
@@ -416,35 +415,35 @@ export default function Hero() {
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           <button 
             onClick={() => navigate('/catalog?category=robux')}
-            className="flex items-center gap-2 px-5 py-3 bg-[#1a3a2e]/30 backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1a3a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
+            className="flex items-center gap-2 px-5 py-3 bg-[#1a3a2e]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1a3a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Gamepad2 className="w-5 h-5" />
             Robux
           </button>
           <button 
             onClick={() => navigate('/catalog')}
-            className="flex items-center gap-2 px-5 py-3 bg-[#1e3a5f]/30 backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1e3a5f]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
+            className="flex items-center gap-2 px-5 py-3 bg-[#1e3a5f]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1e3a5f]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Monitor className="w-5 h-5" />
             Items In-Game
           </button>
           <button 
             onClick={() => navigate('/catalog?game=mm2')}
-            className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#dc2626]/40 to-[#991b1b]/40 backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:from-[#dc2626]/60 hover:to-[#991b1b]/60 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
+            className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#dc2626]/40 to-[#991b1b]/40 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:from-[#dc2626]/60 hover:to-[#991b1b]/60 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Sword className="w-5 h-5" />
             MM2
           </button>
           <button 
             onClick={() => navigate('/catalog?category=limiteds')}
-            className="flex items-center gap-2 px-5 py-3 bg-[#4a4a2e]/30 backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#4a4a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
+            className="flex items-center gap-2 px-5 py-3 bg-[#4a4a2e]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#4a4a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Crown className="w-5 h-5" />
             Limiteds
           </button>
           <button 
             onClick={() => navigate('/fortnite')}
-            className="flex items-center justify-center px-6 py-3 bg-[#0d4a6e]/40 backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-bold hover:bg-[#0d4a6e]/60 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
+            className="flex items-center justify-center px-6 py-3 bg-[#0d4a6e]/40 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-bold hover:bg-[#0d4a6e]/60 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <FortniteIcon className="w-16 h-5" />
           </button>
@@ -480,7 +479,7 @@ export default function Hero() {
                     <h3 className="text-white font-bold text-sm md:text-base lg:text-lg leading-tight mb-0.5 md:mb-1 truncate" title={game.name}>{game.name}</h3>
                     <p className="text-gray-300 text-[10px] md:text-xs lg:text-sm truncate">Items In-game</p>
                   </div>
-                  <div className="flex-shrink-0 bg-pixel-primaryStart/20 border border-pixel-primaryStart/30 text-white text-[9px] md:text-[10px] lg:text-xs font-bold px-2 md:px-2.5 py-1 md:py-1.5 rounded-full whitespace-nowrap backdrop-blur-md">
+                  <div className="flex-shrink-0 bg-pixel-primaryStart/20 border border-pixel-primaryStart/30 text-white text-[9px] md:text-[10px] lg:text-xs font-bold px-2 md:px-2.5 py-1 md:py-1.5 rounded-full whitespace-nowrap lg:backdrop-blur-md">
                     Ver productos
                   </div>
                 </div>
