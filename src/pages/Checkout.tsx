@@ -62,8 +62,8 @@ const CheckoutLoader = () => {
           <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full scale-150 animate-pulse" />
 
           <img
-            src="https://i.postimg.cc/tgR7tPvJ/logo-checkout-4x-(2).png"
-            alt="Pixel Store"
+            src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png"
+            alt="RLS Store"
             className="w-64 md:w-[320px] h-auto object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.3)] relative z-10"
           />
 
