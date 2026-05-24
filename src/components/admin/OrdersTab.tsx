@@ -166,7 +166,7 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                 </td>
                 <td className="py-5">
                   <div className="flex flex-col">
-                    {order.type === 'mm2' || order.type === 'trade_limited' || (order.cart && order.cart.length > 0 && order.cart.some((item: any) => 
+                    {order.type === 'mm2' || order.type === 'trade_limited' || order.type === 'ingame' || (order.cart && order.cart.length > 0 && order.cart.some((item: any) => 
                       String(item.game || '').toLowerCase().includes('mm2') || 
                       String(item.game || '').toLowerCase().includes('limited')
                     )) ? (
@@ -182,7 +182,7 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                           </button>
                         </div>
                         <span className="text-[10px] text-white/20 font-black uppercase tracking-widest">
-                          {order.type === 'mm2' ? 'Murder Mystery 2' : order.type === 'trade_limited' ? 'Limiteds (Trade)' : 'Limiteds'}
+                          {order.type === 'mm2' ? 'Murder Mystery 2' : order.type === 'trade_limited' ? 'Limiteds (Trade)' : order.type === 'ingame' ? (order.cart?.[0]?.game || 'In-Game Items') : 'Limiteds'}
                         </span>
                       </>
                     ) : (
