@@ -472,6 +472,9 @@ const Checkout = () => {
       } else if (isMM2 && cart.length > 0) {
         formData.append('type', 'mm2');
         formData.append('cart', JSON.stringify(cart));
+      } else if (isIngame && cart.length > 0) {
+        formData.append('type', 'ingame');
+        formData.append('cart', JSON.stringify(cart));
       } else if (fromWebview && cart.length > 0) {
         formData.append('cart', JSON.stringify(cart));
       }
