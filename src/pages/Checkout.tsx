@@ -447,6 +447,7 @@ const Checkout = () => {
       formData.append('username', username);
       formData.append('userId', userId);
       formData.append('accountId', storeUser?.id || '');
+      formData.append('accountUsername', storeUser?.username || '');
       formData.append('method', state.method || 'gamepass');
       formData.append('paymentMethodId', selected || '');
       formData.append('total', finalTotal.toString());

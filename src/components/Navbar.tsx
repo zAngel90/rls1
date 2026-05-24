@@ -8,11 +8,11 @@ import AuthModal from './AuthModal';
 const LEVEL_CONFIG: Record<string, { name: string, color: string }> = {
   NINGUNO: { name: 'Sin Rango', color: 'bg-white/5 text-white/20 border-white/10' },
   BRONCE: { name: 'Bronce', color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
-  SILVER: { name: 'Plata', color: 'bg-slate-400/10 text-slate-300 border-slate-400/20' },
-  GOLD: { name: 'Oro', color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' },
-  DIAMOND: { name: 'Diamante', color: 'bg-blue-400/10 text-blue-300 border-blue-400/20' },
-  ROYAL: { name: 'Royal', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
-  MYTHIC: { name: 'Mythic', color: 'bg-red-500/10 text-red-400 border-red-500/20' }
+  PLATA: { name: 'Plata', color: 'bg-slate-400/10 text-slate-300 border-slate-400/20' },
+  ORO: { name: 'Oro', color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' },
+  PLATINO: { name: 'Platino', color: 'bg-cyan-400/10 text-cyan-300 border-cyan-400/20' },
+  DIAMANTE: { name: 'Diamante', color: 'bg-blue-400/10 text-blue-300 border-blue-400/20' },
+  ESMERALDA: { name: 'Esmeralda', color: 'bg-green-500/10 text-green-400 border-green-500/20' }
 };
 
 // Mapeo: id de sección → clave del nav

@@ -158,12 +158,35 @@ export default function Account() {
       fetchOrders(parsedUser.id, parsedUser.username);
       
       // Refresh profile data from server to get latest robux/level
-      AuthAPI.getProfile().then(res => {
-        if (res.success) {
-          setUser(res.data);
-          localStorage.setItem('pixel_user', JSON.stringify(res.data));
-        }
-      }).catch(err => console.error('Error refreshing profile:', err));
+      const refreshProfile = () => {
+        AuthAPI.getProfile().then(res => {
+          if (res.success) {
+            setUser(res.data);
+            localStorage.setItem('pixel_user', JSON.stringify(res.data));
+          }
+        }).catch(err => console.error('Error refreshing profile:', err));
+      };
+      
+      refreshProfile();
+      
+      // Listen for order updates via socket
+      const socket = (window as any).socket;
+      if (socket) {
+        const handleOrderUpdate = (notification: any) => {
+          console.log('📬 Notificación recibida:', notification);
+          if (notification.type === 'order_update' && notification.status === 'completed') {
+            console.log('🔄 Orden completada, refrescando perfil...');
+            refreshProfile();
+            fetchOrders(parsedUser.id, parsedUser.username);
+          }
+        };
+        
+        socket.on(`notification-${parsedUser.id}`, handleOrderUpdate);
+        
+        return () => {
+          socket.off(`notification-${parsedUser.id}`, handleOrderUpdate);
+        };
+      }
     }
   }, [navigate]);
 
