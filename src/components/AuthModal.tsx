@@ -62,7 +62,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
   };
 
   const handleGoogleLogin = () => {
-    const GOOGLE_CLIENT_ID = '1001764541241-vk0qafbpa5lcnrbjai805e964jfctpop.apps.googleusercontent.com';
+    const GOOGLE_CLIENT_ID = '910248888900-4c3r56auj6gje2b5v7vtrtj31q4733ku.apps.googleusercontent.com';
     const REDIRECT_URI = 'https://rbxlatamstore.com';
     const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=email%20profile&state=google_login`;
     window.location.href = googleAuthUrl;
