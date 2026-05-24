@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Turnstile } from '@marsidev/react-turnstile';
 import { 
   Settings, 
   Users, 
@@ -78,6 +79,7 @@ export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginData, setLoginData] = useState({ username: '', password: '' });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   const [toast, setToast] = useState<{message: string, type: 'success' | 'error'} | null>(null);
   
@@ -128,9 +130,15 @@ export default function Admin() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!turnstileToken) {
+      setToast({ message: 'Por favor completa la verificación antibot', type: 'error' });
+      return;
+    }
+    
     setIsLoggingIn(true);
     try {
-      const res = await AuthAPI.login(loginData);
+      const res = await AuthAPI.login({ ...loginData, turnstileToken });
       if (res.success && res.user.role === 'admin') {
         localStorage.setItem('pixel_token', res.token);
         localStorage.setItem('pixel_user', JSON.stringify(res.user));
@@ -343,6 +351,15 @@ export default function Admin() {
                 />
               </div>
             </div>
+            
+            {/* Cloudflare Turnstile */}
+            <div className="flex justify-center">
+              <Turnstile
+                siteKey="0x4AAAAAADVl_MPRgtRfacZY"
+                onSuccess={(token: string) => setTurnstileToken(token)}
+              />
+            </div>
+            
             <button 
               disabled={isLoggingIn}
               className="w-full py-4 mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black rounded-2xl transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)] hover:shadow-[0_0_60px_rgba(59,130,246,0.5)] disabled:opacity-50 text-sm uppercase tracking-widest flex items-center justify-center gap-3"
