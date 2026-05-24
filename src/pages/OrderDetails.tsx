@@ -656,6 +656,8 @@ const OrderDetails = () => {
                       <ShoppingCart className="w-8 h-8 text-yellow-400" />
                     ) : order.type === 'fortnite' ? (
                       <ShoppingCart className="w-8 h-8 text-yellow-400" />
+                    ) : order.type === 'ingame' ? (
+                      <ShoppingCart className="w-8 h-8 text-yellow-400" />
                     ) : (order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('mm2')))) ? (
                       <img src="https://www.peekstore.com/_next/image?url=%2Fmm2-logo.webp&w=64&q=75" className="w-full h-full object-contain rounded-lg" alt="MM2" />
                     ) : (
@@ -668,6 +670,8 @@ const OrderDetails = () => {
                         `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} Limited`
                       ) : order.type === 'fortnite' ? (
                         `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Skin' : 'Skins'} Fortnite`
+                      ) : order.type === 'ingame' ? (
+                        `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} ${order.cart?.[0]?.game || 'In-Game'}`
                       ) : (order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('mm2')))) ? (
                         `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} MM2`
                       ) : (
@@ -739,7 +743,7 @@ const OrderDetails = () => {
                       </div>
                     )}
                   </div>
-                ) : (order.type === 'trade_limited' || order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('limited') || String(item.game || '').toLowerCase().includes('mm2')))) ? (
+                ) : (order.type === 'trade_limited' || order.type === 'mm2' || order.type === 'ingame' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('limited') || String(item.game || '').toLowerCase().includes('mm2')))) ? (
                   <div className="space-y-3">
                     {/* Target Items (Items a recibir) - Lista Expandida */}
                     {order.cart && order.cart.length > 0 ? (
@@ -848,7 +852,7 @@ const OrderDetails = () => {
                 </div>
 
                 {/* Status/Required Row - Only for Robux gamepass */}
-                {order.method === 'gamepass' && !(order.type === 'trade_limited' || order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('limited') || String(item.game || '').toLowerCase().includes('mm2')))) && (
+                {order.method === 'gamepass' && !(order.type === 'trade_limited' || order.type === 'mm2' || order.type === 'ingame' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('limited') || String(item.game || '').toLowerCase().includes('mm2')))) && (
                   <div className="p-4 bg-yellow-500/5 border border-yellow-500/10 rounded-2xl">
                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="flex flex-col gap-1.5">
