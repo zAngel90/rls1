@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   XCircle,
   Eye,
+  Truck,
   Image as ImageIcon,
   User,
   CreditCard,
@@ -216,11 +217,15 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                   </div>
                 </td>
                 <td className="py-5">
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border ${order.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
-                      order.status === 'pending' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
-                        'bg-red-500/10 text-red-400 border-red-500/20'
-                    }`}>
-                    {order.status === 'completed' ? 'Completado' : order.status === 'pending' ? 'Pendiente' : 'Cancelado'}
+                  <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border ${
+                    order.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
+                    order.status === 'processing' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
+                    order.status === 'pending' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
+                    'bg-red-500/10 text-red-400 border-red-500/20'
+                  }`}>
+                    {order.status === 'completed' ? 'Completado' : 
+                     order.status === 'processing' ? 'Procesando' : 
+                     order.status === 'pending' ? 'Pendiente' : 'Cancelado'}
                   </span>
                 </td>
                 <td className="py-5 pr-6 text-right">
@@ -240,6 +245,24 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                       <MessageSquare size={16} />
                     </button>
                     {order.status === 'pending' && (
+                      <>
+                        <button
+                          onClick={() => handleUpdateStatus(order.id, 'processing')}
+                          className="p-2.5 bg-blue-600/10 text-blue-400 rounded-xl border border-blue-500/20 hover:bg-blue-600 hover:text-white transition-all"
+                          title="Marcar como Procesando"
+                        >
+                          <Truck size={16} />
+                        </button>
+                        <button
+                          onClick={() => handleUpdateStatus(order.id, 'cancelled')}
+                          className="p-2.5 bg-red-600/10 text-red-400 rounded-xl border border-red-500/20 hover:bg-red-600 hover:text-white transition-all"
+                          title="Cancelar Pedido"
+                        >
+                          <XCircle size={16} />
+                        </button>
+                      </>
+                    )}
+                    {order.status === 'processing' && (
                       <>
                         <button
                           onClick={() => handleUpdateStatus(order.id, 'completed')}

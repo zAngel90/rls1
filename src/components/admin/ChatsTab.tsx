@@ -156,8 +156,15 @@ export default function ChatsTab() {
     setTimeout(() => scrollToBottom(), 50);
 
     try {
-      const res = await ChatAPI.sendMessage(textToSend, activeChat.id, undefined, type, fileUrl);
+      const res = await ChatAPI.sendMessage(textToSend, activeChat.id, undefined, type, fileUrl || undefined);
       if (res.success) {
+        // Si el mensaje creó un nuevo chat, unirse al room inmediatamente
+        if (res.chatId && res.chatId !== activeChat.id) {
+          console.log('🔌 Uniéndose al nuevo chat room:', res.chatId);
+          socket.emit('join-chat', res.chatId);
+          // Actualizar el activeChat con el ID correcto
+          setActiveChat((prev: any) => prev ? { ...prev, id: res.chatId } : prev);
+        }
         // No llamamos a loadChats() aquí, dejamos que el socket update-chat-list lo haga silenciosamente
       }
     } catch (err) {

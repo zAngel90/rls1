@@ -86,6 +86,10 @@ const OrderDetails = () => {
   const [reviewImage, setReviewImage] = useState<File | null>(null);
   const [reviewPreviewUrl, setReviewPreviewUrl] = useState<string | null>(null);
   const [submittingReview, setSubmittingReview] = useState(false);
+  
+  // Image Modal States
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const scrollToBottom = (instant = false) => {
     if (messagesContainerRef.current) {
@@ -181,14 +185,28 @@ const OrderDetails = () => {
       }
     };
 
+    // Listener para cuando el admin crea un nuevo chat
+    const handleNewChat = (newChat: any) => {
+      console.log('🆕 Nuevo chat creado:', newChat);
+      // Solo procesar si es para esta orden
+      if (newChat.orderId === orderId) {
+        setChat(newChat);
+        setMessages(newChat.messages || []);
+        // Unirse al room del socket
+        socket.emit('join-chat', newChat.id);
+      }
+    };
+
     socket.on('new-message', handleNewMessage);
     socket.on('chat-ended', handleChatEnded);
     socket.on('order-updated', handleOrderUpdate);
+    socket.on('new-chat', handleNewChat);
 
     return () => {
       socket.off('new-message', handleNewMessage);
       socket.off('chat-ended', handleChatEnded);
       socket.off('order-updated', handleOrderUpdate);
+      socket.off('new-chat', handleNewChat);
       socket.emit('leave-order', orderId);
     };
   }, [orderId]);
@@ -971,6 +989,9 @@ const OrderDetails = () => {
                   ) : (
                     messages.map((msg, idx) => {
                       const isMe = msg.sender === 'user';
+                      const hasMedia = msg.type === 'image' || msg.type === 'video';
+                      const mediaUrl = msg.fileUrl ? `${SERVER_URL}${msg.fileUrl}` : null;
+                      
                       return (
                         <div key={idx} className={`flex flex-col ${isMe ? 'items-end' : 'items-start'}`}>
                            {/* Avatar for support messages */}
@@ -982,9 +1003,39 @@ const OrderDetails = () => {
                                 <span className="text-[8px] font-black text-white/20 uppercase tracking-widest">Soporte</span>
                              </div>
                            )}
-                           <div className={`max-w-[85%] p-3 rounded-xl ${isMe ? 'bg-yellow-600 text-white rounded-tr-none shadow-md shadow-yellow-600/10' : 'bg-black text-white/90 rounded-tl-none border border-white/5'}`}>
-                              <p className="text-[11px] font-medium leading-relaxed">{msg.text}</p>
-                              <p className={`text-[7px] mt-1.5 font-black uppercase tracking-widest text-right ${isMe ? 'text-white/40' : 'text-white/20'}`}>{msg.time}</p>
+                           <div className={`max-w-[85%] rounded-xl ${isMe ? 'bg-yellow-600 text-white rounded-tr-none shadow-md shadow-yellow-600/10' : 'bg-black text-white/90 rounded-tl-none border border-white/5'} ${hasMedia ? 'p-1.5' : 'p-3'}`}>
+                              {/* Mostrar imagen si existe */}
+                              {msg.type === 'image' && mediaUrl && (
+                                <div className="rounded-lg overflow-hidden mb-2">
+                                  <img 
+                                    src={mediaUrl} 
+                                    alt="Imagen del chat" 
+                                    className="max-w-full h-auto max-h-64 object-contain rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                                    onClick={() => {
+                                      setSelectedImage(mediaUrl);
+                                      setShowImageModal(true);
+                                    }}
+                                  />
+                                </div>
+                              )}
+                              
+                              {/* Mostrar video si existe */}
+                              {msg.type === 'video' && mediaUrl && (
+                                <div className="rounded-lg overflow-hidden mb-2">
+                                  <video 
+                                    src={mediaUrl} 
+                                    controls 
+                                    className="max-w-full h-auto max-h-64 rounded-lg"
+                                  />
+                                </div>
+                              )}
+                              
+                              {/* Mostrar texto si existe */}
+                              {msg.text && (
+                                <p className={`text-[11px] font-medium leading-relaxed ${hasMedia ? 'px-1.5' : ''}`}>{msg.text}</p>
+                              )}
+                              
+                              <p className={`text-[7px] mt-1.5 font-black uppercase tracking-widest text-right ${isMe ? 'text-white/40' : 'text-white/20'} ${hasMedia ? 'px-1.5 pb-1' : ''}`}>{msg.time}</p>
                            </div>
                         </div>
                       );
@@ -1136,7 +1187,7 @@ const OrderDetails = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-xl bg-[#151432] border border-white/10 rounded-[32px] overflow-hidden shadow-2xl"
+              className="relative w-full max-w-xl bg-black border border-yellow-500/20 rounded-[32px] overflow-hidden shadow-2xl shadow-yellow-500/10"
             >
               <div className="p-8">
                 <div className="flex justify-between items-start mb-8">
@@ -1283,6 +1334,54 @@ const OrderDetails = () => {
                   </div>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {showImageModal && selectedImage && (
+          <div 
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+            onClick={() => setShowImageModal(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-6xl max-h-[90vh] w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowImageModal(false)}
+                className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center text-white transition-all z-10"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Image */}
+              <div className="bg-black/50 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={selectedImage}
+                  alt="Imagen ampliada"
+                  className="w-full h-full object-contain max-h-[85vh]"
+                />
+              </div>
+
+              {/* Download Button */}
+              <a
+                href={selectedImage}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute -bottom-12 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-yellow-600 hover:bg-yellow-500 text-white text-sm font-bold rounded-full transition-all flex items-center gap-2 shadow-lg"
+              >
+                <ExternalLink size={16} />
+                Abrir en nueva pestaña
+              </a>
             </motion.div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, CreditCard, Smartphone, Wallet, DollarSign, X, ChevronDown, ChevronUp, ChevronLeft, Tag, CheckCircle2, Loader2, Copy, Check, ArrowRight, ArrowLeft, Users, Search, Search as SearchIcon, HelpCircle, Shield, Info, TrendingUp, Zap, Star, Clock, Lock, Globe, ExternalLink, AlertCircle, Package, FileText, ImageIcon } from 'lucide-react';
+import { ShoppingCart, CreditCard, Smartphone, Wallet, DollarSign, X, ChevronDown, ChevronUp, ChevronLeft, Tag, CheckCircle2, Loader2, Copy, Check, ArrowRight, ArrowLeft, Users, Search, Search as SearchIcon, HelpCircle, Shield, Info, TrendingUp, Zap, Star, Clock, Lock, Globe, ExternalLink, AlertCircle, Package, FileText, ImageIcon, Edit2 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RobloxAPI, StoreAPI, OrdersAPI, BASE_URL, SERVER_URL, CouponsAPI } from '../services/api';
 
@@ -171,6 +171,7 @@ const Checkout = () => {
   const [groupVerificationResults, setGroupVerificationResults] = useState<any>(null);
   const [isVerifyingGroups, setIsVerifyingGroups] = useState(false);
   const [requiredGroups, setRequiredGroups] = useState<any[]>([]);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const deliveryMethod = state.method || 'gamepass'; // 'gamepass' o 'group'
   const gamepassRequiredPrice = Math.ceil(amount / 0.7); // Precio con comisión de Roblox (30%)
 
@@ -204,6 +205,18 @@ const Checkout = () => {
       }
     };
     fetchGroupsConfig();
+  }, []);
+
+  // Detectar scroll para ocultar el indicador (solo móvil)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowScrollIndicator(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Verificar grupos automáticamente al llegar al paso 2 (group)
@@ -554,7 +567,7 @@ const Checkout = () => {
                     <ArrowLeft size={20} />
                   </button>
                   <div className="flex flex-col">
-                    <h1 className="text-lg font-black text-white uppercase tracking-tighter leading-none">PIXEL STORE</h1>
+                    <h1 className="text-lg font-black text-white uppercase tracking-tighter leading-none">RLS STORE</h1>
                     <p className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em] mt-1">CHECKOUT</p>
                   </div>
                 </div>
@@ -626,7 +639,7 @@ const Checkout = () => {
                   {isSpecialGame && <div className="hidden lg:block absolute top-0 bottom-0 left-[420px] w-[1px] bg-white/[0.06] z-30" />}
                   
                   {/* LEFT col */}
-                  <div className={isSpecialGame ? "lg:h-full lg:overflow-y-auto custom-scrollbar relative z-20 px-4 py-4 lg:py-10 lg:px-0" : "flex flex-col p-4 lg:p-6 border-b lg:border-b-0 border-white/[0.04]"}>
+                  <div className={isSpecialGame ? "lg:h-full overflow-y-auto custom-scrollbar relative z-20 px-4 py-4 lg:py-10 lg:px-0" : "flex flex-col p-4 lg:p-6 border-b lg:border-b-0 border-white/[0.04] overflow-y-auto"}>
                     <div className={isSpecialGame ? "w-full max-w-[420px] mx-auto lg:px-6 lg:px-8" : ""}>
                       <motion.div
                         className="relative bg-gradient-to-br from-[#111827]/80 via-[#1a2332]/70 to-[#111827]/80 border border-white/[0.08] rounded-2xl lg:rounded-[32px] p-4 lg:p-6 mb-4 lg:mb-6 overflow-hidden cursor-default shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl"
@@ -675,7 +688,7 @@ const Checkout = () => {
                               </div>
 
                               {/* Items to Receive - Lista Expandida */}
-                              <div className="space-y-2">
+                              <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1">
                                 {cart.map((item, idx) => {
                                   const itemColor = item?.color || '#ec4899'; // Default pink si no tiene color
                                   return (
@@ -754,7 +767,7 @@ const Checkout = () => {
                                 </div>
 
                                 {/* Fortnite Items List */}
-                                <div className="space-y-2">
+                                <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1">
                                   {cart.map((item, idx) => (
                                     <div key={idx} className="bg-white/[0.02] border border-white/[0.06] rounded-[20px] p-3">
                                       <div className="flex items-center gap-3">
@@ -826,7 +839,7 @@ const Checkout = () => {
                                 </div>
 
                                 {/* Items List - Todos Expandidos */}
-                                <div className="space-y-2">
+                                <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1">
                                   {cart.map((item, idx) => (
                                     <div key={idx} className="bg-white/[0.02] border border-white/[0.06] rounded-[20px] p-3">
                                       <div className="flex items-center gap-3">
@@ -963,7 +976,7 @@ const Checkout = () => {
                               </div>
 
                               {/* Target Items (To Buy) - Lista Expandida */}
-                              <div className="space-y-2">
+                              <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1">
                                 {cart.map((item, idx) => (
                                   <div key={idx} className="flex items-center gap-3 p-2.5 bg-pink-500/20 border border-pink-500/50 rounded-2xl">
                                     <div className="w-10 h-10 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
@@ -1022,7 +1035,7 @@ const Checkout = () => {
                               </div>
 
                               {/* Items List Expandida */}
-                              <div className="space-y-2">
+                              <div className="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1">
                                 {cart.map((item, idx) => (
                                   <div key={idx} className="bg-white/[0.02] border border-white/[0.06] rounded-[20px] p-3">
                                     <div className="flex items-center gap-3">
@@ -1535,7 +1548,7 @@ const Checkout = () => {
                                 </button>
                               </div>
                               <div className="mt-4 text-center text-[9px] text-white/20 uppercase tracking-widest flex items-center justify-center gap-1.5">
-                                <Lock className="w-3 h-3" /> Pago seguro procesado por Stripe
+                                <Lock className="w-3 h-3" /> Transacción segura y encriptada
                               </div>
                             </div>
                           </motion.div>
@@ -1546,7 +1559,7 @@ const Checkout = () => {
                     
                     {/* Total a pagar - GRID FOOTER for special game */}
                     {isSpecialGame && (
-                      <div className="relative z-30">
+                      <div className="relative z-30 lg:sticky lg:bottom-0">
                         <div className="w-full max-w-[892px] px-6 lg:px-8 py-6 mx-0 relative z-10">
                           <div className="rounded-3xl border border-white/[0.06] bg-[#111827]/60 px-5 py-4">
 
@@ -1602,6 +1615,43 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Indicador de scroll flotante - Solo móvil */}
+      <AnimatePresence>
+        {showScrollIndicator && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden fixed bottom-6 left-0 right-0 z-[90] flex justify-center pointer-events-none"
+          >
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 rounded-full shadow-[0_8px_32px_rgba(59,130,246,0.4)] border border-blue-400/30 backdrop-blur-xl pointer-events-auto"
+            >
+              <div className="flex items-center gap-2">
+                <motion.div
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ChevronDown className="w-5 h-5 text-white" strokeWidth={3} />
+                </motion.div>
+                <span className="text-xs font-black text-white uppercase tracking-wider whitespace-nowrap">
+                  Desliza para pagar
+                </span>
+                <motion.div
+                  animate={{ rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+                >
+                  <ChevronDown className="w-5 h-5 text-white" strokeWidth={3} />
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

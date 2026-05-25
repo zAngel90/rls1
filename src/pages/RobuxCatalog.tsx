@@ -941,7 +941,7 @@ export default function RobuxCatalog() {
             <div className="mb-14 sm:mb-16">
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-5">Compra Robux Baratos con Entrega en Minutos</h1>
               <p className="text-sm sm:text-base leading-relaxed text-slate-400 max-w-3xl">
-                En PIXEL STORE puedes comprar Robux al mejor precio con entrega automática. Aceptamos pagos locales de toda Latinoamérica. Con más de 50,000 pedidos completados y 0 baneos reportados, somos la tienda número uno en confianza.
+                En RLS STORE puedes comprar Robux al mejor precio con entrega automática. Aceptamos pagos locales de toda Latinoamérica. Con más de 50,000 pedidos completados y 0 baneos reportados, somos la tienda número uno en confianza.
               </p>
             </div>
 
@@ -1011,7 +1011,7 @@ export default function RobuxCatalog() {
             </div>
 
             <div className="mb-16">
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 tracking-tight">¿Por qué comprar Robux en PIXEL STORE?</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 tracking-tight">¿Por qué comprar Robux en RLS STORE?</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { t: 'Mejor precio garantizado', d: 'Ahorra hasta un 40% comparado con el precio oficial de Roblox. Monitoreamos el mercado constantemente para darte lo mejor.' },

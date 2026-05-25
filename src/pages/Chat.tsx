@@ -250,7 +250,7 @@ export default function Chat() {
                 <Hash size={18} className="text-blue-400" />
               </div>
             </div>
-            <p className="text-white/40 text-[11px] font-black uppercase tracking-[0.2em] ml-14">Soporte Pixel Store</p>
+            <p className="text-white/40 text-[11px] font-black uppercase tracking-[0.2em] ml-14">Soporte RLS Store</p>
           </div>
 
           <div className="flex-1 overflow-y-auto px-3 pb-8 custom-scrollbar">
@@ -275,8 +275,8 @@ export default function Chat() {
                   >
                     <div className="flex gap-4 items-center">
                       <div className="relative">
-                        <div className="w-12 h-12 rounded-2xl overflow-hidden border border-white/10 bg-[#0d0c22]">
-                          <img src={chat.adminAvatar || "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter"} alt="" className="w-full h-full object-cover" />
+                        <div className="w-12 h-12 rounded-2xl overflow-hidden border border-white/10 bg-[#0d0c22] flex items-center justify-center p-1.5">
+                          <img src={chat.adminAvatar || "https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png"} alt="" className="w-full h-full object-contain" />
                         </div>
                         {activeChat?.id === chat.id && (
                           <div className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center border-2 border-blue-600">
@@ -313,11 +313,13 @@ export default function Chat() {
                   </button>
                   <div className="flex items-center gap-4">
                     <div className="relative">
-                      <img src={activeChat.adminAvatar || "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter"} alt="" className="w-11 h-11 rounded-2xl object-cover border border-white/10 shadow-xl" />
+                      <div className="w-11 h-11 rounded-2xl border border-white/10 shadow-xl bg-[#0d0c22] flex items-center justify-center p-1.5">
+                        <img src={activeChat.adminAvatar || "https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png"} alt="" className="w-full h-full object-contain" />
+                      </div>
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-[3px] border-[#020205] rounded-full shadow-lg" />
                     </div>
                     <div>
-                      <h2 className="text-white font-black text-base tracking-tight">{activeChat.admin || 'Soporte Pixelito'}</h2>
+                      <h2 className="text-white font-black text-base tracking-tight">{activeChat.admin || 'RLS Soporte'}</h2>
                       <div className="flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                         <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500/80">Online</span>
@@ -363,7 +365,9 @@ export default function Chat() {
                         >
                           <div className={`flex gap-3 max-w-[85%] md:max-w-[70%] ${isMe ? 'flex-row-reverse' : 'flex-row'}`}>
                             {!isMe && (
-                              <img src={activeChat.adminAvatar || "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter"} className="w-8 h-8 rounded-xl object-cover border border-white/10 mt-1 shadow-lg" alt="" />
+                              <div className="w-8 h-8 rounded-xl border border-white/10 mt-1 shadow-lg bg-[#0d0c22] flex items-center justify-center p-1">
+                                <img src={activeChat.adminAvatar || "https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png"} className="w-full h-full object-contain" alt="" />
+                              </div>
                             )}
                             <div className="flex flex-col gap-1.5">
                               <div className={`p-4 md:p-5 rounded-[28px] shadow-2xl ${
@@ -455,7 +459,7 @@ export default function Chat() {
                       </button>
                     </form>
                     <div className="mt-4 text-center">
-                      <p className="text-[9px] font-black text-white/10 uppercase tracking-[0.4em]">Pixel Store End-to-End Encrypted</p>
+                      <p className="text-[9px] font-black text-white/10 uppercase tracking-[0.4em]">RLS Store End-to-End Encrypted</p>
                     </div>
                   </>
                 )}

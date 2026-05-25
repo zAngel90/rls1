@@ -711,13 +711,13 @@ export default function Navbar() {
                                 onClick={() => { setShowNotifications(false); navigate('/chat'); }}
                                 className="p-3 rounded-2xl bg-blue-500/10 border border-blue-500/20 hover:bg-blue-500/20 transition-all cursor-pointer group flex gap-3 items-center"
                               >
-                                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/10 shrink-0">
-                                  <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="" className="w-full h-full object-cover" />
+                                <div className="relative w-10 h-10 rounded-2xl border border-white/10 shrink-0 bg-[#0d0c22] flex items-center justify-center p-1.5">
+                                  <img src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" alt="" className="w-full h-full object-contain" />
                                   <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-[#0d0c22] rounded-full"></div>
                                 </div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex justify-between items-baseline gap-2">
-                                    <h4 className="text-[12px] font-black text-white truncate group-hover:text-blue-400 transition-colors">Soporte Pixelito</h4>
+                                    <h4 className="text-[12px] font-black text-white truncate group-hover:text-blue-400 transition-colors">RLS Soporte</h4>
                                   </div>
                                   <p className="text-[10px] text-white/60 font-bold mt-0.5 leading-tight line-clamp-1">Tienes {unreadCount} mensajes nuevos.</p>
                                 </div>
