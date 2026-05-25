@@ -102,7 +102,7 @@ export default function GameItems() {
       }
 
       if (event.data?.action === 'checkout') {
-        const { user, cart, total, currency, ...rest } = event.data;
+        const { user, cart, total, currency, appliedCoupon, ...rest } = event.data;
         navigate('/checkout', { 
           state: { 
             username: user.displayName || user.name,
@@ -111,6 +111,7 @@ export default function GameItems() {
             cart: cart,
             currency: currency || 'COP',
             fromWebview: true,
+            coupon: appliedCoupon, // Mapear appliedCoupon a coupon
             ...rest
           } 
         });
