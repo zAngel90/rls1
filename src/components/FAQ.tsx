@@ -132,13 +132,13 @@ export default function FAQ() {
                 </div>
                 
                 <a 
-                  href="https://wa.me/573000000000" 
+                  href="https://wa.me/message/VZYKMCR3JCGCP1" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-full py-3 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 text-emerald-400 font-bold text-xs hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center gap-2 group"
                 >
                   <span className="text-[10px]">WhatsApp:</span>
-                  <span>+57 300 000 0000</span>
+                  <span>+51 926 536 673</span>
                   <ArrowUpRight size={14} className="opacity-40 group-hover:opacity-100 transition-opacity" />
                 </a>
               </div>

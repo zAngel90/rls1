@@ -390,11 +390,14 @@ export default function Admin() {
       <aside className="w-[280px] fixed inset-y-0 left-0 bg-[#070712]/95 border-r border-white/5 backdrop-blur-2xl z-50 flex flex-col shadow-2xl">
         <div className="h-24 flex items-center px-8 border-b border-white/[0.05]">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/20 border border-white/10">
-              <ShieldCheck className="text-white" size={24} />
+            <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-600/20 border border-yellow-400/20">
+              <ShieldCheck className="text-black" size={24} />
             </div>
             <div>
-              <h1 className="text-lg font-black tracking-tighter uppercase leading-none text-white">Pixel Admin</h1>
+              <h1 className="text-lg font-black tracking-tighter uppercase leading-none">
+                <span className="text-yellow-400">RLS</span>{' '}
+                <span className="text-black bg-yellow-400 px-1.5 py-0.5 rounded">Store</span>
+              </h1>
               <div className="flex items-center gap-1.5 mt-1.5">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
                 <p className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest leading-none">Sistema Online</p>
