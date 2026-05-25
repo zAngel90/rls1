@@ -207,7 +207,7 @@ export default function Footer() {
                             </p>
                             {/* Social */}
                             <div className="flex gap-3 flex-wrap">
-                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
+                                <a href="https://discord.gg/hCbXgCGJWr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
                                     <DiscordIcon />
                                     <span className="group-hover:translate-x-0.5 transition-transform">Discord</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
@@ -217,7 +217,7 @@ export default function Footer() {
                                     <span className="group-hover:translate-x-0.5 transition-transform">Instagram</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                                 </a>
-                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
+                                <a href="https://www.tiktok.com/@rlsrobuxstore" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
                                     <TikTokIcon />
                                     <span className="group-hover:translate-x-0.5 transition-transform">TikTok</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
@@ -249,12 +249,12 @@ export default function Footer() {
                             <h4 className="text-xs font-bold tracking-widest text-gray-500 uppercase mb-5">Soporte</h4>
                             <ul className="space-y-3">
                                 <li>
-                                    <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-all text-sm group">
+                                    <a href="https://wa.me/message/VZYKMCR3JCGCP1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-white transition-all text-sm group">
                                         <WhatsAppIcon /> <span className="group-hover:translate-x-0.5 transition-transform">Whatsapp</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-all text-sm group">
+                                    <a href="https://discord.gg/hCbXgCGJWr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-400 hover:text-white transition-all text-sm group">
                                         <DiscordIcon /> <span className="group-hover:translate-x-0.5 transition-transform">Discord</span>
                                     </a>
                                 </li>

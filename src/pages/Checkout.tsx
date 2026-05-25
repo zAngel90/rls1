@@ -390,7 +390,7 @@ const Checkout = () => {
       console.log('🎫 Cupón detectado desde modal:', state.coupon);
       setAppliedCoupon(state.coupon);
       setCode(state.coupon.code);
-      setShowDiscount(false); // No mostrar el input de cupón
+      setShowDiscount(true); // Mostrar el área de cupón con el badge verde
     }
   }, [state.coupon]);
 
