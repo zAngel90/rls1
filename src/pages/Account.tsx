@@ -376,7 +376,7 @@ export default function Account() {
       
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-10 mt-8 md:mt-12">
           <h1 className="text-4xl font-black text-white tracking-tight">Mi Cuenta</h1>
           <p className="text-white/20 text-sm mt-1">Gestión de perfil y pedidos</p>
         </div>

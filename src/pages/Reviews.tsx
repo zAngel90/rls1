@@ -126,23 +126,36 @@ const ReviewCard = ({ review }: { review: Review }) => {
     avatarUrl = `${SERVER_URL}/api/users/avatar/${review.userId}`;
   }
 
-  // Determinar el texto del pedido usando orderDetails
+  // Determinar el texto del pedido usando orderDetails o orderType
   const getOrderText = () => {
-    if (!review.orderDetails) return 'Pedido Realizado';
+    // Usar orderDetails si existe (nuevo formato)
+    if (review.orderDetails) {
+      const { type, itemsCount, amount } = review.orderDetails;
+      
+      if (type === 'fortnite') {
+        const count = itemsCount || 1;
+        return `Pedido de ${count} Skin${count > 1 ? 's' : ''} Fortnite`;
+      } else if (type === 'mm2') {
+        const count = itemsCount || 1;
+        return `Pedido de ${count} Item${count > 1 ? 's' : ''} MM2`;
+      } else if (type === 'trade_limited') {
+        const count = itemsCount || 1;
+        return `Pedido de ${count} Limited${count > 1 ? 's' : ''}`;
+      } else if (type === 'ingame') {
+        const count = itemsCount || 1;
+        return `Pedido de ${count} Item${count > 1 ? 's' : ''} In-Game`;
+      } else if (type === 'robux') {
+        return `Pedido de ${amount || 0} Robux`;
+      }
+    }
     
-    const { type, itemsCount, amount } = review.orderDetails;
-    
-    if (type === 'fortnite') {
-      const count = itemsCount || 1;
-      return `Pedido de ${count} Skin${count > 1 ? 's' : ''} Fortnite`;
-    } else if (type === 'mm2') {
-      const count = itemsCount || 1;
-      return `Pedido de ${count} Item${count > 1 ? 's' : ''} MM2`;
-    } else if (type === 'trade_limited') {
-      const count = itemsCount || 1;
-      return `Pedido de ${count} Limited${count > 1 ? 's' : ''}`;
-    } else if (type === 'robux') {
-      return `Pedido de ${amount || 0} Robux`;
+    // Fallback a orderType para reseñas antiguas
+    if (review.orderType) {
+      if (review.orderType === 'fortnite') return 'Pedido de Fortnite';
+      if (review.orderType === 'mm2') return 'Pedido de MM2';
+      if (review.orderType === 'trade_limited') return 'Pedido de Limited';
+      if (review.orderType === 'ingame') return 'Pedido In-Game';
+      if (review.orderType === 'robux') return 'Pedido de Robux';
     }
     
     return 'Pedido Realizado';
@@ -369,8 +382,10 @@ export default function Reviews() {
         setSelectedOrderId('');
         fetchReviews();
       }
-    } catch (err) {
-      alert('Error al enviar la reseña');
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.error || err.message || 'Error al enviar la reseña';
+      alert(errorMessage);
+      console.error('Error creating review:', err);
     } finally {
       setSubmitting(false);
     }
@@ -663,7 +678,7 @@ export default function Reviews() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-xl bg-[#151432] border border-white/10 rounded-2xl lg:rounded-[32px] overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-xl bg-black border border-yellow-500/20 rounded-2xl lg:rounded-[32px] overflow-hidden shadow-2xl shadow-yellow-500/10 max-h-[90vh] overflow-y-auto"
             >
               <div className="p-4 lg:p-8">
                 <div className="flex justify-between items-start mb-8">
@@ -711,7 +726,9 @@ export default function Reviews() {
                                 ? `${order.cart?.length || 1} Item${order.cart?.length > 1 ? 's' : ''} MM2`
                                 : order.type === 'trade_limited'
                                   ? `${order.cart?.length || 1} Item${order.cart?.length > 1 ? 's' : ''} Limited`
-                                  : `${order.amount} Robux`
+                                  : order.type === 'ingame'
+                                    ? `${order.cart?.length || order.amount || 1} Item${(order.cart?.length || order.amount || 1) > 1 ? 's' : ''} In-Game`
+                                    : `${order.amount} Robux`
                           } - {new Date(order.createdAt).toLocaleDateString()}
                         </option>
                       ))}

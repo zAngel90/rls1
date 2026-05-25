@@ -124,16 +124,15 @@ export default function Hero() {
   const handleSearch = (item?: any) => {
     if (item) {
       if (item.type === 'game') {
-        navigate(`/catalog?game=${item.id}`);
-      } else if (item.type === 'product') {
-        navigate(`/catalog?search=${encodeURIComponent(item.name)}`);
+        navigate(`/game-items?game=${item.id}`);
       } else if (item.type === 'robux') {
         navigate('/robux');
       }
       setSearchQuery('');
       setIsSearchDropdownOpen(false);
     } else if (searchQuery.trim()) {
-      navigate(`/catalog?search=${encodeURIComponent(searchQuery)}`);
+      // Buscar en el catálogo general
+      navigate(`/game-items?search=${encodeURIComponent(searchQuery)}`);
       setIsSearchDropdownOpen(false);
     }
   };
@@ -152,19 +151,6 @@ export default function Hero() {
             name: game.name,
             image: game.image,
             category: 'Juego'
-          });
-        }
-      });
-
-      // Buscar en productos
-      allProducts.slice(0, 5).forEach(product => {
-        if (product.name.toLowerCase().includes(query)) {
-          results.push({
-            type: 'product',
-            id: product.id,
-            name: product.name,
-            image: product.image,
-            category: 'Producto'
           });
         }
       });
@@ -201,7 +187,7 @@ export default function Hero() {
       ];
       setSearchResults(defaultResults);
     }
-  }, [searchQuery, allGames, allProducts, games]);
+  }, [searchQuery, allGames, games]);
 
   return (
     <>
@@ -324,7 +310,7 @@ export default function Hero() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 onFocus={() => setIsSearchDropdownOpen(true)}
-                onBlur={() => setTimeout(() => setIsSearchDropdownOpen(false), 150)}
+                onBlur={() => setTimeout(() => setIsSearchDropdownOpen(false), 200)}
                 className="flex-1 bg-transparent text-white placeholder-white/50 outline-none text-sm"
               />
             </div>
@@ -414,38 +400,32 @@ export default function Hero() {
         {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           <button 
-            onClick={() => navigate('/catalog?category=robux')}
+            onClick={() => navigate('/robux')}
             className="flex items-center gap-2 px-5 py-3 bg-[#1a3a2e]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1a3a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Gamepad2 className="w-5 h-5" />
             Robux
           </button>
           <button 
-            onClick={() => navigate('/catalog')}
+            onClick={() => navigate('/game-items')}
             className="flex items-center gap-2 px-5 py-3 bg-[#1e3a5f]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1e3a5f]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Monitor className="w-5 h-5" />
             Items In-Game
           </button>
           <button 
-            onClick={() => navigate('/catalog?game=mm2')}
+            onClick={() => navigate('/game-items?game=mm2')}
             className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#dc2626]/40 to-[#991b1b]/40 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:from-[#dc2626]/60 hover:to-[#991b1b]/60 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Sword className="w-5 h-5" />
             MM2
           </button>
           <button 
-            onClick={() => navigate('/catalog?category=limiteds')}
+            onClick={() => navigate('/game-items?game=limiteds')}
             className="flex items-center gap-2 px-5 py-3 bg-[#4a4a2e]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#4a4a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Crown className="w-5 h-5" />
             Limiteds
-          </button>
-          <button 
-            onClick={() => navigate('/fortnite')}
-            className="flex items-center justify-center px-6 py-3 bg-[#0d4a6e]/40 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-bold hover:bg-[#0d4a6e]/60 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
-          >
-            <FortniteIcon className="w-16 h-5" />
           </button>
         </div>
 
@@ -469,7 +449,7 @@ export default function Hero() {
             {games.map((game) => (
               <div
                 key={game.id}
-                onClick={() => navigate(`/catalog?game=${game.id}`)}
+                onClick={() => navigate(`/game-items?game=${game.id}`)}
                 className="min-w-[180px] sm:min-w-[220px] md:min-w-[260px] h-[120px] sm:h-[140px] md:h-[160px] relative rounded-xl md:rounded-2xl overflow-hidden group border border-white/10 flex-shrink-0 shadow-lg cursor-pointer"
               >
                 <img src={game.image ? (game.image.startsWith('http') ? game.image : `${SERVER_URL}${game.image}`) : 'https://via.placeholder.com/260x160'} alt={game.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none" />

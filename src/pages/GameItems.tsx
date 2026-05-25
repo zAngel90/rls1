@@ -130,12 +130,26 @@ export default function GameItems() {
     return () => window.removeEventListener('message', handler);
   }, [navigate]);
 
+  // Construir la URL del iframe con todos los parámetros
+  const buildIframeUrl = () => {
+    const params = new URLSearchParams(window.location.search);
+    
+    // Si hay gameId en la ruta, agregarlo/sobrescribirlo en los parámetros
+    if (gameId) {
+      params.set('game', gameId);
+    }
+    
+    // Construir la URL final
+    const queryString = params.toString();
+    return `${CATALOG_URL}${queryString ? '?' + queryString : ''}`;
+  };
+
   return (
     <div className="fixed inset-0 flex flex-col bg-[#0B0F16] text-white font-sans overflow-hidden">
 
       {/* Iframe que ocupa todo el espacio restante */}
       <iframe
-        src={`${CATALOG_URL}${window.location.search}${window.location.search ? '&' : '?'}game=${encodeURIComponent(gameId || '')}`}
+        src={buildIframeUrl()}
         title="Catálogo de Items"
         className="flex-1 w-full border-none"
         style={{ display: 'block' }}

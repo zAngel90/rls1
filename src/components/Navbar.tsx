@@ -352,7 +352,7 @@ export default function Navbar() {
                                 orders.filter(o => !o.seen).slice(0, 5).map(order => (
                                   <div
                                     key={order.id}
-                                    onClick={() => { navigate(`/orders/${order.id}`); setShowNotifications(false); }}
+                                    onClick={() => { navigate(`/order/${order.id}`); setShowNotifications(false); }}
                                     className="p-3 rounded-2xl cursor-pointer transition-all bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20"
                                   >
                                     <div className="flex items-start gap-2.5">
@@ -669,7 +669,7 @@ export default function Navbar() {
                                 orders.filter(o => !o.seen).slice(0, 3).map(order => (
                                   <div
                                     key={order.id}
-                                    onClick={() => { setShowNotifications(false); navigate('/account'); }}
+                                    onClick={() => { setShowNotifications(false); navigate(`/order/${order.id}`); }}
                                     className="p-3 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-all cursor-pointer group flex gap-3 items-start"
                                   >
                                     <div className={`size-9 rounded-xl flex items-center justify-center shrink-0 border ${order.status === 'completed' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
@@ -746,7 +746,7 @@ export default function Navbar() {
                 </div>
 
                 <Link
-                  to="/orders"
+                  to="/account?tab=pedidos"
                   className="hidden sm:flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors"
                 >
                   Mis Compras
@@ -799,7 +799,7 @@ export default function Navbar() {
                           <div className="px-2 pb-2 space-y-0.5 mt-2">
                             {[
                               { icon: User, label: 'Mi Perfil', href: '/account' },
-                              { icon: ShoppingCart, label: 'Mis Pedidos', href: '/orders' },
+                              { icon: ShoppingCart, label: 'Mis Pedidos', href: '/account?tab=pedidos' },
                               { icon: Users, label: 'Referidos', href: '/referrals' }
                             ].map((item, i) => (
                               <Link key={i} to={item.href} onClick={() => setShowProfile(false)} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-transparent transition-all group text-left">

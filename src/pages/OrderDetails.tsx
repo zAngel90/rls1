@@ -31,6 +31,45 @@ import {
 } from 'lucide-react';
 import { OrdersAPI, SERVER_URL, RobloxAPI, ChatAPI, socket, ReviewsAPI } from '../services/api';
 
+// Helper para obtener el nombre del juego
+const getGameName = (item: any): string => {
+  if (!item) return 'In-Game';
+  
+  // Si ya tiene gameName, usarlo
+  if (item.gameName) return item.gameName;
+  
+  if (!item.game) return 'In-Game';
+  
+  // Mapeo de IDs de juegos a nombres
+  const gameNames: { [key: string]: string } = {
+    'limiteds': 'Limiteds',
+    'murder-mystery-2': 'Murder Mystery 2',
+    'mm2': 'Murder Mystery 2',
+    'fortnite': 'Fortnite',
+    'blox-fruits': 'Blox Fruits',
+    'pet-simulator-x': 'Pet Simulator X',
+    'adopt-me': 'Adopt Me',
+    'jailbreak': 'Jailbreak',
+    'tower-of-hell': 'Tower of Hell',
+    'brookhaven': 'Brookhaven'
+  };
+  
+  const gameId = String(item.game).toLowerCase();
+  
+  // Si está en el mapeo, retornar el nombre
+  if (gameNames[gameId]) {
+    return gameNames[gameId];
+  }
+  
+  // Si el game es un ID numérico como "game-1779505360304", es un juego custom
+  if (gameId.startsWith('game-')) {
+    return 'In-Game';
+  }
+  
+  // Para otros casos, capitalizar el ID
+  return item.game;
+};
+
 interface Order {
   id: string;
   amount: number;
@@ -689,7 +728,7 @@ const OrderDetails = () => {
                       ) : order.type === 'fortnite' ? (
                         `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Skin' : 'Skins'} Fortnite`
                       ) : order.type === 'ingame' ? (
-                        `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} ${order.cart?.[0]?.game || 'In-Game'}`
+                        `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} ${getGameName(order.cart?.[0])}`
                       ) : (order.type === 'mm2' || (order.cart && order.cart.some((item: any) => String(item.game || '').toLowerCase().includes('mm2')))) ? (
                         `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} MM2`
                       ) : (
@@ -1319,7 +1358,9 @@ const OrderDetails = () => {
                             setReviewImage(null);
                             setReviewPreviewUrl(null);
                           }
-                        } catch (error) {
+                        } catch (error: any) {
+                          const errorMessage = error.response?.data?.error || error.message || 'Error al enviar la reseña';
+                          alert(errorMessage);
                           console.error('Error submitting review:', error);
                         } finally {
                           setSubmittingReview(false);

@@ -22,10 +22,11 @@ import ScrollToTop from './components/ScrollToTop';
 function AppContent() {
   const location = useLocation();
   const isIngame = location.pathname.startsWith('/catalog/ingame');
+  const isGameItems = location.pathname === '/game-items';
   const isCheckout = location.pathname === '/checkout';
   const isChat = location.pathname === '/chat';
   const isAdmin = location.pathname.startsWith('/admin');
-  const isNoUI = isIngame || isCheckout || isChat || isAdmin;
+  const isNoUI = isIngame || isGameItems || isCheckout || isChat || isAdmin;
 
   React.useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -48,7 +49,7 @@ function AppContent() {
       {!isAdmin && <StarBackground />}
       {!isNoUI && <Navbar />}
 
-      <main className={isIngame || isCheckout ? 'lg:flex-1 flex flex-col' : 'flex-grow'}>
+      <main className={isIngame || isGameItems || isCheckout ? 'lg:flex-1 flex flex-col' : 'flex-grow'}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
@@ -59,6 +60,7 @@ function AppContent() {
           <Route path="/account" element={<Account />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/catalog/ingame/:gameId" element={<GameItems />} />
+          <Route path="/game-items" element={<GameItems />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/fortnite" element={<Fortnite />} />
           <Route path="/order/:orderId" element={<OrderDetails />} />

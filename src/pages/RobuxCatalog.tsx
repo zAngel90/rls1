@@ -242,7 +242,16 @@ export default function RobuxCatalog() {
       try {
         const res = await OrdersAPI.getRecentOrders();
         if (res.success) {
-          setRecentPurchases(res.data);
+          // Filtrar solo compras de Robux (excluir MM2, Limited, Fortnite, ingame, etc.)
+          const robuxOrders = res.data.filter((order: any) => {
+            // Excluir si tiene type y NO es robux
+            if (order.type && order.type !== 'robux') return false;
+            // Excluir si tiene cart (es un pedido de items)
+            if (order.cart && order.cart.length > 0) return false;
+            // Solo incluir si tiene amount (cantidad de Robux)
+            return order.amount && order.amount > 0;
+          });
+          setRecentPurchases(robuxOrders);
         }
       } catch (err) {
         console.error('Error fetching recent orders:', err);
@@ -882,6 +891,12 @@ export default function RobuxCatalog() {
                     return `HACE ${Math.floor(seconds / 3600)} HORAS`;
                   };
                   
+                  // Censurar nombre: mostrar solo 3 caracteres y el resto con asteriscos
+                  const censorUsername = (name: string) => {
+                    if (!name || name.length <= 3) return name;
+                    return name.substring(0, 3) + '*'.repeat(Math.min(name.length - 3, 8));
+                  };
+                  
                   // Solo cargar avatar si tenemos el ID de Roblox
                   const avatarUrl = item.userId ? `${SERVER_URL}/api/users/avatar/${item.userId}` : null;
                   
@@ -896,7 +911,7 @@ export default function RobuxCatalog() {
                           )}
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-[11px] font-bold text-white/80 leading-tight group-hover/item:text-white transition-colors">{item.username}</span>
+                          <span className="text-[11px] font-bold text-white/80 leading-tight group-hover/item:text-white transition-colors">{censorUsername(item.username)}</span>
                           <span className="text-[9px] text-white/20 uppercase font-medium tracking-wider">{timeAgo(item.createdAt)}</span>
                         </div>
                       </div>
@@ -1800,11 +1815,11 @@ export default function RobuxCatalog() {
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-gray-800 rounded-2xl overflow-hidden border border-white/10">
                           <img 
-                            src={selectedUser?.avatarUrl || `https://www.roblox.com/headshot-thumbnail/image?userId=${selectedUser?.id || 0}&width=150&height=150&format=png`} 
+                            src={(selectedUser?.id || selectedUser?.userId) ? `${BASE_URL}/users/avatar/${selectedUser.id || selectedUser.userId}` : `https://ui-avatars.com/api/?name=${selectedUser?.name || 'User'}&background=F5A500&color=fff`} 
                             alt={selectedUser?.name} 
                             className="w-full h-full object-cover"
                             onError={(e) => {
-                              (e.target as HTMLImageElement).src = 'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter';
+                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedUser?.name || 'User'}&background=F5A500&color=fff`;
                             }}
                           />
                         </div>
@@ -1994,9 +2009,9 @@ export default function RobuxCatalog() {
                       <div className="flex items-center gap-3">
                         <div className="w-11 h-11 bg-gray-800 rounded-full overflow-hidden border border-white/10 ring-4 ring-white/5">
                           <img 
-                            src={selectedUser ? `${BASE_URL}/users/avatar/${selectedUser.id || selectedUser.userId}` : 'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter'} 
+                            src={selectedUser ? `${BASE_URL}/users/avatar/${selectedUser.id || selectedUser.userId}` : `https://ui-avatars.com/api/?name=User&background=F5A500&color=fff`} 
                             alt={selectedUser?.name} 
-                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7CD8F7C85B3C840748F735B16F6D2687-Png/150/150/AvatarHeadshot/Webp/noFilter'; }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${selectedUser?.name || 'User'}&background=F5A500&color=fff`; }}
                           />
                         </div>
                         <div>
