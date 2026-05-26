@@ -197,6 +197,7 @@ export default function RobuxCatalog() {
   const [isLoading, setIsLoading] = useState(false);
   const [requiredGroups, setRequiredGroups] = useState<any[]>([]);
   const [groupVerificationResults, setGroupVerificationResults] = useState<any>(null);
+  const [copiedPrice, setCopiedPrice] = useState(false);
   const [recentUsers, setRecentUsers] = useState<any[]>(() => {
     try {
       return JSON.parse(localStorage.getItem('roblox_recent_users') || '[]');
@@ -1556,11 +1557,32 @@ export default function RobuxCatalog() {
                            </div>
                         </div>
                         <button 
-                           onClick={() => navigator.clipboard.writeText(gamepassRequiredPrice.toString())}
-                           className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white/80 text-[11px] font-bold transition-colors border border-white/10"
+                           onClick={async () => {
+                             try {
+                               await navigator.clipboard.writeText(gamepassRequiredPrice.toString());
+                               setCopiedPrice(true);
+                               setTimeout(() => setCopiedPrice(false), 2000);
+                             } catch (err) {
+                               console.error('Error al copiar:', err);
+                             }
+                           }}
+                           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all border ${
+                             copiedPrice 
+                               ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400' 
+                               : 'bg-white/5 hover:bg-white/10 border-white/10 text-white/80'
+                           }`}
                         >
-                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                           Copiar
+                           {copiedPrice ? (
+                             <>
+                               <CheckCircle2 size={12} />
+                               ¡Copiado!
+                             </>
+                           ) : (
+                             <>
+                               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                               Copiar
+                             </>
+                           )}
                         </button>
                       </div>
                       
@@ -1731,12 +1753,6 @@ export default function RobuxCatalog() {
                           </>
                         )}
                       </button>
-                      
-                      <div className="text-center pt-2">
-                         <button className="text-[11px] font-bold text-white/40 hover:text-white/70 flex items-center gap-1 justify-center mx-auto transition-colors">
-                           ¿Quieres buscar el gamepass por URL? <ExternalLink size={10} />
-                         </button>
-                      </div>
                     </div>
                   </>
                 )}
