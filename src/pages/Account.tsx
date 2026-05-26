@@ -682,7 +682,9 @@ export default function Account() {
                                   ? `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} MM2`
                                   : order.type === 'trade_limited'
                                     ? `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} Limited`
-                                    : `${order.amount} Robux`
+                                    : order.type === 'ingame'
+                                      ? `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'} In-Game`
+                                      : `${order.amount} Robux`
                               } • {new Date(order.createdAt).toLocaleDateString()}
                             </p>
                           </div>
