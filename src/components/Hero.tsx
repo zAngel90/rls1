@@ -126,7 +126,7 @@ export default function Hero() {
       if (item.type === 'game') {
         navigate(`/game-items?game=${item.id}`);
       } else if (item.type === 'robux') {
-        navigate('/robux');
+        navigate('/catalog/robux');
       }
       setSearchQuery('');
       setIsSearchDropdownOpen(false);
@@ -400,7 +400,7 @@ export default function Hero() {
         {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           <button 
-            onClick={() => navigate('/robux')}
+            onClick={() => navigate('/catalog/robux')}
             className="flex items-center gap-2 px-5 py-3 bg-[#1a3a2e]/30 lg:backdrop-blur-md border border-white/[0.08] rounded-2xl text-white text-sm font-semibold hover:bg-[#1a3a2e]/50 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           >
             <Gamepad2 className="w-5 h-5" />

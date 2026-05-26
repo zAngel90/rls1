@@ -2118,7 +2118,9 @@ export default function RobuxCatalog() {
 
                 <div className="space-y-5">
                   {/* Step 2: Search User */}
-                  <div className="relative mt-4">
+                  <div className={`relative mt-4 transition-all duration-300 ${
+                    recentUsers.length > 0 && !selectedUser ? 'mb-[240px]' : 'mb-20'
+                  }`}>
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 z-10">
                       <Search size={16} />
                     </div>
@@ -2157,7 +2159,7 @@ export default function RobuxCatalog() {
                         <span className="text-[10px] font-bold text-yellow-400/80 uppercase tracking-wider">Recientes</span>
                       </div>
                       
-                      <div className="max-h-[280px] overflow-y-auto scrollbar-hide">
+                      <div className="max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(202, 138, 4, 0.3) rgba(255, 255, 255, 0.05)' }}>
                         {recentUsers.map((u: any, idx: number) => (
                           <React.Fragment key={u.id}>
                             <button
@@ -2262,7 +2264,9 @@ export default function RobuxCatalog() {
                             setIsLoading(false);
                           }
                         }}
-                        className="w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                        className={`w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider ${
+                          recentUsers.length > 0 && !selectedUser ? 'mt-[220px]' : 'mt-4'
+                        }`}
                       >
                         {isLoading ? (
                           <>
@@ -2362,18 +2366,6 @@ export default function RobuxCatalog() {
                                   <CheckCircle2 size={10} className="text-emerald-500" />
                                   <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">Ya eres miembro</span>
                                 </div>
-                                {group.remainingDays > 0 && (
-                                  <div className="flex items-center gap-1.5 px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded-lg text-[7px] font-black text-amber-500 w-fit uppercase tracking-wider">
-                                    <Clock size={8} />
-                                    <span>Faltan {group.remainingDays} días</span>
-                                  </div>
-                                )}
-                                {group.remainingDays <= 0 && (
-                                  <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-[7px] font-black text-emerald-500 w-fit uppercase tracking-wider">
-                                    <CheckCircle2 size={8} />
-                                    <span>Listo para retiro</span>
-                                  </div>
-                                )}
                               </div>
                             ) : (
                               <p className="text-white/30 text-[9px] mt-1 truncate">Debes unirte a este grupo</p>

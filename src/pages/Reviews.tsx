@@ -274,8 +274,11 @@ export default function Reviews() {
 
   useEffect(() => {
     fetchReviews();
-    fetchUserOrders();
   }, []);
+
+  useEffect(() => {
+    fetchUserOrders();
+  }, [reviews]);
 
   const fetchUserOrders = async () => {
     try {
@@ -284,9 +287,16 @@ export default function Reviews() {
 
       const res = await OrdersAPI.getUserOrders(user.id);
       if (res.success) {
-        // Filtrar solo órdenes completadas y ordenar por más recientes
+        // Obtener IDs de órdenes que ya tienen reseña
+        const reviewedOrderIds = new Set(
+          reviews
+            .filter(r => r.orderId && String(r.userId) === String(user.id))
+            .map(r => r.orderId)
+        );
+
+        // Filtrar solo órdenes completadas que NO tienen reseña y ordenar por más recientes
         const completedOrders = res.data
-          .filter((order: any) => order.status === 'completed')
+          .filter((order: any) => order.status === 'completed' && !reviewedOrderIds.has(order.id))
           .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         setUserOrders(completedOrders);
       }

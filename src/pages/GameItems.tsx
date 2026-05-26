@@ -1,12 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { OrdersAPI, ChatAPI, SERVER_URL } from '../services/api';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 
 const CATALOG_URL = 'https://rls2.vercel.app/';
+
+// Helper para convertir nombre a slug
+const nameToSlug = (name: string): string => {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remover acentos
+    .replace(/[^a-z0-9]+/g, '-') // Reemplazar caracteres especiales con guiones
+    .replace(/^-+|-+$/g, ''); // Remover guiones al inicio y final
+};
 
 export default function GameItems() {
   const navigate = useNavigate();
   const { gameId } = useParams<{ gameId: string }>();
+  const [searchParams] = useSearchParams();
+  const [gamesMap, setGamesMap] = useState<{ slugToId: Record<string, string>; idToSlug: Record<string, string> }>({
+    slugToId: {},
+    idToSlug: {}
+  });
+
+  // Cargar juegos dinámicamente desde la API
+  useEffect(() => {
+    const loadGames = async () => {
+      try {
+        const response = await axios.get(`${SERVER_URL}/api/admin/games-config?all=true`);
+        if (response.data?.success && Array.isArray(response.data.data)) {
+          const slugToId: Record<string, string> = {};
+          const idToSlug: Record<string, string> = {};
+          
+          response.data.data.forEach((game: any) => {
+            const slug = nameToSlug(game.name);
+            slugToId[slug] = game.id;
+            idToSlug[game.id] = slug;
+          });
+          
+          setGamesMap({ slugToId, idToSlug });
+        }
+      } catch (err) {
+        console.error('Error loading games:', err);
+      }
+    };
+    
+    loadGames();
+  }, []);
 
   // Escucha mensajes del iframe (cross-origin seguro)
   useEffect(() => {
@@ -126,18 +167,39 @@ export default function GameItems() {
           ]).catch(err => console.error('Error marking notifications as seen:', err));
         }
       }
+
+      // Escuchar cambios de juego desde el iframe para actualizar la URL
+      if (event.data?.action === 'gameChanged' && event.data?.gameId) {
+        const slug = gamesMap.idToSlug[event.data.gameId] || event.data.gameId;
+        const currentParams = new URLSearchParams(window.location.search);
+        currentParams.set('game', slug);
+        const newUrl = `/game-items?${currentParams.toString()}`;
+        
+        // Usar history.replaceState para actualizar la URL sin recargar
+        window.history.replaceState(null, '', newUrl);
+      }
     };
     window.addEventListener('message', handler);
     return () => window.removeEventListener('message', handler);
-  }, [navigate]);
+  }, [navigate, gamesMap]);
 
   // Construir la URL del iframe con todos los parámetros
   const buildIframeUrl = () => {
     const params = new URLSearchParams(window.location.search);
     
+    // Obtener el game slug de los parámetros
+    const gameSlug = searchParams.get('game');
+    
+    // Si hay gameSlug, convertirlo a ID y agregarlo a los parámetros del iframe
+    if (gameSlug) {
+      const actualGameId = gamesMap.slugToId[gameSlug] || gameSlug;
+      params.set('game', actualGameId);
+    }
+    
     // Si hay gameId en la ruta, agregarlo/sobrescribirlo en los parámetros
     if (gameId) {
-      params.set('game', gameId);
+      const actualGameId = gamesMap.slugToId[gameId] || gameId;
+      params.set('game', actualGameId);
     }
     
     // Construir la URL final
