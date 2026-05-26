@@ -35,7 +35,7 @@ const faqs = [
     question: "¿Cuánto tarda la entrega de Robux?",
     answer: `
       <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
-        <p class="text-sm font-medium text-gray-300">Nuestra infraestructura está optimizada para la <span class='text-pixel-accent font-bold'>velocidad extrema</span>. Una vez validado el pago, el sistema inicia la transferencia que suele completarse en un rango de <span class='text-white font-black'>1 a 5 minutos</span>. Utilizamos servidores dedicados para asegurar que no haya retrasos incluso en horas de alta demanda mundial.</p>
+        <p class="text-sm font-medium text-gray-300">Una vez validado el pago, iniciamos la entrega de inmediato. En la mayoría de casos, los Robux se completan en un rango de <span class='text-white font-black'>1 a 5 minutos</span>, usando un proceso seguro y optimizado dentro de Roblox para evitar demoras, incluso en horarios de alta demanda.</p>
       </div>
     `
   },
@@ -45,7 +45,7 @@ const faqs = [
     question: "¿Es seguro? ¿Hay riesgo de baneo?",
     answer: `
       <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
-        <p class="text-sm font-medium text-gray-300">Cero riesgos. En <span class='text-white font-bold'>Pixel Store</span>, priorizamos la integridad de tu perfil. <span class='text-pixel-accent font-bold'>Nunca solicitamos tu contraseña</span> y todas las transacciones se realizan mediante métodos legítimos y seguros que cumplen con los protocolos de la plataforma, garantizando una experiencia sin baneos.</p>
+        <p class="text-sm font-medium text-gray-300">Puedes comprar tranquilo. En <span class='text-white font-bold'>RLS</span> no te pedimos contraseña, códigos ni acceso a tu cuenta. La entrega se realiza mediante <span class='text-pixel-accent font-bold'>métodos seguros dentro de Roblox</span>, por lo que tu perfil no se ve comprometido ni queda expuesto a sanciones.</p>
       </div>
     `
   },
@@ -55,17 +55,17 @@ const faqs = [
     question: "¿Cómo sé que son confiables?",
     answer: `
       <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
-        <p class="text-sm font-medium text-gray-300">Contamos con más de <span class='text-white font-bold'>100,000 pedidos entregados</span> y miles de reseñas positivas en nuestra comunidad. Nuestro sistema es transparente y puedes seguir tu pedido en tiempo real. Además, somos una tienda verificada con años de trayectoria en el mercado.</p>
+        <p class="text-sm font-medium text-gray-300">En <span class='text-white font-bold'>RLS</span> contamos con <span class='text-pixel-accent font-bold'>4 años de experiencia</span> brindando un servicio seguro, rápido y confiable en la venta de Robux. Hemos entregado miles de pedidos a clientes de todo el Perú, respaldados por reseñas reales y una comunidad activa que confía en nosotros. Tu compra es segura, transparente y siempre acompañada por nuestro equipo durante todo el proceso.</p>
       </div>
     `
   },
   {
     id: "payments",
     icon: CreditCard,
-    question: "¿Qué métodos de pago aceptan?",
+    question: "¿Qué métodos de pago usan?",
     answer: `
       <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
-        <p class="text-sm font-medium text-gray-300">Soportamos una suite completa de opciones: desde <span class='text-blue-400 font-bold'>PayPal</span> y tarjetas de crédito internacionales hasta <span class='text-orange-400 font-bold'>Criptomonedas</span> para máxima privacidad. Cada pago es procesado a través de pasarelas con cifrado de <span class='text-pixel-accent font-bold'>256-bits</span>, asegurando que tus datos financieros estén blindados.</p>
+        <p class="text-sm font-medium text-gray-300">Aceptamos métodos de pago peruanos como <span class='text-emerald-400 font-bold'>Yape</span>, <span class='text-blue-400 font-bold'>Plin</span>, transferencias y depósitos bancarios mediante <span class='text-white font-bold'>BCP</span> e <span class='text-white font-bold'>Interbank</span>. Tu compra es segura y verificada, ya que revisamos cada pago antes de procesar tu pedido.</p>
       </div>
     `
   }
