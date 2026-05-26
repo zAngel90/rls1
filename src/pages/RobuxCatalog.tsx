@@ -2116,10 +2116,10 @@ export default function RobuxCatalog() {
                   </div>
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-0">
                   {/* Step 2: Search User */}
                   <div className={`relative mt-4 transition-all duration-300 ${
-                    recentUsers.length > 0 && !selectedUser ? 'mb-[240px]' : 'mb-20'
+                    recentUsers.length > 0 && !selectedUser ? 'mb-[240px]' : 'mb-0'
                   }`}>
                     <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 z-10">
                       <Search size={16} />
@@ -2212,14 +2212,19 @@ export default function RobuxCatalog() {
                     </div>
                   </div>
                   
-                  {!selectedUser && !searchQuery.trim() && recentUsers.length === 0 && !isGroupDropdownOpen && (
-                    <div className="py-6 flex flex-col items-center justify-center gap-3 opacity-40">
-                      <div className="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20">
-                         <Search size={24} className="text-yellow-500/40" />
+                  {!selectedUser && !searchQuery.trim() && !isGroupDropdownOpen && (
+                    <div className="mt-4 flex flex-col items-center gap-3 opacity-50">
+                      <div className="w-14 h-14 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20">
+                         <HelpCircle size={28} className="text-yellow-500/60" />
                       </div>
-                      <p className="text-[10px] font-black text-white/40 uppercase tracking-widest text-center">
-                        Ingresa tu nombre de usuario para continuar
-                      </p>
+                      <div className="text-center space-y-1">
+                        <p className="text-xs font-bold text-white/60">
+                          ¿Cómo funciona?
+                        </p>
+                        <p className="text-[10px] text-white/40 max-w-[240px]">
+                          Ingresa tu nombre de usuario de Roblox para verificar si perteneces a los grupos requeridos
+                        </p>
+                      </div>
                     </div>
                   )}
 
