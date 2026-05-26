@@ -1985,16 +1985,9 @@ export default function RobuxCatalog() {
                 className="p-6 sm:p-8"
               >
                 <div className="flex justify-between items-start mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-[#1a1835] border border-white/5 rounded-2xl flex items-center justify-center shadow-inner">
-                      <div className="w-6 h-6">
-                        <img src="/images/robux-logo.svg" className="w-full h-full object-contain filter brightness-0 invert opacity-90" alt="" />
-                      </div>
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-black text-white leading-tight">{displayAmount.toLocaleString()} Robux</h2>
-                      <p className="text-white/40 text-[11px] font-bold uppercase tracking-[0.1em]">Entrega por grupo</p>
-                    </div>
+                  <div>
+                    <h2 className="text-xl font-black text-white leading-tight">Compra por Grupo</h2>
+                    <p className="text-white/40 text-[11px] font-bold uppercase tracking-[0.1em]">Entrega por grupo</p>
                   </div>
                   <button onClick={() => setIsGroupModalOpen(false)} className="text-white/20 hover:text-white transition-colors p-1">
                     <X size={20} />
