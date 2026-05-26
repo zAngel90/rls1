@@ -288,11 +288,14 @@ export default function RobuxCatalog() {
         setGroupVerificationResults(res.data);
         // Siempre ir al paso 3 para que el usuario vea el estado de sus grupos
         setGroupStep(3);
+        // Mantener loading activo hasta que el paso cambie
+        setTimeout(() => setIsLoading(false), 500);
+      } else {
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('Error verifying groups:', error);
       setGroupError('Error al verificar los grupos. Intenta de nuevo.');
-    } finally {
       setIsLoading(false);
     }
   };
@@ -2116,7 +2119,7 @@ export default function RobuxCatalog() {
                   </div>
                 </div>
 
-                <div className="space-y-0">
+                <div className="space-y-5">
                   {/* Step 2: Search User */}
                   <div className={`relative mt-4 transition-all duration-300 ${
                     recentUsers.length > 0 && !selectedUser ? 'mb-[240px]' : 'mb-0'
@@ -2258,19 +2261,20 @@ export default function RobuxCatalog() {
                               const user = result.data[0];
                               setSelectedUser(user);
                               saveRecentUser(user);
+                              // No desactivar loading aquí, handleVerifyGroups lo manejará
                               handleVerifyGroups();
                             } else {
                               setGroupError('Usuario no encontrado. Verifica el nombre exacto de Roblox.');
+                              setIsLoading(false);
                             }
                           } catch (error) {
                             console.error(error);
                             setGroupError('Error al buscar el usuario.');
-                          } finally {
                             setIsLoading(false);
                           }
                         }}
                         className={`w-full p-4 bg-yellow-500 hover:bg-yellow-400 text-black rounded-2xl font-black text-sm transition-all shadow-[0_8px_20px_rgba(245,158,11,0.2)] flex items-center justify-center gap-3 uppercase tracking-wider ${
-                          recentUsers.length > 0 && !selectedUser ? 'mt-[220px]' : 'mt-4'
+                          recentUsers.length > 0 && !selectedUser ? 'mt-[220px]' : 'mt-16'
                         }`}
                       >
                         {isLoading ? (

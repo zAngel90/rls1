@@ -855,7 +855,7 @@ const Checkout = () => {
                                         </div>
                                         <div className="flex-1 min-w-0">
                                           <p className="text-[9px] text-white/30 font-bold uppercase tracking-tight mb-0.5">
-                                            {item?.game || 'Roblox Limiteds'}
+                                            {item?.gameName || item?.game || 'Roblox Limiteds'}
                                           </p>
                                           <p className="text-[11px] font-black text-white truncate leading-tight mb-1">{item?.name}</p>
                                           <p className="text-[9px] text-blue-400 font-bold uppercase">{item?.rarity || item?.category || 'In-Game'}</p>
@@ -1051,10 +1051,12 @@ const Checkout = () => {
                                       </div>
                                       <div className="flex-1 min-w-0">
                                         <p className="text-[9px] text-white/30 font-bold uppercase tracking-tight mb-0.5">
-                                          {item?.game || 'In-Game Item'}
+                                          {item?.gameName || item?.game || 'In-Game Item'}
                                         </p>
                                         <p className="text-[11px] font-black text-white truncate leading-tight mb-1">{item?.name}</p>
-                                        <p className="text-[9px] text-blue-400 font-bold uppercase">{item?.category || 'Item'}</p>
+                                        <p className="text-[9px] text-blue-400 font-bold uppercase">
+                                          {isIngame ? 'In-Game Item' : isMM2 ? 'MM2 Item' : isLimiteds ? 'Limited' : item?.rarity || item?.category || 'Item'}
+                                        </p>
                                       </div>
                                       <div className="text-right">
                                         <span className="text-[10px] font-black text-white/40">{((item?.price || 0) * (item?.qty || 1)).toLocaleString('es-PE', { minimumFractionDigits: 0 })} {displayCurrency}</span>

@@ -29,7 +29,7 @@ import {
   Camera,
   Loader2
 } from 'lucide-react';
-import { OrdersAPI, SERVER_URL, RobloxAPI, ChatAPI, socket, ReviewsAPI } from '../services/api';
+import { OrdersAPI, SERVER_URL, RobloxAPI, ChatAPI, socket, ReviewsAPI, StoreAPI } from '../services/api';
 
 // Helper para obtener el nombre del juego
 const getGameName = (item: any): string => {
@@ -105,6 +105,7 @@ const OrderDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [paymentMethods, setPaymentMethods] = useState<any[]>([]);
   
   // Chat States
   const [chat, setChat] = useState<any>(null);
@@ -170,9 +171,10 @@ const OrderDetails = () => {
   useEffect(() => {
     const fetchOrderData = async () => {
       try {
-        const [orderRes, chatRes] = await Promise.all([
+        const [orderRes, chatRes, paymentsRes] = await Promise.all([
           OrdersAPI.getOrderById(orderId!),
-          ChatAPI.getChatByOrderId(orderId!)
+          ChatAPI.getChatByOrderId(orderId!),
+          StoreAPI.getPaymentMethodsConfig()
         ]);
 
         if (orderRes.success) {
@@ -187,6 +189,10 @@ const OrderDetails = () => {
           setMessages(chatRes.data.messages || []);
           // Join socket room
           socket.emit('join-chat', chatRes.data.id);
+        }
+
+        if (paymentsRes.success) {
+          setPaymentMethods(paymentsRes.data || []);
         }
       } catch (err) {
         setError('Error al conectar con el servidor');
@@ -739,7 +745,9 @@ const OrderDetails = () => {
                       <LucideTag size={10} /> {order.type === 'trade_limited' || (order.cart && order.cart.length > 0 && !String(order.cart[0].game || '').toLowerCase().includes('robux')) ? `${order.cart?.length || 1} ${order.cart?.length === 1 ? 'Item' : 'Ítems'}` : `Cantidad: ${order.amount}`}
                     </p>
                     <div className="flex items-center gap-2 mt-2">
-                       <span className="text-[9px] font-black text-white/20 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5">BCP Yape</span>
+                       <span className="text-[9px] font-black text-white/20 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5">
+                         {paymentMethods.find(pm => pm.id === order.paymentMethodId)?.name || 'Método de Pago'}
+                       </span>
                     </div>
                   </div>
                 </div>

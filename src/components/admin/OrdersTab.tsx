@@ -183,7 +183,7 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                           </button>
                         </div>
                         <span className="text-[10px] text-white/20 font-black uppercase tracking-widest">
-                          {order.type === 'mm2' ? 'Murder Mystery 2' : order.type === 'trade_limited' ? 'Limiteds (Trade)' : order.type === 'ingame' ? (order.cart?.[0]?.game || 'In-Game Items') : 'Limiteds'}
+                          {order.type === 'mm2' ? 'Murder Mystery 2' : order.type === 'trade_limited' ? 'Limiteds (Trade)' : order.type === 'ingame' ? (order.cart?.[0]?.gameName || order.cart?.[0]?.game || 'In-Game Items') : 'Limiteds'}
                         </span>
                       </>
                     ) : (
@@ -394,7 +394,7 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                         <div className="flex-1">
                           <p className="text-sm font-bold text-white">{item?.name}</p>
                           <p className="text-[11px] font-bold uppercase mt-1 text-white/60">
-                            {item?.game || (selectedOrderItems.type === 'mm2' ? 'Murder Mystery 2' : 'Roblox Limiteds')}
+                            {item?.gameName || item?.game || (selectedOrderItems.type === 'mm2' ? 'Murder Mystery 2' : 'Roblox Limiteds')}
                           </p>
                         </div>
                         {item?.price && (
