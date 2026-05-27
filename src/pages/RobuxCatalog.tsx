@@ -60,7 +60,7 @@ const faqs = [
   },
   {
     q: '¿Qué métodos de pago aceptan?',
-    a: 'Aceptamos Tarjetas, PayPal, Binance y más. Todos los pagos se procesan de forma segura y encriptada.'
+    a: 'Aceptamos métodos de pago peruanos como BCP, Yape, Interbank y Plin. Todos los pagos se procesan de forma segura.'
   },
   {
     q: '¿Es seguro comprar aquí?',
@@ -948,7 +948,7 @@ export default function RobuxCatalog() {
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-white font-bold text-xs">Pago Seguro</h3>
-                  <p className="text-white/30 text-[11px] leading-tight line-clamp-1">Tarjetas, PayPal, Binance y más.</p>
+                  <p className="text-white/30 text-[11px] leading-tight line-clamp-1">BCP, Yape, Interbank y Plin.</p>
                 </div>
               </div>
             </div>
@@ -1060,7 +1060,7 @@ export default function RobuxCatalog() {
                   },
                   {
                     q: '¿Qué métodos de pago aceptan?',
-                    a: 'Aceptamos Tarjetas, PayPal, Binance, y métodos locales de tu país. Todos los pagos se procesan de forma segura.'
+                    a: 'Aceptamos métodos de pago peruanos como BCP, Yape, Interbank y Plin. Todos los pagos se procesan de forma segura.'
                   },
                   {
                     q: '¿Es seguro comprar aquí?',
