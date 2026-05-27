@@ -16,6 +16,7 @@ import Admin from './pages/Admin';
 import Fortnite from './pages/Fortnite';
 import OrderDetails from './pages/OrderDetails';
 import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 import PageLoader from './components/PageLoader';
 import ScrollToTop from './components/ScrollToTop';
@@ -65,6 +66,7 @@ function AppContent() {
           <Route path="/z_25ji16ls" element={<Admin />} />
           <Route path="/order/:orderId" element={<OrderDetails />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </main>
 

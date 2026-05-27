@@ -267,7 +267,7 @@ export default function Footer() {
                             <h4 className="text-xs font-bold tracking-widest text-gray-500 uppercase mb-5">Legal</h4>
                             <ul className="space-y-3">
                                 <li><Link to="/terms" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><FileText size={14} /> Términos y Condiciones</Link></li>
-                                <li><a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><Shield size={14} /> Privacidad</a></li>
+                                <li><Link to="/privacy" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><Shield size={14} /> Política de Privacidad</Link></li>
                             </ul>
                         </div>
 
