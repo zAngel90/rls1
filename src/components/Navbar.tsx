@@ -240,14 +240,11 @@ export default function Navbar() {
               </button>
 
               <Link to="/" onClick={() => setActiveNav('inicio')} className="flex items-center ml-3">
-                <motion.img 
-                  whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                <img 
                   src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" 
                   alt="RLS Store" 
-                  className="h-8 w-auto object-contain scale-[1.35] origin-left" 
-                  style={{ overflow: 'visible' }} 
+                  className="w-auto object-contain" 
+                  style={{ height: '32px', overflow: 'visible' }} 
                 />
               </Link>
 
@@ -422,14 +419,11 @@ export default function Navbar() {
             {/* Desktop View: Logo (Left), Nav (Center), Actions (Right) */}
             <div className="hidden lg:flex items-center justify-between w-full">
               <Link to="/" onClick={() => setActiveNav('inicio')} className="flex items-center cursor-pointer ml-6">
-                <motion.img 
-                  whileHover={{ scale: 1.05, rotate: [0, -3, 3, 0] }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                <img 
                   src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" 
                   alt="RLS Store" 
-                  className="h-10 w-auto object-contain scale-[1.4] origin-left" 
-                  style={{ overflow: 'visible' }} 
+                  className="w-auto object-contain" 
+                  style={{ height: '40px', overflow: 'visible' }} 
                 />
               </Link>
 
