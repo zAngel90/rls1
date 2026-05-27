@@ -66,7 +66,7 @@ const faqs = [
     question: "¿Qué métodos de pago usan?",
     answer: `
       <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
-        <p class="text-sm font-medium text-gray-300">Aceptamos métodos de pago peruanos como <span class='text-emerald-400 font-bold'>Yape</span>, <span class='text-blue-400 font-bold'>Plin</span>, transferencias y depósitos bancarios mediante <span class='text-white font-bold'>BCP</span> e <span class='text-white font-bold'>Interbank</span>. Tu compra es segura y verificada, ya que revisamos cada pago antes de procesar tu pedido.</p>
+        <p class="text-sm font-medium text-gray-300">Aceptamos métodos de pago peruanos como <span class='text-white font-bold'>BCP</span>, <span class='text-emerald-400 font-bold'>Yape</span>, <span class='text-white font-bold'>Interbank</span> y <span class='text-blue-400 font-bold'>Plin</span>. Todos los pagos se procesan de forma segura.</p>
       </div>
     `
   }

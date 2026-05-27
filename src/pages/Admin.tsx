@@ -50,14 +50,12 @@ import PaymentMethodsTab from '../components/admin/PaymentMethodsTab';
 import HomeTab from '../components/admin/HomeTab';
 import CategoryIconsTab from '../components/admin/CategoryIconsTab';
 import CouponsTab from '../components/admin/CouponsTab';
-import FortniteTab from '../components/admin/FortniteTab';
 import EmailSettingsTab from '../components/admin/EmailSettingsTab';
 
 const TABS = [
   { id: 'dashboard', label: 'Panel General', icon: LayoutDashboard, category: 'Main' },
   { id: 'orders', label: 'Pedidos', icon: History, category: 'Operaciones' },
   { id: 'mm2-deliveries', label: 'Entregas MM2', icon: Package, category: 'Operaciones' },
-  { id: 'fortnite', label: 'Fortnite', icon: Zap, category: 'Operaciones' },
   { id: 'chats', label: 'Soporte Chat', icon: MessageSquare, category: 'Operaciones' },
   { id: 'products', label: 'Paquetes Robux', icon: ShoppingBag, category: 'Tienda' },
   { id: 'limiteds', label: 'Limiteds / Trade', icon: Crown, category: 'Tienda' },
@@ -609,10 +607,6 @@ export default function Admin() {
 
                     {activeTab === 'mm2-deliveries' && (
                       <MM2DeliveriesTab orders={orders} />
-                    )}
-
-                    {activeTab === 'fortnite' && (
-                      <FortniteTab showToast={showToast} />
                     )}
 
                     {activeTab === 'home' && (

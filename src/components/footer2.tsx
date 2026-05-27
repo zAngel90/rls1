@@ -239,21 +239,16 @@ export default function Footer() {
                                 <button className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 hover:bg-white/10 transition-all">
                                     🇪🇸 ES
                                 </button>
-                                <button className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400 hover:bg-white/10 transition-all">
-                                    🇺🇸 EN
-                                </button>
-                                <button className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400 hover:bg-white/10 transition-all">
-                                    🇧🇷 PT
-                                </button>
                             </div>
                             {/* Métodos de pago */}
-                            <div className="flex items-center gap-3 opacity-60">
-                                {/* PayPal */}
-                                <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><rect width="40" height="24" rx="4" fill="white" fillOpacity="0.08" /><text x="5" y="16" fontSize="9" fill="#00a0dc" fontWeight="bold">Pay</text><text x="18" y="16" fontSize="9" fill="#001f6b" fontWeight="bold">Pal</text></svg>
-                                {/* Visa */}
-                                <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><rect width="40" height="24" rx="4" fill="white" fillOpacity="0.08" /><text x="7" y="16" fontSize="11" fill="white" fontWeight="bold">VISA</text></svg>
-                                {/* Mastercard */}
-                                <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><rect width="40" height="24" rx="4" fill="white" fillOpacity="0.08" /><circle cx="15" cy="12" r="7" fill="#eb001b" fillOpacity="0.85" /><circle cx="25" cy="12" r="7" fill="#f79e1b" fillOpacity="0.85" /></svg>
+                            <div className="flex items-center gap-2 opacity-80">
+                                <span className="text-[10px] font-bold text-white/80">BCP</span>
+                                <span className="text-white/20">•</span>
+                                <span className="text-[10px] font-bold text-emerald-400">Yape</span>
+                                <span className="text-white/20">•</span>
+                                <span className="text-[10px] font-bold text-white/80">Interbank</span>
+                                <span className="text-white/20">•</span>
+                                <span className="text-[10px] font-bold text-blue-400">Plin</span>
                             </div>
                         </div>
                     </div>

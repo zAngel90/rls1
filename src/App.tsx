@@ -62,7 +62,6 @@ function AppContent() {
           <Route path="/catalog/ingame/:gameId" element={<GameItems />} />
           <Route path="/game-items" element={<GameItems />} />
           <Route path="/z_25ji16ls" element={<Admin />} />
-          <Route path="/fortnite" element={<Fortnite />} />
           <Route path="/order/:orderId" element={<OrderDetails />} />
         </Routes>
       </main>
