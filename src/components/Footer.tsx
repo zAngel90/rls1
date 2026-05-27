@@ -1,19 +1,14 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
-  MessageCircle, 
   Shield, 
   FileText, 
   ShoppingBag, 
   Diamond, 
   Star, 
   User, 
-  ShoppingCart,
-  LayoutGrid,
-  Users,
-  Instagram,
-  Facebook
+  ShoppingCart
 } from 'lucide-react';
 
 import { useLocation } from 'react-router-dom';
@@ -213,9 +208,9 @@ export default function Footer() {
                                     <span className="group-hover:translate-x-0.5 transition-transform">Discord</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                                 </a>
-                                <a href="#" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
-                                    <InstagramIcon />
-                                    <span className="group-hover:translate-x-0.5 transition-transform">Instagram</span>
+                                <a href="https://wa.me/message/VZYKMCR3JCGCP1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
+                                    <WhatsAppIcon />
+                                    <span className="group-hover:translate-x-0.5 transition-transform">WhatsApp</span>
                                     <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                                 </a>
                                 <a href="https://www.tiktok.com/@rlsrobuxstore" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all text-sm font-medium group shadow-lg hover:shadow-[0_0_20px_rgba(245,165,0,0.2)]">
@@ -240,8 +235,8 @@ export default function Footer() {
                         <div>
                             <h4 className="text-xs font-bold tracking-widest text-gray-500 uppercase mb-5">Cuenta</h4>
                             <ul className="space-y-3">
-                                <li><a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><User size={14} /> Mi Perfil</a></li>
-                                <li><a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><ShoppingCart size={14} /> Mis Pedidos</a></li>
+                                <li><Link to="/account" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><User size={14} /> Mi Perfil</Link></li>
+                                <li><Link to="/account?tab=pedidos" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"><ShoppingCart size={14} /> Mis Pedidos</Link></li>
                             </ul>
                         </div>
 

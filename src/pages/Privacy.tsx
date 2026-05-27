@@ -256,13 +256,12 @@ export default function Privacy() {
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">14. Contacto</h2>
               <p className="mb-4">Para cualquier consulta, reclamo o ejercicio de derechos relacionados con tus datos personales, puedes contactarnos a través de:</p>
-              <p className="mb-2"><strong className="text-white">Página web oficial:</strong> <a href="https://rbxlatamstore.com/" className="text-pixel-accent hover:underline">https://rbxlatamstore.com/</a></p>
-              <p className="mb-2"><strong className="text-white">Discord oficial:</strong> <a href="https://discord.gg/34szpZrtqE" className="text-pixel-accent hover:underline">https://discord.gg/34szpZrtqE</a></p>
-              <ul className="space-y-2 ml-4 mb-4">
-                <li><strong className="text-white">Instagram:</strong> +51 926 536 673</li>
-                <li><strong className="text-white">WhatsApp:</strong> +51 926 536 673</li>
-              <p className="mb-2"><strong className="text-white">Correo electrónico:</strong> <a href="mailto:contacto@rbxlatamstore.com" className="text-pixel-accent hover:underline">contacto@rbxlatamstore.com</a></p>
-                <li>Al utilizar los servicios de RLS – RBX Latam Store, confirmas que has leído y aceptado esta Política de Privacidad.</li>
+              <ul className="space-y-2 mb-4">
+                <li><span className="text-gray-400">Página web oficial:</span> <a href="https://rbxlatamstore.com/" className="text-pixel-accent hover:underline">https://rbxlatamstore.com/</a></li>
+                <li><span className="text-gray-400">Discord oficial:</span> <a href="https://discord.gg/hCbXgCGJWr" className="text-pixel-accent hover:underline">https://discord.gg/hCbXgCGJWr</a></li>
+                <li><span className="text-gray-400">WhatsApp:</span> <a href="https://wa.me/message/VZYKMCR3JCGCP1" className="text-pixel-accent hover:underline">+51 926 536 673</a></li>
+                <li><span className="text-gray-400">TikTok:</span> <a href="https://www.tiktok.com/@rlsrobuxstore" className="text-pixel-accent hover:underline">@rlsrobuxstore</a></li>
+                <li><span className="text-gray-400">Correo electrónico:</span> <a href="mailto:contacto@rbxlatamstore.com" className="text-pixel-accent hover:underline">contacto@rbxlatamstore.com</a></li>
               </ul>
             </section>
           </div>
