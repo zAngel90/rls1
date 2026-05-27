@@ -694,7 +694,7 @@ export default function Reviews() {
                 <div className="flex justify-between items-start mb-8">
                   <div>
                     <h2 className="text-xl lg:text-2xl font-black text-white">Escribir Reseña</h2>
-                    <p className="text-white/40 text-sm mt-1">Cuéntanos tu experiencia con Pixel Store</p>
+                    <p className="text-white/40 text-sm mt-1">Cuéntanos tu experiencia con RLS Store</p>
                   </div>
                   <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-white/5 rounded-xl text-white/20 hover:text-white transition-all">
                     <X size={24} />

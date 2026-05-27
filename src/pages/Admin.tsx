@@ -497,7 +497,7 @@ export default function Admin() {
                         </div>
                         <h2 className="text-5xl font-black text-white mb-4 uppercase tracking-tighter drop-shadow-xl">Bienvenido, Admin</h2>
                         <p className="text-white/40 text-sm max-w-lg mx-auto font-medium leading-relaxed">
-                          Estás en el centro de control principal de Pixel Store. Desde aquí puedes gestionar pedidos, configurar la tienda, revisar estadísticas y dar soporte a los clientes.
+                          Estás en el centro de control principal de RLS Store. Desde aquí puedes gestionar pedidos, configurar la tienda, revisar estadísticas y dar soporte a los clientes.
                         </p>
                       </div>
                     )}

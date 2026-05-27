@@ -227,7 +227,7 @@ export default function Footer() {
                                 Compra productos de Roblox de forma segura, rápida y económica.
                             </p>
                             <p className="text-xs text-gray-600">
-                                © <span className="text-gray-500 font-bold">{new Date().getFullYear()}</span> PIXEL STORE. Todos los derechos reservados.
+                                © <span className="text-gray-500 font-bold">{new Date().getFullYear()}</span> RLS STORE. Todos los derechos reservados.
                                 Servicio independiente, no somos afiliados, asociados ni respaldados por Roblox Corporation.
                             </p>
                         </div>

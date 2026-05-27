@@ -142,7 +142,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
                   {mode === 'login' ? 'Bienvenido' : 'Crear cuenta'}
                 </h2>
                 <p className="text-gray-400 text-xs font-medium max-w-[200px] mx-auto">
-                  {mode === 'login' ? 'Entra a tu cuenta de Pixel Store' : 'Únete a nuestra comunidad hoy'}
+                  {mode === 'login' ? 'Entra a tu cuenta de RLS Store' : 'Únete a nuestra comunidad hoy'}
                 </p>
               </div>
 
