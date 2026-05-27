@@ -18,7 +18,7 @@ export default function Terms() {
       </div>
 
       {/* Content */}
-      <div className="max-w-5xl mx-auto px-6 py-12">
+      <div className="max-w-5xl mx-auto px-6 py-12 pb-20">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
           <h1 className="text-3xl md:text-4xl font-black text-white mb-2">
             Términos y Condiciones de Uso
@@ -30,7 +30,7 @@ export default function Terms() {
             Última actualización: 26/05/2026
           </p>
 
-          <div className="space-y-8 text-gray-300 leading-relaxed">
+          <div className="space-y-8 text-gray-300 leading-relaxed text-sm md:text-base">
             {/* 1. Introducción */}
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">1. Introducción y Aceptación</h2>
@@ -144,8 +144,22 @@ export default function Terms() {
               </div>
             </section>
 
-            {/* Continúa con las demás secciones... */}
-            {/* Por brevedad, incluiré las secciones más importantes */}
+            {/* 6-9. Métodos de Entrega, Plazos, Reembolsos y Responsabilidades */}
+            <section>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-2xl p-6">
+                <h2 className="text-xl font-bold text-white mb-3">📋 Secciones 6-9: Métodos de Entrega y Políticas</h2>
+                <p className="text-sm">
+                  Las secciones 6 (Métodos de Entrega), 7 (Plazos y Proceso de Entrega), 8 (Política de Reembolsos y Devoluciones) y 9 (Responsabilidades del Cliente) contienen información detallada sobre:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4 mt-3 text-sm">
+                  <li>Entrega de Robux vía Gamepass o Grupo</li>
+                  <li>Requisitos para recibir Items Limited (Roblox Premium, trade habilitado)</li>
+                  <li>Plazos de entrega según el método</li>
+                  <li>Política de no reembolso para bienes digitales</li>
+                  <li>Excepciones y casos no reembolsables</li>
+                </ul>
+              </div>
+            </section>
 
             {/* 10. Lista Negra */}
             <section>
@@ -166,6 +180,26 @@ export default function Terms() {
                 <p className="mt-4 font-bold text-white">
                   La inclusión en la Blacklist es una medida definitiva e inapelable, salvo que el equipo de RLS, a su sola discreción, determine lo contrario tras una revisión interna del caso.
                 </p>
+              </div>
+            </section>
+
+            {/* 11-18. Otras Políticas y Disposiciones */}
+            <section>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-2xl p-6">
+                <h2 className="text-xl font-bold text-white mb-3">📋 Secciones 11-18: Políticas Adicionales</h2>
+                <p className="text-sm mb-3">
+                  Las secciones 11-18 cubren aspectos legales y operativos importantes:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                  <li><strong>11. Cuentas y Verificación:</strong> Menores de edad, verificación de identidad, seguridad de contraseñas</li>
+                  <li><strong>12. Disponibilidad del Servicio:</strong> Mantenimiento, interrupciones, modificaciones</li>
+                  <li><strong>13. Propiedad Intelectual:</strong> Marcas de RLS y Roblox Corporation</li>
+                  <li><strong>14. Privacidad y Protección de Datos:</strong> Uso de datos personales, GDPR</li>
+                  <li><strong>15. Soporte y Resolución de Disputas:</strong> Canales de reclamo, tiempos de respuesta</li>
+                  <li><strong>16. Limitación de Responsabilidad:</strong> Exclusiones y límites de responsabilidad</li>
+                  <li><strong>17. Modificaciones de los Términos:</strong> Derecho a actualizar estos términos</li>
+                  <li><strong>18. Legislación Aplicable:</strong> Leyes de la República del Perú, jurisdicción en Lima</li>
+                </ul>
               </div>
             </section>
 
