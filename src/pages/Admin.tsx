@@ -441,7 +441,6 @@ export default function Admin() {
              </div>
              <div>
                <p className="text-xs font-bold text-white">Administrador</p>
-               <p className="text-[10px] text-white/40">admin@pixel.com</p>
              </div>
            </div>
            <button onClick={handleLogout} className="w-full flex items-center justify-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 rounded-2xl transition-all font-bold text-xs uppercase tracking-widest">
