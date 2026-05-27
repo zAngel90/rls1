@@ -20,6 +20,91 @@ import Privacy from './pages/Privacy';
 
 import PageLoader from './components/PageLoader';
 import ScrollToTop from './components/ScrollToTop';
+import { Wrench, Clock } from 'lucide-react';
+
+// 🔧 MODO MANTENIMIENTO - Cambia a false para activar la página
+const MAINTENANCE_MODE = true;
+
+function MaintenanceScreen() {
+  return (
+    <div className="fixed inset-0 z-[9999] bg-gradient-to-br from-[#0A0F1E] via-[#0D1425] to-[#0A0F1E] flex items-center justify-center p-4">
+      <StarBackground />
+      <div className="relative z-10 max-w-2xl w-full">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 text-center">
+          {/* Icono animado */}
+          <div className="mb-8 flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-yellow-500/20 blur-3xl rounded-full animate-pulse"></div>
+              <div className="relative bg-gradient-to-br from-yellow-400 to-yellow-600 p-6 rounded-2xl">
+                <Wrench size={48} className="text-black animate-bounce" />
+              </div>
+            </div>
+          </div>
+
+          {/* Título */}
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
+            Sitio en Mantenimiento
+          </h1>
+
+          {/* Descripción */}
+          <p className="text-xl text-gray-300 mb-6">
+            Estamos realizando mejoras para brindarte una mejor experiencia
+          </p>
+
+          {/* Detalles */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
+            <div className="flex items-center justify-center gap-3 text-yellow-400 mb-3">
+              <Clock size={20} />
+              <span className="font-bold">Tiempo estimado</span>
+            </div>
+            <p className="text-gray-400">
+              Estaremos de vuelta pronto. Disculpa las molestias.
+            </p>
+          </div>
+
+          {/* Redes sociales */}
+          <div className="space-y-3">
+            <p className="text-sm text-gray-500 mb-4">Mantente informado en nuestras redes:</p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a 
+                href="https://discord.gg/hCbXgCGJWr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-xl transition-all transform hover:scale-105"
+              >
+                Discord
+              </a>
+              <a 
+                href="https://wa.me/message/VZYKMCR3JCGCP1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold rounded-xl transition-all transform hover:scale-105"
+              >
+                WhatsApp
+              </a>
+              <a 
+                href="https://www.tiktok.com/@rlsrobuxstore" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-black hover:bg-gray-900 text-white font-bold rounded-xl transition-all transform hover:scale-105"
+              >
+                TikTok
+              </a>
+            </div>
+          </div>
+
+          {/* Logo */}
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <p className="text-2xl font-black bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+              RLS Store
+            </p>
+            <p className="text-sm text-gray-500 mt-2">RBX Latam Store</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function AppContent() {
   const location = useLocation();
@@ -43,6 +128,11 @@ function AppContent() {
       window.location.reload(); // Recargar para actualizar estado global
     }
   }, [location]);
+
+  // Si está en modo mantenimiento, mostrar solo la pantalla de mantenimiento (excepto para admin)
+  if (MAINTENANCE_MODE && !isAdmin) {
+    return <MaintenanceScreen />;
+  }
 
   return (
     <div className={`font-sans selection:bg-blue-500/30 flex flex-col bg-pixel-bg ${isNoUI ? 'lg:h-screen lg:overflow-hidden min-h-screen' : 'min-h-screen'}`}>
