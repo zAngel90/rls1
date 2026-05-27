@@ -25,7 +25,7 @@ function AppContent() {
   const isGameItems = location.pathname === '/game-items';
   const isCheckout = location.pathname === '/checkout';
   const isChat = location.pathname === '/chat';
-  const isAdmin = location.pathname.startsWith('/admin');
+  const isAdmin = location.pathname.startsWith('/z_25ji16ls');
   const isNoUI = isIngame || isGameItems || isCheckout || isChat || isAdmin;
 
   React.useEffect(() => {
@@ -61,7 +61,7 @@ function AppContent() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/catalog/ingame/:gameId" element={<GameItems />} />
           <Route path="/game-items" element={<GameItems />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/z_25ji16ls" element={<Admin />} />
           <Route path="/fortnite" element={<Fortnite />} />
           <Route path="/order/:orderId" element={<OrderDetails />} />
         </Routes>

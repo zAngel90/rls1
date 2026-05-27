@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ChevronDown, 
   MessageCircleQuestion, 
@@ -11,6 +11,7 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ReviewsAPI, SERVER_URL } from '../services/api';
 
 const faqs = [
   {
@@ -73,6 +74,27 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [latestReviewers, setLatestReviewers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await ReviewsAPI.getReviews();
+        if (response.success && response.data) {
+          setTotalReviews(response.data.length);
+          // Obtener los últimos 3 usuarios únicos con foto
+          const reviewsWithImages = response.data
+            .filter((r: any) => r.user?.profileImage)
+            .slice(0, 3);
+          setLatestReviewers(reviewsWithImages);
+        }
+      } catch (error) {
+        console.error('Error cargando reseñas:', error);
+      }
+    };
+    fetchReviews();
+  }, []);
 
   return (
     <section id="faq" className="pt-0 pb-24 md:pt-10 md:pb-40 relative overflow-hidden">
@@ -146,12 +168,34 @@ export default function FAQ() {
               {/* Trust Badges */}
               <div className="flex items-center gap-4 mt-8">
                 <div className="flex -space-x-3">
-                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=60&h=60" className="w-9 h-9 rounded-full border-2 border-pixel-bg object-cover" alt="User" />
-                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=60&h=60" className="w-9 h-9 rounded-full border-2 border-pixel-bg object-cover" alt="User" />
-                  <div className="w-9 h-9 rounded-full border-2 border-pixel-bg bg-pixel-panel flex items-center justify-center text-[10px] font-bold text-white">AN</div>
+                  {latestReviewers.length > 0 ? (
+                    latestReviewers.map((review, idx) => (
+                      <img 
+                        key={idx}
+                        src={review.user.profileImage} 
+                        className="w-9 h-9 rounded-full border-2 border-pixel-bg object-cover" 
+                        alt={review.user.username}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://i.postimg.cc/5tSsMDgK/logo-4x.png';
+                        }}
+                      />
+                    ))
+                  ) : (
+                    <>
+                      <div className="w-9 h-9 rounded-full border-2 border-pixel-bg bg-pixel-panel flex items-center justify-center">
+                        <Star size={16} className="text-yellow-400" />
+                      </div>
+                      <div className="w-9 h-9 rounded-full border-2 border-pixel-bg bg-pixel-panel flex items-center justify-center">
+                        <Star size={16} className="text-yellow-400" />
+                      </div>
+                      <div className="w-9 h-9 rounded-full border-2 border-pixel-bg bg-pixel-panel flex items-center justify-center">
+                        <Star size={16} className="text-yellow-400" />
+                      </div>
+                    </>
+                  )}
                 </div>
                 <p className="text-xs text-gray-400">
-                  <span className="text-white font-black">+100.000</span> pedidos entregados
+                  <span className="text-white font-black">{totalReviews > 0 ? `+${totalReviews}` : '+100'}</span> reseñas verificadas
                 </p>
               </div>
             </div>
