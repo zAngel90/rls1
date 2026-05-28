@@ -802,6 +802,9 @@ const OrderDetails = () => {
                                 Skin Fortnite
                               </p>
                               <p className="text-xs font-bold text-white truncate">{item?.name}</p>
+                              {(item?.qty || item?.quantity) && (item.qty > 1 || item.quantity > 1) && (
+                                <p className="text-[9px] text-white/40 font-bold mt-0.5">Cantidad: x{item.qty || item.quantity}</p>
+                              )}
                             </div>
                           </div>
                         ))}
@@ -834,6 +837,9 @@ const OrderDetails = () => {
                                   Item a recibir
                                 </p>
                                 <p className="text-xs font-bold text-white truncate">{item?.name}</p>
+                                {item?.qty && item.qty > 1 && (
+                                  <p className="text-[9px] text-white/40 font-bold mt-0.5">Cantidad: x{item.qty}</p>
+                                )}
                               </div>
                             </div>
                           );

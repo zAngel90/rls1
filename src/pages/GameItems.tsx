@@ -126,7 +126,11 @@ export default function GameItems() {
       }
       
       if (event.data?.action === 'login') {
+        console.log('🔐 Solicitud de login desde tienda estática, abriendo modal...');
+        // Intentar ambos métodos para asegurar que funcione
         document.dispatchEvent(new CustomEvent('openAuthModal'));
+        // También navegar a home con parámetro login
+        navigate('/?login=true');
       }
 
       if (event.data?.action === 'ready') {

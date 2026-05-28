@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, CreditCard, Smartphone, Wallet, DollarSign, X, ChevronDown, ChevronUp, ChevronLeft, Tag, CheckCircle2, Loader2, Copy, Check, ArrowRight, ArrowLeft, Users, Search, Search as SearchIcon, HelpCircle, Shield, Info, TrendingUp, Zap, Star, Clock, Lock, Globe, ExternalLink, AlertCircle, Package, FileText, ImageIcon, Edit2 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -154,6 +154,11 @@ const Checkout = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: username, id: userId });
   const [userAvatar, setUserAvatar] = useState('');
+  
+  // Coupon State - Declarado temprano para usarlo en useMemo
+  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
+  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
+  const [couponError, setCouponError] = useState('');
 
   // Estados para modal de cambio de usuario
   const [isChangeUserModalOpen, setIsChangeUserModalOpen] = useState(false);
@@ -356,13 +361,25 @@ const Checkout = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const getPrices = () => {
+  // Calcular baseTotal dinámicamente basado en si hay cupón aplicado
+  const { displayTotal: baseTotal, displayCurrency } = useMemo(() => {
+    if (isTrade) {
+      return { displayTotal: amount, displayCurrency: initialCurrency };
+    }
+    
     if (state?.totalPrice !== undefined && state?.currency) {
+      // FIX: SIEMPRE usar originalPrice si existe, para evitar aplicar descuento sobre descuento
+      // Solo usar totalPrice si viene con cupón pre-aplicado desde RobuxCatalog
+      const priceToUse = state.originalPrice 
+        ? state.originalPrice 
+        : state.totalPrice;
+      
       return {
-        displayTotal: state.totalPrice,
+        displayTotal: priceToUse,
         displayCurrency: state.currency
       };
     }
+    
     if (!fromWebview) {
       const base = Math.round(amount * 27);
       const fee = Math.round(base * 0.07);
@@ -371,18 +388,12 @@ const Checkout = () => {
         displayCurrency: 'PEN'
       };
     }
+    
     return {
       displayTotal: amount,
       displayCurrency: initialCurrency
     };
-  };
-
-  const { displayTotal: baseTotal, displayCurrency } = isTrade ? { displayTotal: amount, displayCurrency: initialCurrency } : getPrices();
-
-  // Coupon State & Utility Handlers
-  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
-  const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
-  const [couponError, setCouponError] = useState('');
+  }, [state.totalPrice, state.originalPrice, state.currency, isTrade, amount, initialCurrency, fromWebview]);
 
   // Detectar cupón aplicado desde el modal de Robux
   useEffect(() => {
@@ -423,15 +434,41 @@ const Checkout = () => {
 
   const getDiscountAmount = () => {
     if (!appliedCoupon) return 0;
+    
+    // FIX: Si el cupón ya viene aplicado desde RobuxCatalog (tiene discountAmount pre-calculado)
+    // NO volver a calcularlo, solo mostrarlo
+    if (appliedCoupon.discountAmount !== undefined && state.coupon) {
+      return parseFloat(appliedCoupon.discountAmount);
+    }
+    
+    // Si el cupón se aplicó aquí en Checkout, calcularlo normalmente
     if (appliedCoupon.discountType === 'percentage') {
+      // Si tenemos basePrice (USD) y currencyRate, calcular descuento correctamente
+      if (state.basePrice && state.currencyRate) {
+        const discountUSD = (state.basePrice * appliedCoupon.discountValue) / 100;
+        const discountConverted = discountUSD * state.currencyRate;
+        return parseFloat(discountConverted.toFixed(2));
+      }
+      // Fallback: calcular sobre el total convertido (comportamiento anterior)
       return parseFloat(((baseTotal * appliedCoupon.discountValue) / 100).toFixed(2));
+    } else if (appliedCoupon.discountType === 'balance') {
+      return Math.min(appliedCoupon.remainingBalance || appliedCoupon.discountValue, baseTotal);
     } else {
+      // Descuento fijo en USD, convertir si tenemos el rate
+      if (state.currencyRate) {
+        return parseFloat((appliedCoupon.discountValue * state.currencyRate).toFixed(2));
+      }
       return Math.min(appliedCoupon.discountValue, baseTotal);
     }
   };
 
   const discountAmount = getDiscountAmount();
-  const finalTotal = parseFloat((baseTotal - discountAmount).toFixed(2));
+  
+  // FIX: Si el cupón viene desde RobuxCatalog, el baseTotal ya incluye el descuento
+  // Por lo tanto, finalTotal = baseTotal (no restar de nuevo)
+  const finalTotal = (appliedCoupon && appliedCoupon.discountAmount !== undefined && state.coupon) 
+    ? parseFloat(baseTotal.toFixed(2))
+    : parseFloat((baseTotal - discountAmount).toFixed(2));
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -789,7 +826,10 @@ const Checkout = () => {
                                           <p className="text-[9px] text-blue-400 font-bold uppercase">Skin</p>
                                         </div>
                                         <div className="text-right">
-                                          <span className="text-[10px] font-black text-white/40">{((item?.price || 0) * (item?.quantity || 1)).toLocaleString('es-PE', { minimumFractionDigits: 2 })} {displayCurrency}</span>
+                                          {(item?.quantity || item?.qty) && (item.quantity > 1 || item.qty > 1) && (
+                                            <p className="text-[9px] text-white/30 font-bold mb-0.5">x{item.quantity || item.qty}</p>
+                                          )}
+                                          <span className="text-[10px] font-black text-white/40">{((item?.price || 0) * (item?.quantity || item?.qty || 1)).toLocaleString('es-PE', { minimumFractionDigits: 2 })} {displayCurrency}</span>
                                         </div>
                                       </div>
                                     </div>
@@ -861,6 +901,9 @@ const Checkout = () => {
                                           <p className="text-[9px] text-blue-400 font-bold uppercase">{item?.rarity || item?.category || 'In-Game'}</p>
                                         </div>
                                         <div className="text-right">
+                                          {item?.qty && item.qty > 1 && (
+                                            <p className="text-[9px] text-white/30 font-bold mb-0.5">x{item.qty}</p>
+                                          )}
                                           <span className="text-[10px] font-black text-white/40">{((item?.price || 0) * (item?.qty || 1)).toLocaleString('es-PE', { minimumFractionDigits: 0 })} {displayCurrency}</span>
                                         </div>
                                       </div>
@@ -1059,6 +1102,9 @@ const Checkout = () => {
                                         </p>
                                       </div>
                                       <div className="text-right">
+                                        {item?.qty && item.qty > 1 && (
+                                          <p className="text-[9px] text-white/30 font-bold mb-0.5">x{item.qty}</p>
+                                        )}
                                         <span className="text-[10px] font-black text-white/40">{((item?.price || 0) * (item?.qty || 1)).toLocaleString('es-PE', { minimumFractionDigits: 0 })} {displayCurrency}</span>
                                       </div>
                                     </div>

@@ -396,10 +396,18 @@ export default function OrdersTab({ orders, onContactClient }: { orders: any[], 
                           <p className="text-[11px] font-bold uppercase mt-1 text-white/60">
                             {item?.gameName || item?.game || (selectedOrderItems.type === 'mm2' ? 'Murder Mystery 2' : 'Roblox Limiteds')}
                           </p>
+                          {(item?.qty || item?.quantity) && (item.qty > 1 || item.quantity > 1) && (
+                            <p className="text-[10px] font-black text-white/40 mt-1">
+                              Cantidad: <span className="text-blue-400">x{item.qty || item.quantity}</span>
+                            </p>
+                          )}
                         </div>
                         {item?.price && (
                           <div className="text-right">
-                            <p className="text-sm font-black text-white">${item.price}</p>
+                            {(item?.qty || item?.quantity) && (item.qty > 1 || item.quantity > 1) && (
+                              <p className="text-[10px] text-white/40 mb-1">x{item.qty || item.quantity}</p>
+                            )}
+                            <p className="text-sm font-black text-white">${((item.price || 0) * (item.qty || item.quantity || 1)).toFixed(2)}</p>
                             <p className="text-[10px] text-white/40">{selectedOrderItems.currency}</p>
                           </div>
                         )}

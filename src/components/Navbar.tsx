@@ -176,6 +176,31 @@ export default function Navbar() {
     }
   };
 
+  // FIX: Detectar parámetro ?login=true y evento openAuthModal
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('login') === 'true') {
+      setIsAuthModalOpen(true);
+      // Limpiar el parámetro de la URL
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location.search, location.pathname, navigate]);
+
+  // FIX: Escuchar evento openAuthModal desde otros componentes
+  useEffect(() => {
+    const handleOpenAuthModal = () => {
+      console.log('🔓 Evento openAuthModal recibido, abriendo modal de autenticación...');
+      setIsAuthModalOpen(true);
+    };
+    
+    document.addEventListener('openAuthModal', handleOpenAuthModal);
+    console.log('✅ Navbar: Listener de openAuthModal registrado');
+    
+    return () => {
+      document.removeEventListener('openAuthModal', handleOpenAuthModal);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);

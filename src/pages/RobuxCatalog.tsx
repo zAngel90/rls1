@@ -335,6 +335,15 @@ export default function RobuxCatalog() {
 
   const handlePurchase = () => {
     console.log('🚀 Purchase Initiated:', { method, displayAmount });
+    
+    // FIX: Verificar que el usuario esté autenticado
+    const user = JSON.parse(localStorage.getItem('pixel_user') || 'null');
+    if (!user || !user.id) {
+      // Redirigir al home con modal de login abierto
+      navigate('/?login=true');
+      return;
+    }
+    
     if (method === 'group') {
       setGroupError(null);
       setGroupStep(1);
@@ -402,11 +411,30 @@ export default function RobuxCatalog() {
 
     let discount = 0;
     if (appliedCoupon.discountType === 'percentage') {
-      discount = (subtotal * parseFloat(appliedCoupon.discountValue)) / 100;
+      // FIX: Calcular descuento sobre el precio base en USD, luego convertir
+      const discountUSD = (basePrice * parseFloat(appliedCoupon.discountValue)) / 100;
+      discount = discountUSD * selectedCurrencyData.rate;
+      console.log('💰 Cálculo de descuento porcentaje (CORREGIDO):', {
+        basePrice,
+        discountValue: appliedCoupon.discountValue,
+        discountUSD,
+        rate: selectedCurrencyData.rate,
+        discount,
+        currency,
+        subtotal
+      });
     } else if (appliedCoupon.discountType === 'balance') {
       discount = Math.min(appliedCoupon.remainingBalance, subtotal);
     } else {
-      discount = parseFloat(appliedCoupon.discountValue);
+      // Descuento fijo en USD, convertir a la moneda seleccionada
+      discount = parseFloat(appliedCoupon.discountValue) * selectedCurrencyData.rate;
+      console.log('💰 Cálculo de descuento fijo (CORREGIDO):', {
+        subtotal,
+        discountValueUSD: appliedCoupon.discountValue,
+        rate: selectedCurrencyData.rate,
+        discount,
+        currency
+      });
     }
     
     return Math.max(0, subtotal - discount);
@@ -1941,6 +1969,8 @@ export default function RobuxCatalog() {
                             amount: displayAmount,
                             totalPrice: appliedCoupon ? finalPrice : parseFloat(currentPrice),
                             originalPrice: parseFloat(currentPrice),
+                            basePrice: basePrice,
+                            currencyRate: selectedCurrencyData.rate,
                             currency: currency,
                             username: selectedUser?.name || 'Usuario',
                             userId: selectedUser?.id || '0',
@@ -2606,6 +2636,8 @@ export default function RobuxCatalog() {
                             amount: displayAmount,
                             totalPrice: appliedCoupon ? finalPrice : parseFloat(currentPrice),
                             originalPrice: parseFloat(currentPrice),
+                            basePrice: basePrice,
+                            currencyRate: selectedCurrencyData.rate,
                             currency: currency,
                             username: selectedUser?.name || 'Usuario',
                             userId: selectedUser?.id || '0',
