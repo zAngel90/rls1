@@ -464,10 +464,10 @@ const Checkout = () => {
 
   const discountAmount = getDiscountAmount();
   
-  // FIX: Si el cupón viene desde RobuxCatalog, el baseTotal ya incluye el descuento
-  // Por lo tanto, finalTotal = baseTotal (no restar de nuevo)
-  const finalTotal = (appliedCoupon && appliedCoupon.discountAmount !== undefined && state.coupon) 
-    ? parseFloat(baseTotal.toFixed(2))
+  // FIX: Si el cupón viene pre-aplicado desde RobuxCatalog, usar state.totalPrice (que ya tiene descuento)
+  // Si no, calcular: baseTotal - discountAmount
+  const finalTotal = (appliedCoupon && appliedCoupon.discountAmount !== undefined && state.coupon && state.totalPrice) 
+    ? parseFloat(state.totalPrice.toFixed(2))
     : parseFloat((baseTotal - discountAmount).toFixed(2));
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
