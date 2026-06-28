@@ -147,7 +147,7 @@ export default function ChatsTab() {
       fileUrl: fileUrl,
       sender: 'admin',
       senderName: adminUser?.username,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      time: new Date().toLocaleTimeString('es-PE', { timeZone: 'America/Lima', hour: '2-digit', minute: '2-digit', hour12: true }),
       timestamp: new Date().toISOString(),
       isOptimistic: true
     };

@@ -151,7 +151,7 @@ export default function Chat() {
       fileUrl: fileUrl,
       sender: 'user',
       senderName: user?.username,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      time: new Date().toLocaleTimeString('es-PE', { timeZone: 'America/Lima', hour: '2-digit', minute: '2-digit', hour12: true }),
       timestamp: new Date().toISOString(),
       isOptimistic: true // Marcador por si queremos darle un estilo tenue mientras carga
     };

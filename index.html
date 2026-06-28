@@ -1,206 +1,85 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RLS Store | Robux y Objetos Premium</title>
-    <meta name="description" content="La tienda más premium para comprar Robux y objetos de Roblox." />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#05040F] text-white antialiased selection:bg-[#1400AC]/60 selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  
-<script id="dualite-canvas-overlay-v1">
-
-(function() {
-  if (window.__canvasOverlayInit) return;
-  window.__canvasOverlayInit = true;
-
-  try {
-
-  var enabled = false;
-  let hoveredEl = null;
-  let selectedEl = null;
-
-  function getSelector(el) {
-    if (el.id) return '#' + el.id;
-    let path = [];
-    while (el && el !== document.body && el !== document.documentElement) {
-      let tag = el.tagName.toLowerCase();
-      let sibling = el;
-      let nth = 1;
-      while (sibling.previousElementSibling) {
-        sibling = sibling.previousElementSibling;
-        if (sibling.tagName === el.tagName) nth++;
-      }
-      path.unshift(nth > 1 ? tag + ':nth-of-type(' + nth + ')' : tag);
-      el = el.parentElement;
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connection Error</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d1117;
+      font-family: ui-monospace, 'Cascadia Code', 'Segoe UI', monospace;
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
     }
-    return path.join(' > ');
-  }
-
-  function getRect(el) {
-    const r = el.getBoundingClientRect();
-    return { top: r.top, left: r.left, width: r.width, height: r.height };
-  }
-
-  function getComputedProps(el) {
-    var cs = window.getComputedStyle(el);
-    return {
-      tagName: el.tagName.toLowerCase(),
-      id: el.id || '',
-      className: (typeof el.className === 'string') ? el.className : '',
-      textContent: (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) ? (el.textContent || '').slice(0, 80) : '',
-      fontSize: cs.fontSize,
-      fontWeight: cs.fontWeight,
-      fontFamily: cs.fontFamily,
-      color: cs.color,
-      backgroundColor: cs.backgroundColor,
-      opacity: cs.opacity,
-      textAlign: cs.textAlign,
-      padding: cs.padding,
-      margin: cs.margin,
-      borderRadius: cs.borderRadius,
-      borderWidth: cs.borderWidth,
-      borderColor: cs.borderColor,
-      width: cs.width,
-      height: cs.height,
-      display: cs.display,
-    };
-  }
-
-  function parseDataDs(ds) {
-    var parts = ds.split(':');
-    if (parts.length < 3) return null;
-    var col = parseInt(parts[parts.length - 1], 10);
-    var line = parseInt(parts[parts.length - 2], 10);
-    var filePath = parts.slice(0, parts.length - 2).join(':');
-    if (!filePath || isNaN(line)) return null;
-    return { sourceFilePath: filePath, sourceLine: line, sourceColumn: isNaN(col) ? null : col };
-  }
-
-  function getDebugSource(el) {
-    var node = el;
-    while (node && node !== document.documentElement) {
-      if (node.getAttribute) {
-        var ds = node.getAttribute('data-ds');
-        if (ds) {
-          var parsed = parseDataDs(ds);
-          if (parsed) return parsed;
-        }
-      }
-      node = node.parentElement;
+    .box {
+      max-width: 560px;
+      width: 100%;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 40px;
+      background: #161b22;
+      text-align: center;
     }
-
-    var workDir = '/home/project/';
-    function strip(f) {
-      if (!f) return '';
-      return f.startsWith(workDir) ? f.slice(workDir.length) : f;
+    .icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 24px;
+      border: 2px solid #f85149;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f85149;
+      font-size: 28px;
+      font-weight: 700;
     }
-
-    try {
-      var vNode = el;
-      while (vNode && vNode !== document.documentElement) {
-        var vc = vNode.__vueParentComponent;
-        if (vc && vc.type && vc.type.__file) {
-          return { sourceFilePath: strip(vc.type.__file), sourceLine: null, sourceColumn: null };
-        }
-        vNode = vNode.parentElement;
-      }
-    } catch (err) {
-      console.warn('[canvas-overlay] Vue fallback error:', err);
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #f0f6fc;
     }
-
-    return null;
-  }
-
-  function clearOverlayState() {
-    hoveredEl = null;
-    selectedEl = null;
-    window.parent.postMessage({ type: 'canvas-hover-clear' }, '*');
-  }
-
-  document.addEventListener('mousemove', function(e) {
-    if (!enabled) return;
-    const el = document.elementFromPoint(e.clientX, e.clientY);
-    if (!el || el === hoveredEl) return;
-    hoveredEl = el;
-    window.parent.postMessage({
-      type: 'canvas-hover',
-      rect: getRect(el),
-      selector: getSelector(el),
-    }, '*');
-  }, true);
-
-  document.addEventListener('click', function(e) {
-    if (!enabled) return;
-    e.preventDefault();
-    e.stopPropagation();
-    const el = document.elementFromPoint(e.clientX, e.clientY);
-    if (!el) return;
-    selectedEl = el;
-    var source = getDebugSource(el);
-    window.parent.postMessage({
-      type: 'canvas-select',
-      rect: getRect(el),
-      selector: getSelector(el),
-      props: getComputedProps(el),
-      source: source,
-    }, '*');
-  }, true);
-
-  var syncSelectRaf = 0;
-  function postSelectedRectIfAny() {
-    if (!selectedEl) return;
-    if (!selectedEl.isConnected) {
-      selectedEl = null;
-      return;
+    p {
+      font-size: 13px;
+      color: #8b949e;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
-    window.parent.postMessage({
-      type: 'canvas-select-rect',
-      rect: getRect(selectedEl),
-    }, '*');
-  }
-  function scheduleSelectedRectSync() {
-    if (!enabled) return;
-    if (!selectedEl) return;
-    if (syncSelectRaf) return;
-    syncSelectRaf = requestAnimationFrame(function() {
-      syncSelectRaf = 0;
-      postSelectedRectIfAny();
-    });
-  }
-  window.addEventListener('scroll', scheduleSelectedRectSync, true);
-  window.addEventListener('resize', scheduleSelectedRectSync);
-
-  document.addEventListener('mouseleave', function() {
-    if (!enabled) return;
-    hoveredEl = null;
-    window.parent.postMessage({ type: 'canvas-hover-clear' }, '*');
-  });
-
-  window.addEventListener('message', function(e) {
-    if (e.source !== window.parent) return;
-    if (!e.data) return;
-    if (e.data.type === 'canvas-enable') {
-      enabled = true;
-    } else if (e.data.type === 'canvas-disable') {
-      enabled = false;
-      clearOverlayState();
-    } else if (e.data.type === 'canvas-deselect') {
-      selectedEl = null;
+    .code {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #f85149;
+      word-break: break-all;
+      margin-bottom: 20px;
+      font-family: monospace;
     }
-  });
-
-  window.parent.postMessage({ type: 'canvas-overlay-ready' }, '*');
-
-  } catch (err) {
-    window.parent.postMessage({ type: 'canvas-overlay-error', message: String(err) }, '*');
-  }
-})();
-
-</script>
+    hr {
+      border: none;
+      border-top: 1px solid #21262d;
+      margin: 20px 0;
+    }
+    .foot {
+      font-size: 11px;
+      color: #484f58;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="icon">!</div>
+    <h1>Secure connection failed</h1>
+    <p>The server rejected the handshake. The certificate chain could not be verified. Contact the site administrator.</p>
+    <div class="code">0x800B0109 &mdash; CERT_E_CHAIN_FAILURE</div>
+    <hr>
+    <p class="foot">RLS Store</p>
+  </div>
 </body>
 </html>
