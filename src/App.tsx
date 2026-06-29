@@ -23,7 +23,7 @@ import ScrollToTop from './components/ScrollToTop';
 import { Wrench, Clock } from 'lucide-react';
 
 // 🔧 MODO MANTENIMIENTO - Cambia a false para activar la página
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 function MaintenanceScreen() {
   return (
