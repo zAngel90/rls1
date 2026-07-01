@@ -155,7 +155,7 @@ export default function Account() {
     } else {
       const parsedUser = JSON.parse(savedUser);
       setUser(parsedUser);
-      fetchOrders(parsedUser.id, parsedUser.username);
+      fetchOrders(parsedUser.id);
       
       // Refresh profile data from server to get latest robux/level
       const refreshProfile = () => {
@@ -177,7 +177,7 @@ export default function Account() {
           if (notification.type === 'order_update' && notification.status === 'completed') {
             console.log('🔄 Orden completada, refrescando perfil...');
             refreshProfile();
-            fetchOrders(parsedUser.id, parsedUser.username);
+            fetchOrders(parsedUser.id);
           }
         };
         
@@ -231,21 +231,13 @@ export default function Account() {
     };
   };
 
-  const fetchOrders = async (userId: string, username: string) => {
+  const fetchOrders = async (userId: string) => {
     setIsLoadingOrders(true);
     try {
-      const [resById, resByUsername] = await Promise.all([
-        OrdersAPI.getUserOrders(userId),
-        OrdersAPI.getUserOrders(username)
-      ]);
+      const res = await OrdersAPI.getUserOrders(userId);
 
       let allOrders: any[] = [];
-      if (resById.success) allOrders = [...resById.data];
-      if (resByUsername.success) {
-        const existingIds = new Set(allOrders.map(o => o.id));
-        const extraOrders = resByUsername.data.filter((o: any) => !existingIds.has(o.id));
-        allOrders = [...allOrders, ...extraOrders];
-      }
+      if (res.success) allOrders = [...res.data];
 
       // Ordenar por fecha más reciente primero
       allOrders.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
