@@ -150,7 +150,7 @@ export default function GameItems() {
         const { user, cart, total, currency, appliedCoupon, ...rest } = event.data;
         navigate('/checkout', { 
           state: { 
-            username: user.displayName || user.name,
+            username: user.name,
             userId: user.id,
             amount: total,
             cart: cart,
