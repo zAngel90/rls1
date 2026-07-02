@@ -873,13 +873,28 @@ export default function Navbar() {
                 <img src="https://i.postimg.cc/XJqqq7Hx/RLS-LOGO.png" alt="Logo" className="h-8" />
                 <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-gray-400 hover:text-white"><X size={24} /></button>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 flex-1">
                 {NAV_ITEMS.map(item => (
                   <Link key={item.id} to={item.href} onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 p-3 rounded-2xl transition-all ${activeNav === item.id ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
                     <item.icon size={18} /> <span className="font-bold text-sm">{item.label}</span>
                   </Link>
                 ))}
               </div>
+              {isLoggedIn && (
+                <div className="mt-auto pt-4 border-t border-white/5">
+                  <button onClick={() => {
+                    localStorage.removeItem('pixel_token');
+                    localStorage.removeItem('pixel_user');
+                    setIsLoggedIn(false);
+                    setUser(null);
+                    setMobileMenuOpen(false);
+                    navigate('/');
+                  }} className="w-full flex items-center gap-3 p-3 rounded-2xl hover:bg-red-500/5 transition-all text-red-500/70 hover:text-red-500">
+                    <div className="size-8 rounded-xl bg-red-500/5 flex items-center justify-center"><LogOut size={16} /></div>
+                    <span className="font-bold text-sm">Cerrar Sesión</span>
+                  </button>
+                </div>
+              )}
             </motion.div>
           </>
         )}
