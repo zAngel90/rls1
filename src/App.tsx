@@ -1,5 +1,5 @@
 import React from 'react'; // Refreshed routes
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import StarBackground from './components/StarBackground';
@@ -21,7 +21,6 @@ import Privacy from './pages/Privacy';
 import PageLoader from './components/PageLoader';
 import ScrollToTop from './components/ScrollToTop';
 import { Wrench, Clock } from 'lucide-react';
-import { AuthAPI } from './services/api';
 
 // 🔧 MODO MANTENIMIENTO - Cambia a false para activar la página
 const MAINTENANCE_MODE = false;
@@ -109,7 +108,6 @@ function MaintenanceScreen() {
 
 function AppContent() {
   const location = useLocation();
-  const navigate = useNavigate();
   const isIngame = location.pathname.startsWith('/catalog/ingame');
   const isGameItems = location.pathname === '/game-items';
   const isCheckout = location.pathname === '/checkout';
@@ -129,24 +127,6 @@ function AppContent() {
       window.history.replaceState({}, document.title, window.location.pathname);
       window.location.reload();
     }
-  }, []);
-
-  // Verificar token al cargar la página — fuerza logout si es inválido
-  React.useEffect(() => {
-    const token = localStorage.getItem('pixel_token');
-    if (!token) return;
-
-    AuthAPI.getProfile().then(res => {
-      if (!res.success) {
-        localStorage.removeItem('pixel_token');
-        localStorage.removeItem('pixel_user');
-        navigate('/');
-      }
-    }).catch(() => {
-      localStorage.removeItem('pixel_token');
-      localStorage.removeItem('pixel_user');
-      navigate('/');
-    });
   }, []);
 
   // Si está en modo mantenimiento, mostrar solo la pantalla de mantenimiento (excepto para admin)
